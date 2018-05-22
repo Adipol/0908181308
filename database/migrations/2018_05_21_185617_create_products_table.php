@@ -18,7 +18,10 @@ class CreateProductsTable extends Migration
 
 			$table->unsignedInteger('category_id');
 			$table->foreign('category_id')->references('id')->on('categories');
-			
+
+			$table->unsignedInteger('unit_id');
+			$table->foreign('unit_id')->references('id')->on('units');
+
 			$table->string('name',50)->unique();
 			$table->string('description',250)->nullable();
 			$table->integer('stock');

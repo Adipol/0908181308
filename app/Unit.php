@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Unit extends Model
 {
     protected $fillable=[
 		'name',
-		'description',
+		'abbreviation',
 		'condition'
 	];
 
 	public function products()
-	{
-		return $this->hasMany('App\Product');
-	}
+    {
+        return $this->hasMany('App\Product');
+    }
 }
