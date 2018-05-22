@@ -11,7 +11,7 @@ class Unit extends Model
 		'abbreviation',
 		'condition'
 	];
-
+	
 	public function products()
     {
         return $this->hasMany('App\Product');
