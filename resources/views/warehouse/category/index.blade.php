@@ -16,7 +16,9 @@
 					Categorias
 				</div>
 				<div class="card-body">
-					<button type="button" class="btn btn-primary card-title">Registrar</button>
+					<button type="button" class="btn btn-primary card-title" data-toggle="modal" data-target="#modalCreate">
+						Adicionar
+					</button>
 					<table class="table table-hover">
 						<thead class="thead-light">
 							<tr>
@@ -51,4 +53,41 @@
 	</div>
 </div>
 </section>
+
+
+  
+  <!-- Modal -->
+<div class="modal fade" id="modalCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModal3Label">Registrar Categoria</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+			</div>
+			<form action="">
+				<div class="modal-body">
+					<div class="form-group row">
+						<label for="" class="col-md-3 col-form-label" required>Nombre</label>
+						<div class="col-md-9">
+							<input type="text" name="name"
+							id="" class="form-control" placeholder="Ingrese el nombre" aria-describedby="helpId">
+						</div>					
+					</div>
+					<div class="form-group row">
+						<label for="" class="col-md-3 col-form-label">Descripcion</label>
+						<div class="col-md-9">
+							<textarea class="form-control" name="description" id="" rows="3" placeholder="Ingrese la descripcion "></textarea>
+						</div>					
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary">Guardar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 @endsection
