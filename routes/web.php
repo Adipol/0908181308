@@ -16,7 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/categorias','CategoryController@index')->name('category.index');
-Route::get('/categorias/crear','CategoryController@create')->name('category.create');
+Route::post('/categoria/store','CategoryController@store')->name('category.store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

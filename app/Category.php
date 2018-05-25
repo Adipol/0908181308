@@ -16,4 +16,9 @@ class Category extends Model
 	{
 		return $this->hasMany('App\Product');
 	}
+
+	public function setNameAttribute($value){
+		
+        $this->attributes['name'] = ucfirst((strtolower($value)));
+	}
 }
