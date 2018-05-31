@@ -83,7 +83,6 @@
                         </div>
                         <div class="row justify-content-center">
                             {{ $ps->links() }}
-                           {{ Session::get('warehouse_id','no existe sesion') }}
                         </div>
                     </div>
                 </div>

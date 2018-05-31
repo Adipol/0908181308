@@ -10,9 +10,10 @@ use App\ProductWarehouse;
 class ProductController extends Controller
 {
   public function index()
-  {
-    $ps= ProductWarehouse::with('product.category')->paginate(10);
-    
+  { $value = session()->get('warehouse_id');
+
+    $ps= ProductWarehouse::where('warehouse_id',$value)->with('product.category')->paginate(10);
+
     return view('warehouse.product.index')->with(compact('ps'));
   }
 
