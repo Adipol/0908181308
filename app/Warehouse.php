@@ -15,4 +15,9 @@ class Warehouse extends Model
     {
         return $this->hasMany('App\ProductWarehouse');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','user_warehouses','warehouse_id','user_id');    
+    }
 }
