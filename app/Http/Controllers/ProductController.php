@@ -19,6 +19,21 @@ class ProductController extends Controller
 
 	public function create()
 	{
-		return view('warehouse.product.create');
-	}
+    $products = Product::all();
+		return view('warehouse.product.create')->with(compact('products'));
+  }
+  
+  public function store(Request $request)
+  {   
+      $value                 = session()->get('warehouse_id');
+      $product               = new ProductWarehouse;
+      $product->product_id   = $request->get('idarticulo');
+      $product->warehouse_id = $value;
+      $product->stock        = $request->get('cantidad');
+      $product->condition    = 1;
+      $ucm                   = auth()->user();
+      $product->ucm          = $ucm->id;
+      $product->save();
+      return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
+  }
 }

@@ -24,6 +24,7 @@ Route::get('/categorias/{id}','CategoryController@delete')->name('category.delet
 
 Route::get('/productos','ProductController@index')->name('product.index');
 Route::get('/productos/create','ProductController@create')->name('product.create');
+Route::post('/productos','ProductController@store')->name('product.store');
 
 Auth::routes();
 

@@ -40,7 +40,7 @@
                                         <th>Opciones</th>
                                         <th>Nombre</th>
                                         <th>Categoria</th>
-                                        <th>Stock</th>
+                                        <th>Cantidad</th>
                                         <th>Descripcion</th>
                                         <th>Fecha de creacion</th>
                                         <th>Fecha de modificacion</th>
