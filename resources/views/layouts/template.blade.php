@@ -52,14 +52,16 @@
     </div>
 	
 	<div class="content d-flex flex-column">
-			@yield('contenido')
+			@yield('content')
 	</div>
 </div>
 
 <script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('js/bootadmin.min.js')}}"></script>
 <script src="{{asset('js/sweetalert2.all.js')}}"></script>
+<script src="{{asset('js/bootstrap-confirmation.min.js')}}"></script>
 @stack('scripts')
 </body>
 </html>

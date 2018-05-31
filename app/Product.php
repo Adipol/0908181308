@@ -11,13 +11,17 @@ class Product extends Model
 		'unit_id',
 		'name',
 		'description',
-		'stock',
 		'condition'
 	];
 
 	public function category()
     {
         return $this->belongsTo('App\Category');
+	}
+
+	public function productWarehouses()
+	{
+		return $this->hasMany('App\ProductWarehouse','product_id');
 	}
 	
 	public function unit()

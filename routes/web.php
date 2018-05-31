@@ -16,12 +16,16 @@ Route::get('/', function () {
 });
 
 Route::get('/categorias','CategoryController@index')->name('category.index');
-Route::post('/categoria/store','CategoryController@store')->name('category.store');
+Route::get('/categorias/create','CategoryController@create')->name('category.create');
+Route::post('/categorias','CategoryController@store')->name('category.store');
+Route::get('/categorias/{id}/edit','CategoryController@edit')->name('category.edit');
+Route::put('/categorias/{id}','CategoryController@update')->name('category.update');
+Route::get('/categorias/{id}','CategoryController@delete')->name('category.delete');
+
+Route::get('/productos','ProductController@index')->name('product.index');
+Route::get('/productos/create','ProductController@create')->name('product.create');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
