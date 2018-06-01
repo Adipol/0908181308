@@ -41,7 +41,6 @@
                                         <th>Nombre</th>
                                         <th>Categoria</th>
                                         <th>Cantidad</th>
-                                        <th>Descripcion</th>
                                         <th>Fecha de creacion</th>
                                         <th>Fecha de modificacion</th>
                                         <th>Estado</th>
@@ -64,7 +63,6 @@
                                         <td>{{ $p->product->name }}</td>
                                         <td>{{ $p->product->category->name}}</td>
                                         <td>{{ $p->stock }}</td>
-                                        <td>{{ $p->product->description }}</td>
                                         <td>{{ $p->created_at }}</td>
                                         <td>{{ $p->updated_at }}</td>
                                         <td>

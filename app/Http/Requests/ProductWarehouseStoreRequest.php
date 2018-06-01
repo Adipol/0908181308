@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryUpdateRequest extends FormRequest
+class ProductWarehouseStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,15 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-			'name'        => 'required|min:3|max:50|unique:categories,name,'.$this->id,
-			'description' => 'max:250'
+            'stock'=>'required|integer|min:0'
         ];
     }
 
     public function messages(){
 		return [
-			'name.required' => 'Es necesario ingresar el nombre.',
-			'name.min'      => 'El nombre es demasiado reducido.',
-			'name.max'      => 'El nombre es demasiado extenso.',
-			'name.unique'   => 'El nombre de la categoria existe.',
+			'stock.required'=>'Es necesario ingresar la cantidad.',
+			'stock.integer'=>'La cantidad debe ser entero.',
+			'stock.min'=>'La cantidad no debe ser negativo.',
 		];
-	}	
+	}
 }

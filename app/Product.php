@@ -37,4 +37,9 @@ class Product extends Model
 	{
 		return $this->belongsTo('App\Unit');
 	}
+
+	public function setNameAttribute($value){
+		
+        $this->attributes['name'] = ucfirst((strtolower($value)));
+	}
 }

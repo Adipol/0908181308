@@ -31,10 +31,10 @@ class CategoryStoreRequest extends FormRequest
 
     public function messages(){
 		return [
-			'name.required'=>'Es necesario ingresar el nombre.',
-			'name.min'=>'El nombre es demasiado reducido.',
-			'name.max'=>'El nombre es demasiado extenso.',
-			'name.unique'=>'El nombre de la categoria existe.',
+			'name.required' => 'Es necesario ingresar el nombre.',
+			'name.min'      => 'El nombre es demasiado reducido.',
+			'name.max'      => 'El nombre es demasiado extenso.',
+			'name.unique'   => 'El nombre de la categoria existe.',
 		];
 	}	
 }

@@ -30,54 +30,60 @@
                         @endif
                     </div>
                     <form method="post" action="{{ route('product.storep') }}">
-                    {{csrf_field()}}
-                    <div class="car-body">
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Categoria</label>
-                            <div class="col-sm-8">
-                                <select class="custom-select" name="category" required>
-                                    <option disabled selected hidden>Seleccione almacen</option>
-                                    @foreach($categories as $category )
-                                    <option {{ (int) old( 'category')===$category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        {{csrf_field()}}
+                        <div class="card-body">
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Categoria</label>
+                                    <div class="col-md-8">
+                                        <select class="custom-select" name="category_id">
+                                            <option disabled selected hidden>Seleccione categoria</option>
+                                            @foreach($categories as $category )
+                                            <option {{ (int) old( 'category_id')===$category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select> 
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Nombre</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre" value="{{ old('name')}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Unidad</label>
+                                    <div class="col-md-8">
+                                        <select class="custom-select" name="unit_id">
+                                            <option disabled selected hidden>Seleccione unidad</option>
+                                            @foreach($units as $unit )
+                                            <option {{ (int) old( 'unit_id')===$unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Cantidad</label>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control" name="stock" placeholder="Ingrese el nombre" value="{{ old('stock')}}">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Imagen</label>
+                                    <div class="col-md-8">
+                                        <input type="file" class="form-control-file" name="image">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Descripcion</label>
+                                    <div class="col-md-8">
+                                        <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese la descripcion">{{ old('description') }}</textarea>
+                                    </div>
+                                </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Nombre</label>
-                            <div class="col-sm-8">
-                                <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre">
-                            </div>
+                        <div class="card-footer">
+                                <a href="{{ route('product.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Unidad</label>
-                            <div class="col-sm-8">
-                                <select class="custom-select" name="unit" required>
-                                    <option disabled selected hidden>Seleccione unidad</option>
-                                    @foreach($units as $unit )
-                                    <option {{ (int) old( 'unit')===$unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label">Imagen</label>
-                            <div class="col-sm-8">
-                                <input type="file" class="form-control-file" name="image">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-4 col-form-label font-weight-bold">Descripcion</label>
-                            <div class="col-sm-8">
-                                <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese la descripcion">{{ old('description') }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{{ route('product.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-primary" >Guardar</button>
-                    </div>
-                </form>
+                    </form>
                 </div>
             </div>
         </div>
