@@ -23,8 +23,9 @@ class CreateProductsTable extends Migration
 			$table->foreign('unit_id')->references('id')->on('units');
 
 			$table->string('name',50)->unique();
-            $table->string('description',250)->nullable();
+            $table->string('description',150)->nullable();
             $table->string('image')->nullable();
+            $table->string('slug');
 			$table->boolean('condition')->default(1);
 			$table->timestamps();
 			$table->integer('ucm');

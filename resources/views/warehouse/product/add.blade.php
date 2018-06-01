@@ -73,6 +73,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <a href="{{ route('product.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary" >Guardar</button>
+                    </div>
                 </form>
                 </div>
             </div>

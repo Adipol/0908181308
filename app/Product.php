@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable=[
+	protected static function boot () {
+		parent::boot();
+		static::creating(function (Product $product) {
+			if( ! \App::runningInConsole()) {
+				$product->slug = str_slug($product->name,"-");
+			}
+		});
+	}
+	
+	protected $fillable=[
 		'category_id',
 		'unit_id',
 		'name',
