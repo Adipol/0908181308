@@ -39,11 +39,11 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label font-weight-bold">Descripcion</label>
-                                <div class="col-sm-8">
-                                <textarea name="description" cols="30" class="form-control" rows="10" placeholder="Ingrese la descripcion">{{ old('description') }}</textarea>
+                                    <label for="" class="col-sm-4 col-form-label font-weight-bold">Descripcion</label>
+                                    <div class="col-sm-8">
+                                    <textarea name="description" cols="30" class="form-control" rows="10" placeholder="Ingrese la descripcion">{{ old('description') }}</textarea>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="modal-footer">
