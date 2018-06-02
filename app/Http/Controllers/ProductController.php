@@ -10,8 +10,9 @@ use App\Unit;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductWarehouseStoreRequest;
 use Illuminate\Support\Facades\DB;
-use App\Helpers\Helper;
+use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\Facades\Image;
 class ProductController extends Controller
 {
   public function index()
@@ -25,14 +26,14 @@ class ProductController extends Controller
 
 	public function create()
 	{
-        $products = Product::all();
+        $products = ProductWarehouse::with('products')->;
 
 		return view('warehouse.product.create')->with(compact('products'));
   }
   
   public function store(Request $request)
   {   
-        $value                 = session()->get('warehouse_id');
+      $value                 = session()->get('warehouse_id');
       $product               = new ProductWarehouse;
       $product->product_id   = $request->get('idarticulo');
       $product->warehouse_id = $value;
@@ -57,14 +58,20 @@ class ProductController extends Controller
   {   
     try{
         DB::beginTransaction();
-        $picture = Helper::uploadFile('picture','products');
-        $request->merge(['picture'=>$picture]);
 
         $product              = new Product();
         $product->category_id = $request->get('category_id');
         $product->name        = $request->get('name');
         $product->unit_id     = $request->get('unit_id');
-        $product->picture     = $request->file('picture')->store('products');
+        if ($request->hasFile('picture')) {
+            $extension=$request->file('picture')->getClientOriginalExtension();
+            $file_name=time() . '.' . $extension;
+            Image::make($request->file('picture'))
+            ->resize(350,350)
+            ->save('img/products/' . $file_name);
+            $product->picture=$file_name;
+        }
+
         $product->description = $request->get('description');
         $product->condition   = 1;
         $ucm                  = auth()->user();
@@ -86,23 +93,21 @@ class ProductController extends Controller
     }
     
     return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
-  }
+    }
 
-  public function show($id)
-  {
+    public function show($id)
+    {
     $value = session()->get('warehouse_id');
-  
+    
     $product=DB::table('products')
-              ->join('categories','products.category_id','=','categories.id')
-              ->join('units','products.unit_id','=','units.id')
-              ->join('product_warehouses',function($join){
-                $join->on('products.id','=','product_warehouses.product_id')
-                ->where('product_warehouses.id','=',1);
-              })
-              ->where('products.id',$id)
-              ->select('categories.name as cat_name','products.name as prod_name','units.name as unit_name','product_warehouses.stock','products.description as prod_des','products.picture as picture')
-              ->first();
-
+            ->join('product_warehouses','products.id','=','product_warehouses.product_id')
+            ->join('categories','products.category_id','=','categories.id')
+            ->join('units','products.unit_id','=','units.id')
+            ->where('products.id','=',$id)
+            ->where('product_warehouses.warehouse_id','=',$value)
+            ->select('categories.name as cat_name','products.name as prod_name','units.name as unit_name','product_warehouses.stock','products.description as prod_des','products.picture as picture')
+            ->first();
+   
     return view('warehouse.product.show')->with(compact('product'));
-  }
+    }
 }
