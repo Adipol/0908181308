@@ -56,7 +56,7 @@
                         <div class="col-12 col-md-4 d-flex justify-content-center align-items-center">
                             <div class="card mr-3">
                                 <div class="card-body text-center">{{ $product->prod_name }}</div>
-                                <img class="card-img-bottom img-thumbnail" src="/images/pathToYourImage.png" alt="Card image cap">
+                                <img class="card-img-bottom img-thumbnail" src="{{ $product->picture }}" alt="Card image cap">
                             </div>
                         </div>
                     </div>    

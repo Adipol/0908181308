@@ -100,7 +100,7 @@ class ProductController extends Controller
                 ->where('product_warehouses.id','=',1);
               })
               ->where('products.id',$id)
-              ->select('categories.name as cat_name','products.name as prod_name','units.name as unit_name','product_warehouses.stock','products.description as prod_des')
+              ->select('categories.name as cat_name','products.name as prod_name','units.name as unit_name','product_warehouses.stock','products.description as prod_des','products.picture as picture')
               ->first();
 
     return view('warehouse.product.show')->with(compact('product'));

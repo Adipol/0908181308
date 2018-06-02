@@ -24,6 +24,11 @@ class Product extends Model
 		'picture'
 	];
 
+	public function pathAttachment()
+	{
+		return "/images/products/" . $this->picture;
+	}
+
 	public function category()
     {
         return $this->belongsTo('App\Category');
