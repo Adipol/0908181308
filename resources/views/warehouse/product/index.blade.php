@@ -50,14 +50,11 @@
                                     @forelse ($ps as $p)
                                     <tr>
                                         <th scope="row">
-                                            <a href="#" data-toggle="confirmation" data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove" data-btn-ok-class="btn btn-sm btn-danger"
-                                                data-btn-cancel-label="Cancelar" data-btn-cancel-icon="fa fa-chevron-circle-left"
-                                                data-btn-cancel-class="btn btn-sm btn-primary" data-title="Estas seguro de dar de baja el registro?"
-                                                data-placement="left" data-singleton="true">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
                                             <a href="#" title="Modificar" class="btn  btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ route('product.show',$p->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
+                                                    <i class="fas fa-eye"></i>
                                             </a>
                                         </th>
                                         <td>{{ $p->product->name }}</td>

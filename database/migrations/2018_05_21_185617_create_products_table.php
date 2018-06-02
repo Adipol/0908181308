@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
 
 			$table->string('name',50)->unique();
             $table->string('description',150)->nullable();
-            $table->string('image')->nullable();
+            $table->string('picture')->nullable();
             $table->string('slug');
 			$table->boolean('condition')->default(1);
 			$table->timestamps();

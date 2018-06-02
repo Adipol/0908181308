@@ -27,6 +27,7 @@ Route::get('/productos/create','ProductController@create')->name('product.create
 Route::post('/productos','ProductController@store')->name('product.store');
 Route::get('/productos/add','ProductController@add')->name('product.add');
 Route::post('/productos/storep','ProductController@storep')->name('product.storep');
+Route::get('/productos/{id}','ProductController@show')->name('product.show');
 
 Auth::routes();
 
