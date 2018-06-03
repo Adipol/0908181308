@@ -53,7 +53,7 @@
                                             <a href="#" title="Modificar" class="btn  btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ route('product.show',$p->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('product.show',$p->product->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
                                                     <i class="fas fa-eye"></i>
                                             </a>
                                         </th>

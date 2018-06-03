@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 use Intervention\Image\Facades\Image;
+use App\Http\Requests\ProductStorepRequest;
 class ProductController extends Controller
 {
   public function index()
@@ -26,18 +27,23 @@ class ProductController extends Controller
 
 	public function create()
 	{
-        $products = ProductWarehouse::with('products')->;
-
+        $products = DB::table('products')->select('products.id','products.name')
+            ->whereNotIn('products.id',function($query){
+                $value = session()->get('warehouse_id');
+                $query->select('product_warehouses.product_id')
+                    ->from('product_warehouses')->where('product_warehouses.warehouse_id','=',$value);
+            })->get();
+   
 		return view('warehouse.product.create')->with(compact('products'));
   }
   
-  public function store(Request $request)
+  public function store(ProductStorepRequest $request)
   {   
       $value                 = session()->get('warehouse_id');
-      $product               = new ProductWarehouse;
-      $product->product_id   = $request->get('idarticulo');
+      $product               = new ProductWarehouse();
+      $product->product_id   = $request->get('product_id');
       $product->warehouse_id = $value;
-      $product->stock        = $request->get('cantidad');
+      $product->stock        = $request->get('stock');
       $product->condition    = 1;
       $ucm                   = auth()->user();
       $product->ucm          = $ucm->id;
@@ -63,6 +69,7 @@ class ProductController extends Controller
         $product->category_id = $request->get('category_id');
         $product->name        = $request->get('name');
         $product->unit_id     = $request->get('unit_id');
+        
         if ($request->hasFile('picture')) {
             $extension=$request->file('picture')->getClientOriginalExtension();
             $file_name=time() . '.' . $extension;

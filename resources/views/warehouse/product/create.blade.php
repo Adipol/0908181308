@@ -30,13 +30,14 @@
                         @endif
                     </div>
                         <div class="card-body">
-                            <div class="d-flex flex-column align-items-center">
-                                    <select class="custom-select" id="product_id" name="product_id" required>
+                            <div class="d-flex flex-column align-items-center">     
+                                    <select class="custom-select" name="product_id" id="product_id" >
                                         <option disabled selected hidden>Seleccione producto</option>
                                         @foreach($products as $product )
                                         <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
                                         @endforeach
                                     </select>
+
                                     <button class="btn btn-primary mt-3 mb-3" href="#" role="button" id="bt_add">Agregar Producto</button>
                             </div>
                         <form method="post" action="{{ route('product.store') }}">
@@ -90,7 +91,7 @@
         $('#bt_add').hide();
         if(idarticulo!="")
         {
-            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="idarticulo" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" name="cantidad" value="'+cantidad+'"></td></tr>';
+            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product_id" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" min="0" name="stock" value="'+cantidad+'"></td></tr>';
             cont++;
             $('#detalles').append(fila);
         }

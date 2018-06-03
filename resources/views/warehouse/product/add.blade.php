@@ -63,7 +63,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Cantidad</label>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control" name="stock" placeholder="Ingrese el nombre" value="{{ old('stock')}}">
+                                        <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad" min="0" value="{{ old('stock')}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
