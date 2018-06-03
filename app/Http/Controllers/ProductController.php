@@ -99,7 +99,7 @@ class ProductController extends Controller
         DB::rollback();
     }
     
-    return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
+        return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
     }
 
     public function show($id)
@@ -116,5 +116,59 @@ class ProductController extends Controller
             ->first();
    
     return view('warehouse.product.show')->with(compact('product'));
+    }
+
+    public function edit($id)
+    {
+        $value      = session()->get('warehouse_id');
+        $categories = Category::where('condition',1)->get();
+        $units      = Unit::where('condition',1)->get();
+        $product    = DB::table('products')
+                ->join('product_warehouses','products.id','=','product_warehouses.product_id')
+                ->join('categories','products.category_id','=','categories.id')
+                ->join('units','products.unit_id','=','units.id')
+                ->where('products.id','=',$id)
+                ->where('product_warehouses.warehouse_id','=',$value)
+                ->select('categories.id as cat_id','categories.name as cat_name','products.id','products.name as prod_name','units.id as unit_id','units.name as unit_name','product_warehouses.stock','products.description as prod_des','products.picture as picture')
+                ->first();
+       
+        return view('warehouse.product.edit')->with(compact('product','categories','units'));
+    }
+
+    public function update(Request $request, $id)
+    {  
+        try{
+            DB::beginTransaction();
+            $product              = Product::find($id);
+            $product->category_id = $request->get('category_id');
+            $product->name        = $request->get('name');
+            $product->unit_id     = $request->get('unit_id');
+            $product->description = $request->get('description');
+            
+            if ($request->hasFile('picture')) {
+                $extension = $request->file('picture')->getClientOriginalExtension();
+                $file_name = time() . '.' . $extension;
+                Image:: make($request->file('picture'))
+                ->resize(350,350)
+                ->save('img/products/' . $file_name);
+                $product->picture = $file_name;
+            }
+
+            $ucm          = auth()->user();
+            $product->ucm = $ucm->id;
+            $product->save();
+            
+            $value                    = session()->get('warehouse_id');
+            $product_warehouse=ProductWarehouse::where('product_id',$id)->where('warehouse_id',$value)->first();
+            $product_warehouse->stock = $request->get('stock');
+            $ucm                      = auth()->user();
+            $product_warehouse->ucm   = $ucm->id;
+            $product_warehouse->save();
+            DB:: commit();
+        } catch(Exception $e){
+            DB::rollback();
+        }
+
+        return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
     }
 }

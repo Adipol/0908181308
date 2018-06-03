@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
-
     <title>BootAdmin</title>
 </head>
 <body class="bg-light">

@@ -28,6 +28,8 @@ Route::post('/productos','ProductController@store')->name('product.store');
 Route::get('/productos/add','ProductController@add')->name('product.add');
 Route::post('/productos/storep','ProductController@storep')->name('product.storep');
 Route::get('/productos/{id}','ProductController@show')->name('product.show');
+Route::get('/productos/{id}/edit','ProductController@edit')->name('product.edit');
+Route::put('/productos/{id}','ProductController@update')->name('product.update');
 
 Auth::routes();
 

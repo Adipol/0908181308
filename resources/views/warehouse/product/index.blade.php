@@ -50,7 +50,7 @@
                                     @forelse ($ps as $p)
                                     <tr>
                                         <th scope="row">
-                                            <a href="#" title="Modificar" class="btn  btn-sm btn-warning">
+                                            <a href="{{ route('product.edit',$p->product->id) }}" title="Modificar el producto" class="btn  btn-sm btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <a href="{{ route('product.show',$p->product->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
