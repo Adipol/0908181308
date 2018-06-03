@@ -91,7 +91,7 @@
         $('#bt_add').hide();
         if(idarticulo!="")
         {
-            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product_id" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" min="0" name="stock" value="'+cantidad+'"></td></tr>';
+            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product_id" value="'+idarticulo+'" required>'+articulo+'</td><td><input type="number" min="0" name="stock" value="'+cantidad+'" required></td></tr>';
             cont++;
             $('#detalles').append(fila);
         }

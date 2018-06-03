@@ -35,7 +35,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Categoria</label>
                                     <div class="col-md-8">
-                                        <select class="custom-select" name="category_id">
+                                        <select class="custom-select" name="category_id" required>
                                             <option disabled selected hidden>Seleccione categoria</option>
                                             @foreach($categories as $category )
                                             <option {{ (int) old( 'category_id')===$category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
@@ -46,13 +46,13 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Nombre</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre" value="{{ old('name')}}">
+                                        <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre" value="{{ old('name')}}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Unidad</label>
                                     <div class="col-md-8">
-                                        <select class="custom-select" name="unit_id">
+                                        <select class="custom-select" name="unit_id" required>
                                             <option disabled selected hidden>Seleccione unidad</option>
                                             @foreach($units as $unit )
                                             <option {{ (int) old( 'unit_id')===$unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->name }}</option>
@@ -63,7 +63,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Cantidad</label>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad" min="0" value="{{ old('stock')}}">
+                                        <input type="number" class="form-control" name="stock" placeholder="Ingrese la cantidad" min="0" value="{{ old('stock')}}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
