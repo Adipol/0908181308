@@ -14,16 +14,18 @@ use Illuminate\Support\Facades\Storage;
 
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\ProductStorepRequest;
+use App\Http\Requests\ProductUpdateRequest;
+use App\Http\Requests\ProductWarehouseUpdateRequest;
 class ProductController extends Controller
 {
-  public function index()
-  { 
-    $value = session()->get('warehouse_id');
+    public function index()
+    { 
+        $value = session()->get('warehouse_id');
 
-    $ps= ProductWarehouse::where('warehouse_id',$value)->with('product.category')->paginate(10);
-
-    return view('warehouse.product.index')->with(compact('ps'));
-  }
+        $ps= ProductWarehouse::where('warehouse_id',$value)->with('product.category')->paginate(10);
+ 
+        return view('warehouse.product.index')->with(compact('ps'));
+    }
 
 	public function create()
 	{
@@ -135,7 +137,7 @@ class ProductController extends Controller
         return view('warehouse.product.edit')->with(compact('product','categories','units'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProductUpdateRequest $request,ProductWarehouseUpdateRequest $request1, $id)
     {  
         try{
             DB::beginTransaction();
@@ -160,7 +162,7 @@ class ProductController extends Controller
             
             $value                    = session()->get('warehouse_id');
             $product_warehouse=ProductWarehouse::where('product_id',$id)->where('warehouse_id',$value)->first();
-            $product_warehouse->stock = $request->get('stock');
+            $product_warehouse->stock = $request1->get('stock');
             $ucm                      = auth()->user();
             $product_warehouse->ucm   = $ucm->id;
             $product_warehouse->save();
@@ -169,6 +171,6 @@ class ProductController extends Controller
             DB::rollback();
         }
 
-        return redirect()->route('product.index')->with('notification','Producto agregado exitosamente.');
+        return redirect()->route('product.index')->with('notification','Producto modificado exitosamente.');
     }
 }

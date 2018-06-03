@@ -18,6 +18,17 @@
             <div class="col-12 col-md-12">
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Modificar Producto</h3>
+                    <div>
+                        @if (count($errors)>0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
+                    </div>
                     <form method="post" action="{{ route('product.update',$product->id) }}" enctype="multipart/form-data">
                         @method('PUT')
                         {{csrf_field()}}
@@ -38,14 +49,14 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Nombre</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="{{ $product->prod_name }}">
+                                        <input type="text" class="form-control" name="name" value="{{ $product->prod_name }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                        <label for="" class="col-md-4 col-form-label">Unidad</label>
+                                        <label for="" class="col-md-4 col-form-label">Medida</label>
                                         <div class="col-md-8">
                                             <select class="custom-select" name="unit_id" required>
-                                                <option disabled selected hidden>Seleccione unidad</option>
+                                                <option disabled selected hidden>Seleccione medida</option>
                                                 @foreach($units as $unit )
                                                 <option {{ (int) old( 'unit_id') === $unit->id || $product->unit_id === $unit->id ? 'selected' : '' }} value="{{ $unit->id }}">{{ $unit->name }}</option>
                                                 @endforeach
@@ -55,7 +66,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Cantidad</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="stock" value="{{ $product->stock }}">
+                                        <input type="number" class="form-control" name="stock" min="0" value="{{ $product->stock }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
