@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Adicionar Producto <a href="{{ route('product.add') }}" class="btn btn-primary card-title">Adicionar</a></h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Adicionar Producto </h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -73,7 +73,19 @@
                 </form>
             </div>
         </div>
+        <div class="row mt-5">
+            <div class="col-12 col-md-8 offset-md-2">
+                <div class="card">
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Registrar Producto </h3>
+                    <div class="card-body d-flex justify-content-center">
+                        <a href="{{ route('product.add') }}" class="btn btn-primary card-title">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+  
 </section>
 @push('scripts')
 <script>

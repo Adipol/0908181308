@@ -31,7 +31,9 @@ Route::get('/productos/{id}','ProductController@show')->name('product.show');
 Route::get('/productos/{id}/edit','ProductController@edit')->name('product.edit');
 Route::put('/productos/{id}','ProductController@update')->name('product.update');
 
+Route::get('/entradas','EntryController@index')->name('entry.index');
+Route::get('/entradas/create','EntryController@create')->name('entry.create');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-

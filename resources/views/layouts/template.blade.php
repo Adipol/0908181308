@@ -6,7 +6,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/fa.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
     <title>BootAdmin</title>
 </head>
@@ -29,6 +29,7 @@
             </li>
         </ul>
     </div>
+
 </nav>
 
 <div class="d-flex">
@@ -37,16 +38,48 @@
             <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
             <li>
                 <a href="#sm_expand_1" data-toggle="collapse">
-                    <i class="fa fa-fw fa-link"></i> Expandable Menu Item
+                    <i class=""></i> Almacen
                 </a>
                 <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="#">Submenu Item</a></li>
-                    <li><a href="#">Submenu Item</a></li>
+                    <li><a href="{{route('product.index')}}">Productos</a></li>
+                    <li><a href="{{route('category.index')}}">Categorias</a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-link"></i> Menu Item</a></li>
+            <li>
+                <a href="#sm_expand_2" data-toggle="collapse">
+                    <i class="fas fa-coins"></i> Entrada de productos
+                </a>
+                <ul id="sm_expand_2" class="list-unstyled collapse">
+                    <li><a href="{{route('entry.index')}}">Ingresos</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#sm_expand_3" data-toggle="collapse">
+                    <i class="fa fa-fw fa-link"></i>Solicitudes
+                </a>
+                <ul id="sm_expand_3" class="list-unstyled collapse">
+                    <li><a href="#">Salidas</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#sm_expand_4" data-toggle="collapse">
+                    <i class="fa fa-fw fa-link"></i>Acceso
+                </a>
+                <ul id="sm_expand_4" class="list-unstyled collapse">
+                    <li><a href="#">Almacenes</a></li>
+                    <li><a href="#"><i class="far fa-users"></i> Usuarios</a></li>
+                    <li><a href="#">Roles</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#sm_expand_5" data-toggle="collapse">
+                    <i class="fa fa-fw fa-link"></i>Reportes
+                </a>
+                <ul id="sm_expand_5" class="list-unstyled collapse">
+                    <li><a href="#">Reporte de Salidas</a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-fw fa-link"></i> Acerca de...</a></li>
         </ul>
     </div>
 	

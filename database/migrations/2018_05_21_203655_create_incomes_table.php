@@ -16,10 +16,11 @@ class CreateIncomesTable extends Migration
         Schema::create('incomes', function (Blueprint $table) {
 			$table->increments('id');
 
-			$table->unsignedInteger('user_id');
-			$table->foreign('user_id')->references('id')->on('users');
-
-			$table->string('justification','150');
+			$table->unsignedInteger('warehouse_id');
+            $table->foreign('warehouse_id')->references('id')->on('warehouses');
+            
+			$table->integer('responsable_id');
+    
 			$table->timestamps();
 			$table->integer('ucm');
         });

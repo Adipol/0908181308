@@ -69,7 +69,10 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Imagen</label>
                                     <div class="col-md-8">
-                                        <input type="file" class="form-control-file" name="picture">
+                                        <div class="custom-file" style="es: Elegir;">
+                                                <input type="file" class="custom-file-input" id="customFileLang" name="picture" lang="es">
+                                            <label class="custom-file-label" for="customFileLang">Seleccione imagen</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
