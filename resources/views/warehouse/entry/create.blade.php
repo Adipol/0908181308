@@ -52,7 +52,6 @@
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Producto</label>
                             <div class="col-sm-3"> 
                                 <select class="custom-select" name="product_id" id="product_id" required="required">
-                                <option disabled selected hidden>Seleccione producto</option>
                                 @foreach($products as $product )
                                 <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
@@ -130,7 +129,7 @@
         if(compare === 0)
         {
             if(idarticulo!="" && cantidad!="" && cantidad>0){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'" required>'+articulo+'</td><td><input type="number" min="0" name="cantidad[]" value="'+cantidad+'" required></td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'" disabled="disabled">'+articulo+'</td><td><input type="number" min="0" name="cantidad[]" value="'+cantidad+'" required="required"></td></tr>';
 
                 vecarticulo.push(idarticulo);
                 cont++;
