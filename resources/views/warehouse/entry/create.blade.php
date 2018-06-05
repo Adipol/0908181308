@@ -118,13 +118,15 @@
             for (var i = 0; i < vecarticulo.length; i++) {
                 if (vecarticulo[i] === idarticulo) {
                     compare = 1;
-                    return alert('Producto se encuentra agregado.');
+                    return swal({
+                                type: 'error',
+                                title: 'Producto se encuentra agregado!',
+                                });
                 } else {
-                    console.log('no repetido');
                     compare = 0;
                 }
             }
-            
+
         if(compare === 0)
         {
             if(idarticulo!="" && cantidad!="" && cantidad>0){
@@ -136,7 +138,10 @@
                 $('#detalles').append(fila);
             }
             else{
-                alert("Error al ingresar el producto!");
+                swal({
+                        type: 'error',
+                        title: 'No se pudo ingresar el producto!',
+                        });
                 } 
         } 
     }
@@ -147,6 +152,7 @@
 
     function eliminar(index) {
         $('#fila'+index).remove();
+        delete vecarticulo[index];
     }
 
 </script>
