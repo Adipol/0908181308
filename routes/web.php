@@ -33,6 +33,7 @@ Route::put('/productos/{id}','ProductController@update')->name('product.update')
 
 Route::get('/entradas','EntryController@index')->name('entry.index');
 Route::get('/entradas/create','EntryController@create')->name('entry.create');
+Route::post('/entradas','ProductController@store')->name('entry.store');
 
 Auth::routes();
 

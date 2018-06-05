@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Warehouse;
 
 class EntryController extends Controller
 {
@@ -20,8 +21,13 @@ class EntryController extends Controller
             $value = session()->get('warehouse_id');
             $query->select('product_warehouses.product_id')
                 ->from('product_warehouses')->where('product_warehouses.warehouse_id','=',$value);
-        })->get();
+        })->orderBy('products.name','ASC')->get();
 
-        return view('warehouse.entry.create')->with(compact('products'));
+        $ucm                   = auth()->user()->name;
+
+        $value                 = session()->get('warehouse_id');
+        $warehouse=Warehouse::where('id',$value)->pluck('name')->first();
+
+        return view('warehouse.entry.create')->with(compact('products','ucm','warehouse'));
     }
 }
