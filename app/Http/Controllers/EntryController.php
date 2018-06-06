@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\DB;
 use App\Warehouse;
 use App\IncomeDetail;
 use App\Income;
+use App\ProductWarehouse;
 
 class EntryController extends Controller
 {
     public function index()
     {
-        return view('warehouse.entry.index');
+        $incomes=DB::table('incomes')
+                    ->join('users','incomes.responsable_id','=','users.id')
+                    ->select('users.name as responsable','incomes.created_at as inc_created','incomes.condition as inc_condition')->get();
+        return view('warehouse.entry.index')->with(compact('incomes'));
     }
 
     public function create()
@@ -47,20 +51,22 @@ class EntryController extends Controller
             $entry->responsable_id = auth()->user()->id;
             $entry->save();
 
-            $idarticulo = $request->input('product');
+            $idarticulo = $request->get('product');
             $cantidad   = $request->get('stock');
             $total= count($idarticulo);
             $cont=0;
-
+            dd($total);
             while ($cont < $total) {
-                $detail             = new IncomeDetail();
+                $detail = new IncomeDetail();
+                $w_p    = ProductWarehouse::with('warehouses')->where('warehouse_id',$value)->where('product_id',$idarticulo[$cont]);
+                $w_p->increment('stock',$cantidad[$cont]);
                 $detail->income_id  = $entry->id;
                 $detail->product_id = $idarticulo[$cont];
                 $detail->quantity   = $cantidad[$cont];
                 $ucm                = auth()->user();
                 $detail->ucm        = $ucm->id;
                 $detail->save();
-                $cont=$cont+1;
+                $cont = $cont+1;
             } 
 
             DB::commit();
@@ -68,6 +74,6 @@ class EntryController extends Controller
             DB::rollBack();
         }
 
-        return redirect()->route('entry.index')->with('notification','Ingreso de productos.');
+        return redirect()->route('entry.index')->with('notification','Ingreso de productos exitosamente.');
     }
 }

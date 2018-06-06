@@ -19,7 +19,8 @@ class CreateIncomesTable extends Migration
 			$table->unsignedInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
             
-			$table->integer('responsable_id');
+            $table->integer('responsable_id');
+            $table->boolean('condition')->default(1);
     
 			$table->timestamps();
 			$table->integer('ucm');

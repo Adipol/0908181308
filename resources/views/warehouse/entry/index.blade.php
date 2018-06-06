@@ -17,7 +17,7 @@
                         Ingreso de productos
                     </h3>
                     <div class="card-body">
-                        <a href="{{ route('entry.create') }}" class="btn btn-primary card-title">Adicionar</a>
+                        <a href="{{ route('entry.create') }}" class="btn btn-primary card-title">Nuevo</a>
                         <div class="alert-custom">
                             @if (session('notification'))
                             <div class="alert alert-success">
@@ -38,33 +38,28 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Opciones</th>
-                                        <th>Nombre</th>
-                                        <th>Categoria</th>
-                                        <th>Cantidad</th>
-                                        <th>Fecha de creacion</th>
-                                        <th>Fecha de modificacion</th>
+                                        <th>Encargado</th>
+                                        <th>Fecha</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
-                               {{--  <tbody>
-                                    @forelse ($ps as $p)
+                                <tbody>
+                                    @forelse ($incomes as $entry)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('product.edit',$p->product->id) }}" title="Modificar el producto" class="btn  btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
+                                            <a href="#" title="Eliminar entrada" class="btn  btn-sm btn-warning">
+                                                <i class="fas fa-trash"></i>
                                             </a>
-                                            <a href="{{ route('product.show',$p->product->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
+                                            <a href="#" title="Ver la entrada" class="btn  btn-sm btn-success">
                                                     <i class="fas fa-eye"></i>
                                             </a>
                                         </th>
-                                        <td>{{ $p->product->name }}</td>
-                                        <td>{{ $p->product->category->name}}</td>
-                                        <td>{{ $p->stock }}</td>
-                                        <td>{{ $p->created_at }}</td>
-                                        <td>{{ $p->updated_at }}</td>
+                                        <td>{{ $entry->responsable }}</td>
+                                        <td>{{ $entry->inc_created}}</td>
                                         <td>
-                                            @if ($p->condition==1)
-                                            <span class="badge badge-success">Activo</span> @else
+                                            @if ($entry->inc_condition==1)
+                                            <span class="badge badge-success">Activo</span>
+                                             @else
                                             <span class="badge badge-danger">Desactivado</span> @endif
                                         </td>
                                     </tr>
@@ -73,11 +68,11 @@
                                         <td colspan="6">No existe registros</td>
                                     </tr>
                                     @endforelse
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                         <div class="row justify-content-center">
-                       {{--      {{ $ps->links() }} --}}
+                            {{-- {{ $entry->links() }} --}}
                         </div>
                     </div>
                 </div>

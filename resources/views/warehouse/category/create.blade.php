@@ -46,10 +46,8 @@
                                 </div>
                         </div>
                         <div class="card-footer">
-                            <div class="modal-footer">
                                 <a href="{{ route('category.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
                         </div>
                     </form>
                 </div>

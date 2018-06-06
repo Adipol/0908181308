@@ -76,7 +76,7 @@
         <div class="row mt-5">
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Registrar Producto </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nuevo Producto </h3>
                     <div class="card-body d-flex justify-content-center">
                         <a href="{{ route('product.add') }}" class="btn btn-primary card-title">Ingresar</a>
                     </div>

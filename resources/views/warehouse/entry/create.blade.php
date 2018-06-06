@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('entry.index') }}">Ingreso de productos</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Registrar</li>
+            <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Registrar Ingreso </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nuevo Ingreso </h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
