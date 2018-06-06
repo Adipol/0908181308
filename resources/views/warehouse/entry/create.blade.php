@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Encargado</label>
                             <div class="col-sm-3">
-                                <input type="text" name="responsable" class="form-control" value="{{ $ucm}}" disabled="disabled">
+                                <input type="text" name="responsable" class="form-control" value="{{ $ucm }}" disabled="disabled">
                             </div>      
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
                             <div class="col-sm-3">
@@ -129,7 +129,7 @@
         if(compare === 0)
         {
             if(idarticulo!="" && cantidad!="" && cantidad>0){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'" disabled="disabled">'+articulo+'</td><td><input type="number" min="0" name="cantidad[]" value="'+cantidad+'" required="required"></td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" min="0" name="stock[]" value="'+cantidad+'" required="required"></td></tr>';
 
                 vecarticulo.push(idarticulo);
                 cont++;
