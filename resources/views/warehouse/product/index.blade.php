@@ -56,8 +56,16 @@
                                             <i class="fas fa-eye"></i>
                                             </a>
                                             @if($product->pw_condition)
-                                            <a href="{{ route('product.delete',$product->prod_id) }}" title="Desactivar producto" class="btn  btn-sm btn-danger">
-                                            <i class="fas fa-trash"></i>
+                                            <a href="{{ route('product.delete',$product->prod_id) }}" class="btn btn-danger btn-sm"
+                                                data-tr="tr_{{$product->prod_id}}"							
+                                                data-toggle="confirmation"
+                                                data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
+                                                data-btn-ok-class="btn btn-sm btn-danger"
+                                                data-btn-cancel-label="Cancelar"
+                                                data-btn-cancel-icon="fa fa-chevron-circle-left"
+                                                data-btn-cancel-class="btn btn-sm btn-primary"
+                                                data-title="Desactivar el registro?"
+                                                data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
                                             </a>
                                             @else
                                             <a href="{{ route('product.restore',$product->prod_id) }}" title="Activar producto" class="btn  btn-sm btn-info">
@@ -94,7 +102,7 @@
 </section>
 @endsection 
 @push('scripts')
-{{-- <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
@@ -108,11 +116,10 @@
             e.preventDefault();
             $.ajax({
                 url: ele.href,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                type: 'GET',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (data) {
                 },
-                success: function (data) {},
                 error: function (data) {
                     alert(data.responseText);
                 }
@@ -120,6 +127,5 @@
             return false;
         });
     });
-</script> --}}
-
+</script>
 @endpush
