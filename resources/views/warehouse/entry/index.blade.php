@@ -72,7 +72,7 @@
                             </table>
                         </div>
                         <div class="row justify-content-center">
-                            {{-- {{ $entry->links() }} --}}
+                            {{ $incomes->links() }}
                         </div>
                     </div>
                 </div>

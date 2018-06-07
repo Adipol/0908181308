@@ -40,8 +40,8 @@
                     <i class=""></i> Almacen
                 </a>
                 <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="{{route('product.index')}}">Productos</a></li>
                     <li><a href="{{route('category.index')}}">Categorias</a></li>
+                    <li><a href="{{route('product.index')}}">Productos</a></li>
                 </ul>
             </li>
             <li>

@@ -13,15 +13,20 @@ class EntryController extends Controller
 {
     public function index()
     {
+        $value = session()->get('warehouse_id');
         $incomes=DB::table('incomes')
                     ->join('users','incomes.responsable_id','=','users.id')
-                    ->select('users.name as responsable','incomes.created_at as inc_created','incomes.condition as inc_condition')->get();
+                    ->join('warehouses','incomes.warehouse_id','=','warehouses.id')
+                    ->where('incomes.warehouse_id','=',$value)
+                    ->select('users.name as responsable','incomes.created_at as inc_created','incomes.condition as inc_condition')
+                    ->orderBy('incomes.id','DESC')
+                    ->paginate(10);
         return view('warehouse.entry.index')->with(compact('incomes'));
+    
     }
 
     public function create()
     {
-        
         $products = DB::table('products')->select('products.id','products.name')
         ->whereIn('products.id',function($query){
             $value = session()->get('warehouse_id');

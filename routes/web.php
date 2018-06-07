@@ -30,6 +30,8 @@ Route::post('/productos/storep','ProductController@storep')->name('product.store
 Route::get('/productos/{id}','ProductController@show')->name('product.show');
 Route::get('/productos/{id}/edit','ProductController@edit')->name('product.edit');
 Route::put('/productos/{id}','ProductController@update')->name('product.update');
+Route::get('/productos/{id}/del','ProductController@delete')->name('product.delete');
+Route::get('/productos/{id}/restaurar','ProductController@restore')->name('product.restore');
 
 Route::get('/entradas','EntryController@index')->name('entry.index');
 Route::get('/entradas/create','EntryController@create')->name('entry.create');

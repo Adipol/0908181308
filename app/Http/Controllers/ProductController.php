@@ -22,9 +22,14 @@ class ProductController extends Controller
     { 
         $value = session()->get('warehouse_id');
 
-        $ps= ProductWarehouse::where('warehouse_id',$value)->with('product.category')->paginate(10);
- 
-        return view('warehouse.product.index')->with(compact('ps'));
+        $products=DB::table('product_warehouses')
+                ->join('products','product_warehouses.product_id','=','products.id')
+                ->join('categories','products.category_id','=','categories.id')
+                ->where('product_warehouses.warehouse_id','=',$value)
+                ->orderBy('products.name','ASC')
+                ->select('products.id as prod_id','products.name as prod_name','categories.id as cat_id','categories.name as cat_name','product_warehouses.stock','products.description as prod_description','product_warehouses.condition as pw_condition')->paginate(10);
+
+        return view('warehouse.product.index')->with(compact('products'));
     }
 
 	public function create()
@@ -173,4 +178,22 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('notification','Producto modificado exitosamente.');
     }
+
+    public function delete($id){
+        $value         = session()->get('warehouse_id');
+        $pw            = ProductWarehouse::where('product_id',$id)->where('warehouse_id',$value)->first();
+        $pw->condition = 0;
+        $pw->save();
+
+		return redirect()->route('product.index')->with('notification','El producto se dio de baja correctamente.');
+    }
+    
+    public function restore($id){
+		$value         = session()->get('warehouse_id');
+        $pw            = ProductWarehouse::where('product_id',$id)->where('warehouse_id',$value)->first();
+        $pw->condition = 1;
+        $pw->save();
+
+		return redirect()->route('product.index')->with('notification','El bus se habilitó correctamente.');
+	}
 }

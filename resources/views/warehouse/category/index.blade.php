@@ -18,7 +18,7 @@
 						Categorias
 					</h3>
 					<div class="card-body">
-						<a href="{{ route('category.create') }}" class="btn btn-primary card-title">Adicionar</a>
+						<a href="{{ route('category.create') }}" class="btn btn-primary card-title">Nueva Categoria</a>
 						<div class="alert-custom">
 							@if (session('notification'))
 							<div class="alert alert-success">

@@ -17,7 +17,7 @@
                         Productos
                     </h3>
                     <div class="card-body">
-                        <a href="{{ route('product.create') }}" class="btn btn-primary card-title">Adicionar</a>
+                        <a href="{{ route('product.create') }}" class="btn btn-primary card-title">Adicionar Producto</a>
                         <div class="alert-custom">
                             @if (session('notification'))
                             <div class="alert alert-success">
@@ -41,29 +41,36 @@
                                         <th>Nombre</th>
                                         <th>Categoria</th>
                                         <th>Cantidad</th>
-                                        <th>Fecha de creacion</th>
-                                        <th>Fecha de modificacion</th>
+                                        <th>Descripcion</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($ps as $p)
+                                    @forelse ($products as $product)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('product.edit',$p->product->id) }}" title="Modificar el producto" class="btn  btn-sm btn-warning">
-                                                <i class="fas fa-edit"></i>
+                                            <a href="{{ route('product.edit',$product->prod_id) }}" title="Modificar el producto" class="btn  btn-sm btn-warning">
+                                            <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ route('product.show',$p->product->id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
-                                                    <i class="fas fa-eye"></i>
+                                            <a href="{{ route('product.show',$product->prod_id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
+                                            <i class="fas fa-eye"></i>
                                             </a>
+                                            @if($product->pw_condition)
+                                            <a href="{{ route('product.delete',$product->prod_id) }}" title="Desactivar producto" class="btn  btn-sm btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                            </a>
+                                            @else
+                                            <a href="{{ route('product.restore',$product->prod_id) }}" title="Activar producto" class="btn  btn-sm btn-info">
+                                            <i class="fas fa-undo"></i>
+                                            </a>
+                                            @endif
                                         </th>
-                                        <td>{{ $p->product->name }}</td>
-                                        <td>{{ $p->product->category->name}}</td>
-                                        <td>{{ $p->stock }}</td>
-                                        <td>{{ $p->created_at }}</td>
-                                        <td>{{ $p->updated_at }}</td>
+                                        <td>{{ $product->prod_name }}</td>
+                                        <td>{{ $product->cat_name}}</td>
+                                        <td>{{ $product->stock }}</td>
+                                        <td>{{ $product->prod_description }}</td>
                                         <td>
-                                            @if ($p->condition==1)
+                                            @if ($product->pw_condition==1)
                                             <span class="badge badge-success">Activo</span> @else
                                             <span class="badge badge-danger">Desactivado</span> @endif
                                         </td>
@@ -77,7 +84,7 @@
                             </table>
                         </div>
                         <div class="row justify-content-center">
-                            {{ $ps->links() }}
+                            {{ $products->links() }}
                         </div>
                     </div>
                 </div>
@@ -85,8 +92,9 @@
         </div>
     </div>
 </section>
-@endsection @push('scripts')
-<script type="text/javascript">
+@endsection 
+@push('scripts')
+{{-- <script type="text/javascript">
     $(document).ready(function () {
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
@@ -112,6 +120,6 @@
             return false;
         });
     });
-</script>
+</script> --}}
 
 @endpush
