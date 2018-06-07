@@ -45,19 +45,29 @@
                                     <tr>
                                         <th scope="row">
                                             <a href="{{ route('entry.show',$entry->id) }}" title="Ver la entrada" class="btn  btn-sm btn-success">
-                                                    <i class="fas fa-eye"></i>
+                                            <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('entry.delete',$entry->id) }}" title="Eliminar entrada" class="btn  btn-sm btn-danger">
-                                                <i class="fas fa-trash"></i>
+                                        @if($entry->inc_condition)
+                                            <a href="{{ route('entry.delete',$entry->id) }}" class="btn btn-danger btn-sm"
+                                                data-tr="tr_{{$entry->id}}"		
+                                                data-toggle="confirmation"
+                                                data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
+                                                data-btn-ok-class="btn btn-sm btn-danger"
+                                                data-btn-cancel-label="Cancelar"
+                                                data-btn-cancel-icon="fa fa-chevron-circle-left"
+                                                data-btn-cancel-class="btn btn-sm btn-primary"
+                                                data-title="Esta seguro de anular el registro?"
+                                                data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
                                             </a>
+                                        @endif
                                         </th>
                                         <td>{{ $entry->responsable }}</td>
                                         <td>{{ $entry->inc_created }}</td>
                                         <td>
                                             @if ($entry->inc_condition==1)
-                                            <span class="badge badge-success">Activo</span>
+                                            <span class="badge badge-success">Ingresado</span>
                                              @else
-                                            <span class="badge badge-danger">Desactivado</span> @endif
+                                            <span class="badge badge-danger">Anulado</span> @endif
                                         </td>
                                     </tr>
                                     @empty
@@ -77,8 +87,9 @@
         </div>
     </div>
 </section>
-@endsection @push('scripts')
-{{-- <script type="text/javascript">
+@endsection 
+@push('scripts')
+<script type="text/javascript">
     $(document).ready(function () {
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
@@ -92,11 +103,10 @@
             e.preventDefault();
             $.ajax({
                 url: ele.href,
-                type: 'DELETE',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                type: 'GET',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                success: function (data) {
                 },
-                success: function (data) {},
                 error: function (data) {
                     alert(data.responseText);
                 }
@@ -104,6 +114,5 @@
             return false;
         });
     });
-</script> --}}
-
+</script>
 @endpush
