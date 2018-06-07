@@ -22,7 +22,8 @@ class CreateIncomeDetailsTable extends Migration
 			$table->unsignedInteger('product_id');
 			$table->foreign('product_id')->references('id')->on('products');
 
-			$table->integer('quantity');
+            $table->integer('quantity');
+            $table->boolean('condition')->default(1);
 			$table->timestamps();
 			$table->integer('ucm');
         });

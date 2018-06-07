@@ -36,6 +36,8 @@ Route::get('/productos/{id}/restaurar','ProductController@restore')->name('produ
 Route::get('/entradas','EntryController@index')->name('entry.index');
 Route::get('/entradas/create','EntryController@create')->name('entry.create');
 Route::post('/entradas','EntryController@store')->name('entry.store');
+Route::get('/entradas/{id}','EntryController@show')->name('entry.show');
+Route::get('/entradas/{id}/del','EntryController@delete')->name('entry.delete');
 
 Auth::routes();
 

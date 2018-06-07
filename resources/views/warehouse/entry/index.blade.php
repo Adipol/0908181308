@@ -23,15 +23,12 @@
                             <div class="alert alert-success">
                                 {{ session('notification')}}
                             </div>
-                            @endif @if (count($errors)>0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
                             @endif
+                            @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error')}}
+                            </div>
+                            @endif 
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover">
@@ -47,15 +44,15 @@
                                     @forelse ($incomes as $entry)
                                     <tr>
                                         <th scope="row">
-                                            <a href="#" title="Eliminar entrada" class="btn  btn-sm btn-warning">
-                                                <i class="fas fa-trash"></i>
-                                            </a>
-                                            <a href="#" title="Ver la entrada" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('entry.show',$entry->id) }}" title="Ver la entrada" class="btn  btn-sm btn-success">
                                                     <i class="fas fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('entry.delete',$entry->id) }}" title="Eliminar entrada" class="btn  btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
                                             </a>
                                         </th>
                                         <td>{{ $entry->responsable }}</td>
-                                        <td>{{ $entry->inc_created}}</td>
+                                        <td>{{ $entry->inc_created }}</td>
                                         <td>
                                             @if ($entry->inc_condition==1)
                                             <span class="badge badge-success">Activo</span>

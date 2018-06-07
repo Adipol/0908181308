@@ -50,25 +50,14 @@
 									@forelse ($categories as $category)
 									<tr id="tr_{{$category->id}}">
 										<th scope="row">
-											<a href="{{ url('categorias',$category->id) }}" class="btn btn-danger btn-sm"
-											data-tr="tr_{{$category->id}}"							
-											data-toggle="confirmation"
-											data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
-											data-btn-ok-class="btn btn-sm btn-danger"
-											data-btn-cancel-label="Cancelar"
-											data-btn-cancel-icon="fa fa-chevron-circle-left"
-											data-btn-cancel-class="btn btn-sm btn-primary"
-											data-title="Estas seguro de dar de baja el registro?"
-											data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
-											</a>
 											<a href="{{ route('category.edit',$category->id) }}" title="Modificar" class="btn  btn-sm btn-warning">
 												<i class="fas fa-edit"></i>
 											</a>
 										</th>
 										<td>{{ $category->name }}</td>
 										<td>{{ $category->description }}</td>
-										<td>{{ $category->created_at }}</td>
-										<td>{{ $category->updated_at }}</td>
+										<td>{{ $category->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $category->updated_at->formatLocalized('%A %d %B %Y') }}</td>
 										<td>
 											@if ($category->condition===1)
 											<span class="badge badge-success">Activo</span>
@@ -96,31 +85,3 @@
 </section>
   
 @endsection
-@push('scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event, element) {
-                element.trigger('confirm');
-            }
-        });
-
-        $(document).on('confirm', function (e) {
-            var ele = e.target;
-            e.preventDefault();
-            $.ajax({
-                url: ele.href,
-                type: 'DELETE',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                success: function (data) {
-                },
-                error: function (data) {
-                    alert(data.responseText);
-                }
-            });
-            return false;
-        });
-    });
-</script>
-@endpush
