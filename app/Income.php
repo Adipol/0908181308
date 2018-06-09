@@ -12,9 +12,9 @@ class Income extends Model
 		'created_at'
 	];
 
-	public function user()
+	public function warehouse()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\Warehouse');
 	}
 	
 	public function incomeDetails()

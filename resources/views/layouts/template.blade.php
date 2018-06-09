@@ -54,10 +54,10 @@
             </li>
             <li>
                 <a href="#sm_expand_3" data-toggle="collapse">
-                    <i class="fa fa-fw fa-link"></i>Solicitudes
+                    <i class="fa fa-fw fa-link"></i>Salidas
                 </a>
                 <ul id="sm_expand_3" class="list-unstyled collapse">
-                    <li><a href="#">Salidas</a></li>
+                    <li><a href="{{ route('request.index') }}">Solicitudes</a></li>
                 </ul>
             </li>
             <li>

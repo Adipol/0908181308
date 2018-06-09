@@ -39,6 +39,12 @@ Route::post('/entradas','EntryController@store')->name('entry.store');
 Route::get('/entradas/{id}','EntryController@show')->name('entry.show');
 Route::get('/entradas/{id}/del','EntryController@delete')->name('entry.delete');
 
+Route::get('/solicitudes','RequestController@index')->name('request.index');
+Route::get('/solicitudes/create','RequestController@create')->name('request.create');
+Route::post('/solicitudes','RequestController@store')->name('request.store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+

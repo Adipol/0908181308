@@ -26,11 +26,6 @@ class User extends Authenticatable
         'password', 'remember_token',
 	];
 	
-	public function incomes()
-	{
-		return $this->hasMany('App\Income');
-    }
-    
     public function warehouses()
     {
         return $this->belongsToMany('App\Warehouse','user_warehouses','user_id','warehouse_id');
