@@ -46,23 +46,7 @@
                                 <input type="text" name="warehouse" class="form-control" value="{{ $warehouse }}" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
-                            <div class="col-sm-9">
-                                <select class="custom-select" name="justification_id" id="justification_id" required="required">
-                                    <option disabled selected hidden>Seleccione Justificacion</option>
-                                 @foreach($justifications as $justification )
-                                    <option {{ (int) old( 'justification_id')===$justification->id ? 'selected' : '' }} value="{{ $justification->id }}">{{ $justification->name }}</option>
-                                @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Detalle</label>
-                            <div class="col-sm-9" id="">
-                                <textarea name="justification" cols="5" class="form-control" rows="5" pyG6hSIPRO-X25Glaceholder="Ingrese el motivo" required="required">{{ old('justification') }}</textarea>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="card-body bg-light border border-dark">
                         <div class="row">
@@ -106,11 +90,33 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>   
+                        </div>
+      
                     </div>
+
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
+                            <div class="col-sm-9">
+                                <select class="custom-select" name="justification_id" id="justification_id" required="required">
+                                    <option disabled selected hidden>Seleccione Justificacion</option>
+                                 @foreach($justifications as $justification )
+                                    <option {{ (int) old( 'justification_id')===$justification->id ? 'selected' : '' }} value="{{ $justification->id }}">{{ $justification->name }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-3 col-form-label">Detalle</label>
+                            <div class="col-sm-9" id="">
+                                <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" required="required">{{ old('description_j') }}</textarea>
+                            </div>
+                        </div> 
+                    </div>
+
                     <div class="card-footer">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <a href="{{ route('entry.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
                         <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
                     </div>
                 </form>
@@ -163,7 +169,7 @@
         
             if( parseInt(scantidad) <= parseInt(sstock) )
             {
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="stock[]" value="'+scantidad+'"disabled="disabled">'+scantidad+'</td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="stock[]" value="'+scantidad+'">'+scantidad+'</td></tr>';
 
                 vecarticulo.push(idarticulo);
                 cont++;

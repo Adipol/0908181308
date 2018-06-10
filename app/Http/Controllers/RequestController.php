@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use App\Warehouse;
 use App\OutputDetail;
 use App\Justification;
+use App\ProductWarehouse;
+use App\Http\Requests\RequestStoreRequest;
 
 class RequestController extends Controller
 {
@@ -15,13 +17,12 @@ class RequestController extends Controller
     {
         $requests =DB::table('outputs')
         ->join('users','outputs.applicant_id','=','users.id')
-        ->select('users.name','outputs.justification','outputs.created_at','outputs.condition')
+        ->join('justifications','outputs.justification_id','=','justifications.id')
+        ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.condition')
         ->where('status','REQUESTED')->paginate(10);
      
         return view ('warehouse.output.request.index') -> with(compact ('requests'));
-
     }
-
 
     public function create()
 	{
@@ -45,7 +46,7 @@ class RequestController extends Controller
 
     public function store(Request $request)
     {
-         try{
+        try{
             DB::beginTransaction(); 
             
             $idarticulo = $request->get('product');
@@ -56,21 +57,22 @@ class RequestController extends Controller
             } else {
                 $value = session()->get('warehouse_id');
 
-                $req                = new Output();
-                $req->warehouse_id  = $value;
-                $req->justification = $request->get('justification');
-                $ucm                = auth()->user();
-                $req->ucm           = $ucm->id;
-                $req->applicant_id  = auth()->user()->id;
+                $req                   = new Output();
+                $req->warehouse_id     = $value;
+                $req->justification_id = $request->get('justification_id');
+                $req->description_j    = $request->get('description_j');
+                $ucm                   = auth()->user();
+                $req->ucm              = $ucm->id;
+                $req->applicant_id     = auth()->user()->id;
                 $req->save();
 
-                $total= count($idarticulo);
-                $cont=0;
+                $total = count($idarticulo);
+                $cont  = 0;
 
                 while ($cont < $total) {
-                    $detail             = new OutputDetail();
-                    $detail->output_id  = $req->id;
-                    $w_p    = ProductWarehouse::with('warehouses')->where('warehouse_id',$value)->where('product_id',$idarticulo[$cont]);
+                    $detail            = new OutputDetail();
+                    $detail->output_id = $req->id;
+                    $w_p               = ProductWarehouse::with('warehouses')->where('warehouse_id',$value)->where('product_id',$idarticulo[$cont]);
                     $w_p->decrement('stock',$cantidad[$cont]);
                     $detail->product_id = $idarticulo[$cont];
                     $detail->quantity   = $cantidad[$cont];
@@ -87,5 +89,26 @@ class RequestController extends Controller
         }
 
         return redirect()->route('request.index')->with('notification','Solicitud se realizo exitosamente.');
+    }
+
+    public function show($id)
+    {
+        $sol = DB::table('outputs')
+        ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
+        ->join('justifications','outputs.justification_id','=','justifications.id')
+        ->join('users','outputs.applicant_id','=','users.id')
+        ->where('outputs.id','=',$id)
+        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j')
+        ->first();
+        
+        $products = DB::table('products')
+        ->join('output_details','products.id','=','output_details.product_id')
+        ->join('outputs','output_details.output_id','=','outputs.id')
+        ->where('outputs.id','=',$id)
+        ->select('products.name as p_name','output_details.quantity')
+        ->get();
+
+        return view('warehouse.output.request.show')->with(compact('sol','products')); 
+
     }
 }

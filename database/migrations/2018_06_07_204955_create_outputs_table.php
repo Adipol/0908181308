@@ -22,7 +22,7 @@ class CreateOutputsTable extends Migration
             $table->foreign('justification_id')->references('id')->on('justifications');
             
             $table->integer('applicant_id');
-            $table->text('description_j')->nullable();
+            $table->text('description_j');
             $table->text('observation')->nullable();
             $table->string('voucher')->nullable();
             $table->integer('approve')->nullable();

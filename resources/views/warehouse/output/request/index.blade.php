@@ -46,7 +46,7 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('request.create') }}" title="Ver la entrada" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('request.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
                                             <i class="fas fa-eye"></i>
                                             </a>
 {{--                                         @if($entry->inc_condition)
@@ -64,7 +64,7 @@
                                         @endif --}}
                                         </th>
                                         <td>{{ $request->name }}</td>
-                                        <td>{{ $request->justification }}</td>
+                                        <td>{{ $request->j_name }}</td>
                                         <td>{{ $request->created_at}}</td>
                                         <td>
                                             @if ($request->condition==1)

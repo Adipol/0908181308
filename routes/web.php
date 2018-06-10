@@ -42,6 +42,7 @@ Route::get('/entradas/{id}/del','EntryController@delete')->name('entry.delete');
 Route::get('/solicitudes','RequestController@index')->name('request.index');
 Route::get('/solicitudes/create','RequestController@create')->name('request.create');
 Route::post('/solicitudes','RequestController@store')->name('request.store');
+Route::get('/solicitudes/{id}','RequestController@show')->name('request.show');
 
 Auth::routes();
 
