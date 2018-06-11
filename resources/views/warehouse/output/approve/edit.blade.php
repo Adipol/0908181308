@@ -8,7 +8,7 @@
                 <a href="#">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{{ route('request.index') }}">Solicitud de productos</a>
+                <a href="{{ route('approve.index') }}">Solicitud de productos</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Visualizar</li>
         </ol>
@@ -59,7 +59,6 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th type="hide">id</th>
                                                 <th>Producto</th>
                                                 <th>Cantidad solicitada</th>
                                                 <th>Cantidad aprobada</th>
@@ -68,8 +67,7 @@
                                         <tbody>
                                             @foreach ($products as $key=>$product)
                                                 <tr>
-                                                    <td>{{ $key+1 }}</td>
-                                                    <td type="hide"><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $product->id }}</td>
+                                                    <td><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
                                                     <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
                                                     <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="0"></td>
