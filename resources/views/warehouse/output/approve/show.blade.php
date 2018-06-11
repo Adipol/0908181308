@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Atras</a>
+                        <a href="{{ route('approve.index') }}" type="button" class="btn btn-secondary">Atras</a>
                     </div>
                 </div>
             </div>

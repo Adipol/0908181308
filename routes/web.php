@@ -43,6 +43,12 @@ Route::get('/solicitudes','RequestController@index')->name('request.index');
 Route::get('/solicitudes/create','RequestController@create')->name('request.create');
 Route::post('/solicitudes','RequestController@store')->name('request.store');
 Route::get('/solicitudes/{id}','RequestController@show')->name('request.show');
+Route::get('/solicitudes/{id}/del','RequestController@delete')->name('request.delete');
+
+Route::get('/aprobaciones','ApproveController@index')->name('approve.index');
+Route::get('/aprobaciones/{id}','ApproveController@show')->name('approve.show');
+Route::get('/aprobaciones/{id}/editar','ApproveController@edit')->name('approve.edit');
+Route::put('/aprobaciones/{id}','ApproveController@update')->name('approve.update');
 
 Auth::routes();
 

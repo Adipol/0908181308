@@ -31,7 +31,7 @@
                     </div>
                     <form method="post" action="{{ route('category.update',$category->id) }}">
                             @method('PUT')
-                            {{csrf_field()}}
+                            {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-sm-4 col-form-label">Nombre</label>

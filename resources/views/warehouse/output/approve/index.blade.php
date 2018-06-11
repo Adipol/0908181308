@@ -7,7 +7,7 @@
             <li class="breadcrumb-item">
                 <a href="#">Inicio</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Solicitud de productos</li>
+            <li class="breadcrumb-item active" aria-current="page">Aprobar Solicitudes</li>
         </ol>
     </nav>
     <div class="container">
@@ -15,10 +15,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
-                        Solicitud de Productos
+                        Aprobar solicitudes
                     </h3>
                     <div class="card-body">
-                        <a href="{{ route('request.create') }}" class="btn btn-primary card-title">Nueva Solicitud</a>
                         <div class="alert-custom">
                             @if (session('notification'))
                             <div class="alert alert-success">
@@ -46,11 +45,14 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('request.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('approve.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
                                             <i class="fas fa-eye"></i>
                                             </a>
+                                            <a href="{{ route('approve.edit',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
+                                            <i class="fas fa-edit"></i>
+                                            </a>
                                         @if($request->condition)
-                                            <a href="{{ route('request.delete',$request->id) }}" class="btn btn-danger btn-sm"
+                                            <a href="{{-- {{ route('request.delete',$request->id) }} --}}" class="btn btn-danger btn-sm"
                                                 data-tr="tr_{{ $request->id }}"		
                                                 data-toggle="confirmation"
                                                 data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
@@ -65,7 +67,7 @@
                                         </th>
                                         <td>{{ $request->name }}</td>
                                         <td>{{ $request->j_name }}</td>
-                                        <td>{{ $request->created_at}}</td>
+                                        <td>{{ $request->created_at }}</td>
                                         <td>
                                             @if ($request->condition==1)
                                             <span class="badge badge-success">Ingresado</span>

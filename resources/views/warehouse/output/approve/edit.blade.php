@@ -48,6 +48,9 @@
                             </div>
                         </div> 
                     </div>
+                    <form method="post" action="{{ route('approve.update',$sol->id) }}">
+                        @method('PUT')
+                        {{ csrf_field() }}
                     <div class="card-body">
                         <div class="row mt-3">
                             <div class="col-sm-12">
@@ -56,16 +59,20 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
+                                                <th type="hide">id</th>
                                                 <th>Producto</th>
-                                                <th>Cantidad</th>
+                                                <th>Cantidad solicitada</th>
+                                                <th>Cantidad aprobada</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($products as $key=>$product)
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
+                                                    <td type="hide"><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $product->id }}</td>
                                                     <td>{{ $product->p_name }}</td>
-                                                    <td>{{ $product->quantity }}</td>
+                                                    <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
+                                                    <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="0"></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -75,8 +82,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Atras</a>
+                        <a href="{{ route('approve.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

@@ -19,7 +19,9 @@ class RequestController extends Controller
         ->join('users','outputs.applicant_id','=','users.id')
         ->join('justifications','outputs.justification_id','=','justifications.id')
         ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.condition')
-        ->where('status','REQUESTED')->paginate(10);
+        ->where('status','REQUESTED')
+        ->orderBy('outputs.id','desc')
+        ->paginate(10);
      
         return view ('warehouse.output.request.index') -> with(compact ('requests'));
     }
@@ -106,9 +108,39 @@ class RequestController extends Controller
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
         ->select('products.name as p_name','output_details.quantity')
+        ->orderBy('products.name','asc')
         ->get();
 
         return view('warehouse.output.request.show')->with(compact('sol','products')); 
-
     }
+
+    public function delete($id)
+    {
+        try{
+            DB::beginTransaction(); 
+
+                $entry            = Output::find($id);
+                $entry->condition = 0;
+                $ucm              = auth()->user();
+                $entry->ucm       = $ucm->id;
+                $ware             = $entry->warehouse_id;
+                $entry->save();
+
+                $total = OutputDetail::where('output_id',$id)->get(); 
+                
+                foreach ($total as $unique) {
+                    $w_p = ProductWarehouse::with('warehouses')->where('warehouse_id',$ware)->where('product_id',$unique->product_id);
+                    $w_p->increment('stock',$unique->quantity);
+                    $unique->condition=0;
+                    $unique->save();
+                } 
+            
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+        }
+
+        return redirect()->route('request.index')->with('notification','Solicitud se anulo exitosamente.');
+    }
+
 }

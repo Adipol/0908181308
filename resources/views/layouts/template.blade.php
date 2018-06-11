@@ -58,6 +58,7 @@
                 </a>
                 <ul id="sm_expand_3" class="list-unstyled collapse">
                     <li><a href="{{ route('request.index') }}">Solicitudes</a></li>
+                    <li><a href="{{ route('approve.index') }}">Aprobar Solicitudes</a></li>
                 </ul>
             </li>
             <li>
