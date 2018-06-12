@@ -142,5 +142,4 @@ class RequestController extends Controller
 
         return redirect()->route('request.index')->with('notification','Solicitud se anulo exitosamente.');
     }
-
 }

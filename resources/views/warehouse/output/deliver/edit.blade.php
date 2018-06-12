@@ -8,7 +8,7 @@
                 <a href="#">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{{ route('approve.index') }}">Solicitud de productos</a>
+                <a href="{{ route('deliver.index') }}">Entrega de productos</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Visualizar</li>
         </ol>
@@ -16,6 +16,17 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <div>
+                    @if (count($errors)>0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+                </div>
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Visualizar Solicitud </h3>
                     <div class="card-body">
@@ -48,7 +59,7 @@
                             </div>
                         </div> 
                     </div>
-                    <form method="post" action="{{ route('approve.update',$sol->id) }}">
+                    <form method="post" action="{{ route('deliver.update',$sol->id) }}" enctype="multipart/form-data">
                         @method('PUT')
                         {{ csrf_field() }}
                     <div class="card-body">
@@ -60,17 +71,17 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
-                                                <th>Cantidad solicitada</th>
-                                                <th>Cantidad aprobada</th>
+                                                <th>Categoria</th>
+                                                <th>Cantidad</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($products as $key=>$product)
                                                 <tr>
-                                                    <td><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $key+1 }}</td>
+                                                    <td>{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
-                                                    <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
-                                                    <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="0"></td>
+                                                    <td>{{ $product->cat_name }}</td>
+                                                    <td>{{ $product->quantity }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -79,23 +90,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-body">
+                            <div class="row mt-3">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label for="" class="col-md-4 col-form-label">Observacion</label>
+                                        <div class="col-md-8">
+                                            <textarea name="observation" cols="5" class="form-control" rows="5" placeholder="Ingrese observaciones de la entrega" required="required">{{ old('observation') }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="" class="col-md-4 col-form-label">Comprobante</label>
+                                        <div class="col-md-8">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFileLang" name="voucher" lang="es">
+                                                <label class="custom-file-label" for="customFileLang">Seleccione el comprobante</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <div class="card-footer">
-                        <a href="{{ route('approve.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                        <a href="{{ route('deliver.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        @if($sol->condition)
-                        <a href="{{ route('approve.delete',$sol->id) }}" class="btn btn-danger"
-                            data-tr="tr_{{ $sol->id }}"		
-                            data-toggle="confirmation"
-                            data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
-                            data-btn-ok-class="btn btn-sm btn-danger"
-                            data-btn-cancel-label="Cancelar"
-                            data-btn-cancel-icon="fa fa-chevron-circle-left"
-                            data-btn-cancel-class="btn btn-sm btn-primary"
-                            data-title="Esta seguro de anular la solicitud?"
-                            data-placement="right" data-singleton="true"
-                            >Anular solicitud
-                        </a>
-                    @endif
                     </div>
                 </form>
                 </div>
@@ -104,31 +122,4 @@
     </div>
 </section>
 @endsection
-@push('scripts')
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('[data-toggle=confirmation]').confirmation({
-            rootSelector: '[data-toggle=confirmation]',
-            onConfirm: function (event, element) {
-                element.trigger('confirm');
-            }
-        });
 
-        $(document).on('confirm', function (e) {
-            var ele = e.target;
-            e.preventDefault();
-            $.ajax({
-                url: ele.href,
-                type: 'GET',
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                success: function (data) {
-                },
-                error: function (data) {
-                    alert(data.responseText);
-                }
-            });
-            return false;
-        });
-    });
-</script>
-@endpush

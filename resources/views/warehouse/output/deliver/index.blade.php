@@ -7,7 +7,7 @@
             <li class="breadcrumb-item">
                 <a href="#">Inicio</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Aprobar Solicitudes</li>
+            <li class="breadcrumb-item active" aria-current="page"> Entrega de productos</li>
         </ol>
     </nav>
     <div class="container">
@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
-                        Aprobar solicitudes
+                        Entrega de Productos
                     </h3>
                     <div class="card-body">
                         <div class="alert-custom">
@@ -38,6 +38,7 @@
                                         <th>Fecha de solicitud</th>
                                         <th>Solicitante</th>
                                         <th>Justificacion</th>
+                                        <th>Solicitud</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -45,7 +46,7 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('approve.edit',$request->id) }}" title="Validar solicitud" class="btn  btn-sm btn-info">
+                                            <a href="{{ route('deliver.edit',$request->id) }}" title="Validar solicitud" class="btn  btn-sm btn-info">
                                             <i class="fas fa-edit"></i>
                                             </a>
 
@@ -53,6 +54,11 @@
                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->formatLocalized('%A %d %B %Y') }}</td>  
                                         <td>{{ $request->name }}</td>
                                         <td>{{ $request->j_name }}</td>
+                                        <td>             
+                                            @if ($request->status == 'APPROVED')
+                                                <span class="badge badge-success">Aprobado</span>
+                                                @else
+                                                <span class="badge badge-danger">Incorrecto</span> @endif
                                         </td>
                                         <td>
                                             @if ($request->condition==1)

@@ -17,7 +17,8 @@ class ApproveController extends Controller
         ->join('users','outputs.applicant_id','=','users.id')
         ->join('justifications','outputs.justification_id','=','justifications.id')
         ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.condition')
-        ->where('status','REQUESTED')
+        ->where('outputs.status','=','REQUESTED')
+        ->where('outputs.condition','=',1)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
 
@@ -52,7 +53,7 @@ class ApproveController extends Controller
         ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j')
+        ->select('outputs.id','outputs.created_at','outputs.condition','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j')
         ->first();
 
         $products = DB::table('products')
@@ -100,5 +101,33 @@ class ApproveController extends Controller
         }
 
         return redirect()->route('approve.index')->with('notification','Solicitud aprobada exitosamente.');        
+    }
+
+    public function delete($id)
+    {
+        try{
+            DB::beginTransaction(); 
+
+                $entry            = Output::find($id);
+                $entry->condition = 0;
+                $entry->ucm       = auth()->user()->id;
+                $ware             = $entry->warehouse_id;
+                $entry->save();
+
+                $total = OutputDetail::where('output_id',$id)->get(); 
+                
+                foreach ($total as $unique) {
+                    $w_p = ProductWarehouse::with('warehouses')->where('warehouse_id',$ware)->where('product_id',$unique->product_id);
+                    $w_p->increment('stock',$unique->quantity);
+                    $unique->condition=0;
+                    $unique->save();
+                } 
+            
+            DB::commit();
+        }catch(\Exception $e){
+            DB::rollBack();
+        }
+
+        return redirect()->route('approve.index')->with('notification','Solicitud se anulo exitosamente.');
     }
 }

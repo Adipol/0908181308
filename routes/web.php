@@ -49,9 +49,13 @@ Route::get('/aprobaciones','ApproveController@index')->name('approve.index');
 Route::get('/aprobaciones/{id}','ApproveController@show')->name('approve.show');
 Route::get('/aprobaciones/{id}/editar','ApproveController@edit')->name('approve.edit');
 Route::put('/aprobaciones/{id}','ApproveController@update')->name('approve.update');
+Route::get('/aprobaciones/{id}/del','ApproveController@delete')->name('approve.delete');
+
+Route::get('/entregas','DeliverController@index')->name('deliver.index');
+Route::get('/entregas/{id}/editar','DeliverController@edit')->name('deliver.edit');
+Route::put('/entregas/{id}','DeliverController@update')->name('deliver.update');
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 
