@@ -71,6 +71,12 @@ Route::get('/almacenes/crear','Admin\WarehouseController@create')->name('warehou
 Route::post('/almacenes','Admin\WarehouseController@store')->name('warehouse.store');
 Route::get('/almacenes/{id}/editar','Admin\WarehouseController@edit')->name('warehouse.edit');
 Route::put('/almacenes/{id}','Admin\WarehouseController@update')->name('warehouse.update');
+Route::get('/almacenes/{id}/del','Admin\WarehouseController@delete')->name('warehouse.delete');
+Route::get('/almacenes/{id}/restaurar','Admin\WarehouseController@restore')->name('warehouse.restore');
+
+Route::get('/medicion','Admin\UnityController@index')->name('unity.index');
+Route::get('/medicion/crear','Admin\UnityController@create')->name('unity.create');
+Route::post('/medicion','Admin\UnityController@store')->name('unity.store');
 
 
 Auth::routes();

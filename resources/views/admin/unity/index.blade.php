@@ -7,7 +7,7 @@
 			<li class="breadcrumb-item">
 				<a href="#">Inicio</a>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Almacenes</li>
+			<li class="breadcrumb-item active" aria-current="page">Medición</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -15,10 +15,10 @@
 			<div class="col-md-12">
 				<div class="card">
 					<h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
-						Almacenes
+						Medición
 					</h3>
 					<div class="card-body">
-						<a href="{{ route('warehouse.create') }}" class="btn btn-primary card-title">Nuevo Almacen</a>
+						<a href="{{ route('unity.create') }}" class="btn btn-primary card-title">Nueva Medición</a>
 						<div class="alert-custom">
 							@if (session('notification'))
 							<div class="alert alert-success">
@@ -32,21 +32,21 @@
 									<tr>
 										<th>Opciones</th>
 										<th>Nombre</th>
-										<th>ubicación</th>
+										<th>Abreviación</th>
 										<th>Fecha de creación</th>
 										<th>Estado</th>
 									</tr>
 								</thead>
 								<tbody>
-									@forelse ($warehouses as $warehouse)
-									<tr id="tr_{{$warehouse->id}}">
+									@forelse ($units as $unity)
+									<tr id="tr_{{$unity->id}}">
 										<th scope="row">
-											<a href="{{ route('warehouse.edit', $warehouse->id) }}" title="Modificar almacen" class="btn  btn-sm btn-warning">
+											<a href="{{-- {{ route('unity.edit', $unity->id) }} --}}" title="Modificar almacen" class="btn  btn-sm btn-warning">
 												<i class="fas fa-edit"></i>
 											</a>
-											@if ($warehouse->condition)
-												<a href="{{ route('warehouse.delete', $warehouse->id) }}" class="btn btn-danger btn-sm"
-													data-tr="tr_{{ $warehouse->id }}"				
+											@if ($unity->condition)
+												<a href="{{-- {{ route('unity.delete', $unity->id) }} --}}" class="btn btn-danger btn-sm"
+													data-tr="tr_{{ $unity->id }}"				
 													data-toggle="confirmation"
 													data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
 													data-btn-ok-class="btn btn-sm btn-danger"
@@ -57,8 +57,8 @@
 													data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
 												</a>
 											@else
-												<a href="{{ route('warehouse.restore', $warehouse->id) }}" class="btn btn-dark btn-sm"
-												data-tr="tr_{{ $warehouse->id }}"				
+												<a href="{{-- {{ route('unity.restore', $unity->id) }} --}}" class="btn btn-dark btn-sm"
+												data-tr="tr_{{ $unity->id }}"				
 												data-toggle="confirmation"
 												data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
 												data-btn-ok-class="btn btn-sm btn-danger"
@@ -70,11 +70,11 @@
 												</a>
 											@endif
 										</th>
-										<td>{{ $warehouse->name }}</td>
-										<td>{{ $warehouse->ubication }}</td>
-										<td>{{ $warehouse->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $unity->name }}</td>
+										<td>{{ $unity->abbreviation }}</td>
+										<td>{{ $unity->created_at->formatLocalized('%A %d %B %Y') }}</td>
 										<td>
-											@if ($warehouse->condition===1)
+											@if ($unity->condition===1)
 											<span class="badge badge-success">Activo</span>
 											@else
 											<span class="badge badge-danger">Desactivado</span>
@@ -90,7 +90,7 @@
 							</table>
 						</div>
 						<div class="row justify-content-center">
-							{{ $warehouses->links() }}
+							{{ $units->links() }}
 						</div>
 					</div>
 				</div>

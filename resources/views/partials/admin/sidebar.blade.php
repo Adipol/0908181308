@@ -13,6 +13,9 @@
                     <a href="{{route('category.index')}}" class="{{ Helper::navigation_selected('category.index') }}">Categorias</a>
                 </li>
                 <li>
+                    <a href="{{ route('unity.index') }}">Medición</a>
+                </li>
+                <li>
                     <a href="{{route('product.index')}}">Productos</a>
                 </li>
             </ul>

@@ -50,4 +50,24 @@ class WarehouseController extends Controller
 
         return redirect()->route('warehouse.index')->with('notification','Almacen modificado exitosamente.');
     }
+
+    public function delete($id)
+    {
+        $warehouse= Warehouse::find($id);
+        $warehouse->condition=0;
+        $warehouse->ucm=Auth()->user()->id;
+        $warehouse->save();
+
+        return redirect()->route('warehouse.index')->with('notification','El almacen se dio de baja correctamente.');
+    }
+
+    public function restore($id)
+    {
+        $warehouse=Warehouse::find($id);
+        $warehouse->condition=1;
+        $warehouse->ucm=Auth()->user()->id;
+        $warehouse->save();
+
+        return redirect()->route('warehouse.index')->with('notification','El almacen se dio de alta correctamente.');
+    }
 }
