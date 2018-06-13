@@ -8,16 +8,16 @@
                 <a href="#">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{{ route('warehouse.index') }}">Almacenes</a>
+                <a href="{{ route('unity.index') }}">Medición</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Modificar Almacen</li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar Medición</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Modificar Almacen</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Medificar Medición</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -29,25 +29,25 @@
                         </div>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('warehouse.update', $warehouse->id) }}">
+                    <form method="post" action="{{ route('unity.update', $unity->id) }}">
                         @method('PUT')
-                        {{ csrf_field() }}
+                        {{csrf_field()}}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-sm-3 col-form-label">Nombre</label>
                                 <div class="col-sm-9">
-                                <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ $warehouse->name }}" required="required">
+                                <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ $unity->name }}" required="required">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Ubicación</label>
+                                    <label for="" class="col-sm-3 col-form-label">Abreviación</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="ubication" class="form-control" placeholder="Ingrese la ubicación" value="{{ $warehouse->ubication }}" required="required">
+                                        <input type="text" name="abbreviation" class="form-control" placeholder="Ingrese la abreviación" value="{{ $unity->abbreviation }}" required="required">
                                     </div>
                                 </div>
                         </div>
                         <div class="card-footer">
-                                <a href="{{ route('warehouse.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ route('unity.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>

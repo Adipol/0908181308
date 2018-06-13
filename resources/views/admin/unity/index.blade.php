@@ -41,11 +41,11 @@
 									@forelse ($units as $unity)
 									<tr id="tr_{{$unity->id}}">
 										<th scope="row">
-											<a href="{{-- {{ route('unity.edit', $unity->id) }} --}}" title="Modificar almacen" class="btn  btn-sm btn-warning">
+											<a href="{{ route('unity.edit', $unity->id) }}" title="Modificar almacen" class="btn  btn-sm btn-warning">
 												<i class="fas fa-edit"></i>
 											</a>
 											@if ($unity->condition)
-												<a href="{{-- {{ route('unity.delete', $unity->id) }} --}}" class="btn btn-danger btn-sm"
+												<a href="{{ route('unity.delete', $unity->id) }}" class="btn btn-danger btn-sm"
 													data-tr="tr_{{ $unity->id }}"				
 													data-toggle="confirmation"
 													data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
@@ -57,7 +57,7 @@
 													data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
 												</a>
 											@else
-												<a href="{{-- {{ route('unity.restore', $unity->id) }} --}}" class="btn btn-dark btn-sm"
+												<a href="{{ route('unity.restore', $unity->id) }}" class="btn btn-dark btn-sm"
 												data-tr="tr_{{ $unity->id }}"				
 												data-toggle="confirmation"
 												data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"

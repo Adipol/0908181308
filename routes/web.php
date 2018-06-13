@@ -77,7 +77,10 @@ Route::get('/almacenes/{id}/restaurar','Admin\WarehouseController@restore')->nam
 Route::get('/medicion','Admin\UnityController@index')->name('unity.index');
 Route::get('/medicion/crear','Admin\UnityController@create')->name('unity.create');
 Route::post('/medicion','Admin\UnityController@store')->name('unity.store');
-
+Route::get('/medicion/{id}/editar','Admin\UnityController@edit')->name('unity.edit');
+Route::put('/medicion/{id}','Admin\UnityController@update')->name('unity.update');
+Route::get('/medicion/{id}/del','Admin\UnityController@delete')->name('unity.delete');
+Route::get('/medicion/{id}/restaurar','Admin\UnityController@restore')->name('unity.restore');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
