@@ -8,16 +8,16 @@
                 <a href="#">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{{ route('category.index') }}">Categorias</a>
+                <a href="{{ route('warehouse.index') }}">Almacenes</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Modificar Categoria</li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar Almacen</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-8 offset-md-2">
+            <div class="col-12 col-sm-8 offset-sm-2">
                 <div class="card">
-                    <h3 class="card-header text-primary bg-secondary text-white-50">Modificar Categoria</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Modificar Almacen</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -29,25 +29,25 @@
                         </div>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('category.update',$category->id) }}">
+                    <form method="post" action="{{ route('warehouse.update',$warehouse->id) }}">
                         @method('PUT')
                         {{ csrf_field() }}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Nombre</label>
-                                <div class="col-sm-8">
-                                <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ $category->name }}" required="required">
+                                <label for="" class="col-sm-3 col-form-label">Nombre</label>
+                                <div class="col-sm-9">
+                                <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ $warehouse->name }}" required="required">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Descripcion</label>
-                                <div class="col-sm-8">
-                                <textarea name="description" cols="30" class="form-control" rows="5" placeholder="Ingrese la descripcion">{{ $category->description }}</textarea>
+                                    <label for="" class="col-sm-3 col-form-label">Ubicación</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="ubication" class="form-control" placeholder="Ingrese la ubicación" value="{{ $warehouse->ubication }}" required="required">
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                         <div class="card-footer">
-                                <a href="{{ route('category.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                                <a href="{{ route('warehouse.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>

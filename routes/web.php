@@ -69,8 +69,8 @@ Route::put('/seguimiento-entregado/{id}','TracingDeliverController@update')->nam
 Route::get('/almacenes','Admin\WarehouseController@index')->name('warehouse.index');
 Route::get('/almacenes/crear','Admin\WarehouseController@create')->name('warehouse.create');
 Route::post('/almacenes','Admin\WarehouseController@store')->name('warehouse.store');
-
-
+Route::get('/almacenes/{id}/editar','Admin\WarehouseController@edit')->name('warehouse.edit');
+Route::put('/almacenes/{id}','Admin\WarehouseController@update')->name('warehouse.update');
 
 
 Auth::routes();

@@ -49,7 +49,7 @@
 									@forelse ($warehouses as $warehouse)
 									<tr id="tr_{{$warehouse->id}}">
 										<th scope="row">
-											<a href="{{-- {{ route('warehouse.edit',$warehouse->id) }} --}}" title="Modificar" class="btn  btn-sm btn-warning">
+											<a href="{{ route('warehouse.edit',$warehouse->id) }}" title="Modificar almacen" class="btn  btn-sm btn-warning">
 												<i class="fas fa-edit"></i>
 											</a>
 										</th>

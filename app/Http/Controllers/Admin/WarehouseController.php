@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Warehouse;
+use App\Http\Requests\WarehouseStoreRequest;
+use App\Http\Requests\WarehouseUpdateRequest;
+
 
 class WarehouseController extends Controller
 {
@@ -19,7 +22,7 @@ class WarehouseController extends Controller
         return view('admin.warehouse.create');
     }
 
-    public function store(Request $request)
+    public function store(WarehouseStoreRequest $request)
 	{	
 		$warehouse            = new Warehouse();
 		$warehouse->name      = $request->get('name');
@@ -28,5 +31,23 @@ class WarehouseController extends Controller
 		$warehouse->save();
 
 		return redirect()->route('warehouse.index')->with('notification','Almacen ingresado exitosamente.');
-	}
+    }
+    
+    public function edit($id)
+    {
+        $warehouse = Warehouse::find($id);
+
+        return view('admin.warehouse.edit')->with(compact('warehouse'));
+    }
+
+    public function update(WarehouseUpdateRequest $request, $id)
+    {
+        $warehouse            = Warehouse::find($id);
+        $warehouse->name      = $request->get('name');
+        $warehouse->ubication = $request->get('ubication');
+        $warehouse->ucm       = Auth()->user()->id;
+        $warehouse->save();
+
+        return redirect()->route('warehouse.index')->with('notification','Almacen modificado exitosamente.');
+    }
 }

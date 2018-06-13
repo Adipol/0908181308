@@ -25,8 +25,7 @@ class CategoryController extends Controller
 		$category              = new Category();
 		$category->name        = $request->get('name');
 		$category->description = $request->get('description');
-		$ucm                   = auth()->user();
-		$category->ucm         = $ucm->id;
+		$category->ucm         = auth()->user()->id;
 		$category->save();
 
 		return redirect()->route('category.index')->with('notification','Categoria ingresada exitosamente.');
