@@ -14,4 +14,9 @@ class Justification extends Model
     {
         return $this->hasMany('App\outputs');
     }
+
+    public function setNameAttribute($value){
+		
+        $this->attributes['name'] = ucfirst((strtolower($value)));
+	}
 }

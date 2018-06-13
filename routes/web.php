@@ -82,6 +82,15 @@ Route::put('/medicion/{id}','Admin\UnityController@update')->name('unity.update'
 Route::get('/medicion/{id}/del','Admin\UnityController@delete')->name('unity.delete');
 Route::get('/medicion/{id}/restaurar','Admin\UnityController@restore')->name('unity.restore');
 
+Route::get('/justificaciones','Admin\JustificationController@index')->name('justification.index');
+Route::get('/justificaciones/crear','Admin\JustificationController@create')->name('justification.create');
+Route::post('/justificaciones','Admin\JustificationController@store')->name('justification.store');
+Route::get('/justificaciones/{id}/editar','Admin\JustificationController@edit')->name('justification.edit');
+Route::put('/justificaciones/{id}','Admin\JustificationController@update')->name('justification.update');
+Route::get('/justificaciones/{id}/del','Admin\JustificationController@delete')->name('justification.delete');
+Route::get('/justificaciones/{id}/restaurar','Admin\JustificationController@restore')->name('justification.restore');
+
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 

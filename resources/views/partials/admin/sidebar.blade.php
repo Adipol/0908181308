@@ -71,6 +71,9 @@
                     <a href="{{ route('warehouse.index') }}">Almacenes</a>
                 </li>
                 <li>
+                    <a href="{{ route('justification.index') }}">Justificaciones</a>
+                </li>
+                <li>
                     <a href="#">
                         <i class="far fa-users"></i> Usuarios</a>
                 </li>
