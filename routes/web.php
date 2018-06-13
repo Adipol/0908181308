@@ -55,6 +55,17 @@ Route::get('/entregas','DeliverController@index')->name('deliver.index');
 Route::get('/entregas/{id}/editar','DeliverController@edit')->name('deliver.edit');
 Route::put('/entregas/{id}','DeliverController@update')->name('deliver.update');
 
+Route::get('/seguimiento-solicitudes','TracingRequestController@index')->name('trequest.index');
+Route::get('/seguimiento-solicitudes/{id}','TracingRequestController@show')->name('trequest.show');
+
+Route::get('/seguimiento-aprobados','TracingApproveController@index')->name('tapprove.index');
+Route::get('/seguimiento-aprobados/{id}','TracingApproveController@show')->name('tapprove.show');
+
+Route::get('/seguimiento-entregados','TracingDeliverController@index')->name('tdeliver.index');
+Route::get('/seguimiento-entregados/{id}','TracingDeliverController@show')->name('tdeliver.show');
+Route::get('/seguimiento-entregado/{id}/editar','TracingDeliverController@edit')->name('tdeliver.edit');
+Route::put('/seguimiento-entregado//{id}','TracingDeliverController@update')->name('tdeliver.update');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 

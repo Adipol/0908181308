@@ -40,7 +40,7 @@
                     <i class=""></i> Almacen
                 </a>
                 <ul id="sm_expand_1" class="list-unstyled collapse">
-                    <li><a href="{{route('category.index')}}">Categorias</a></li>
+                    <li><a href="{{route('category.index')}}" class="{{ Helper::navigation_selected('category.index') }}">Categorias</a></li>
                     <li><a href="{{route('product.index')}}">Productos</a></li>
                 </ul>
             </li>
@@ -60,6 +60,16 @@
                     <li><a href="{{ route('request.index') }}">Solicitudes</a></li>
                     <li><a href="{{ route('approve.index') }}">Aprobar Solicitudes</a></li>
                     <li><a href="{{ route('deliver.index') }}">Entregar Solicitudes</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#sm_expand_4" data-toggle="collapse">
+                    <i class="fa fa-fw fa-link"></i>Seguimiento
+                </a>
+                <ul id="sm_expand_4" class="list-unstyled collapse">
+                    <li><a href="{{ route('trequest.index') }}">Solicitudes</a></li>
+                    <li><a href="{{ route('tapprove.index') }}">Aprobar Solicitudes</a></li>
+                    <li><a href="{{ route('tdeliver.index') }}">Entregar Solicitudes</a></li>
                 </ul>
             </li>
             <li>
