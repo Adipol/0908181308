@@ -25,4 +25,14 @@ class Warehouse extends Model
     {
         return $this->belongsToMany('App\User','user_warehouses','warehouse_id','user_id');    
     }
+
+    public function setNameAttribute($value){
+		
+        $this->attributes['name'] = ucfirst((strtolower($value)));
+    }
+
+    public function setUbicationAttribute($value){
+		
+        $this->attributes['ubication'] = strtolower($value);
+    } 
 }

@@ -60,12 +60,12 @@
             </ul>
         </li>
         <li>
-            <a href="#sm_expand_4" data-toggle="collapse">
+            <a href="#sm_expand_5" data-toggle="collapse">
                 <i class="fa fa-fw fa-link"></i>Acceso
             </a>
-            <ul id="sm_expand_4" class="list-unstyled collapse">
+            <ul id="sm_expand_5" class="list-unstyled collapse">
                 <li>
-                    <a href="#">Almacenes</a>
+                    <a href="{{ route('warehouse.index') }}">Almacenes</a>
                 </li>
                 <li>
                     <a href="#">

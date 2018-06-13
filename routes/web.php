@@ -64,7 +64,14 @@ Route::get('/seguimiento-aprobados/{id}','TracingApproveController@show')->name(
 Route::get('/seguimiento-entregados','TracingDeliverController@index')->name('tdeliver.index');
 Route::get('/seguimiento-entregados/{id}','TracingDeliverController@show')->name('tdeliver.show');
 Route::get('/seguimiento-entregado/{id}/editar','TracingDeliverController@edit')->name('tdeliver.edit');
-Route::put('/seguimiento-entregado//{id}','TracingDeliverController@update')->name('tdeliver.update');
+Route::put('/seguimiento-entregado/{id}','TracingDeliverController@update')->name('tdeliver.update');
+
+Route::get('/almacenes','Admin\WarehouseController@index')->name('warehouse.index');
+Route::get('/almacenes/crear','Admin\WarehouseController@create')->name('warehouse.create');
+Route::post('/almacenes','Admin\WarehouseController@store')->name('warehouse.store');
+
+
+
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

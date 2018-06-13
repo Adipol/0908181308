@@ -1,0 +1,85 @@
+@extends('layouts.template') 
+@section('content')
+
+<section class="categorias">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+				<a href="#">Inicio</a>
+			</li>
+			<li class="breadcrumb-item active" aria-current="page">Almacenes</li>
+		</ol>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
+						Almacenes
+					</h3>
+					<div class="card-body">
+						<a href="{{ route('warehouse.create') }}" class="btn btn-primary card-title">Nuevo Almacen</a>
+						<div class="alert-custom">
+							@if (session('notification'))
+							<div class="alert alert-success">
+								{{ session('notification')}}
+							</div>
+							@endif @if (count($errors)>0)
+							<div class="alert alert-danger">
+								<ul>
+									@foreach($errors->all() as $error)
+									<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+							@endif
+						</div>
+						<div class="table-responsive">
+							<table class="table table-hover">
+								<thead class="thead-light">
+									<tr>
+										<th>Opciones</th>
+										<th>Nombre</th>
+										<th>ubicación</th>
+										<th>Fecha de creación</th>
+										<th>Estado</th>
+									</tr>
+								</thead>
+								<tbody>
+									@forelse ($warehouses as $warehouse)
+									<tr id="tr_{{$warehouse->id}}">
+										<th scope="row">
+											<a href="{{-- {{ route('warehouse.edit',$warehouse->id) }} --}}" title="Modificar" class="btn  btn-sm btn-warning">
+												<i class="fas fa-edit"></i>
+											</a>
+										</th>
+										<td>{{ $warehouse->name }}</td>
+										<td>{{ $warehouse->ubication }}</td>
+										<td>{{ $warehouse->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>
+											@if ($warehouse->condition===1)
+											<span class="badge badge-success">Activo</span>
+											@else
+											<span class="badge badge-danger">Desactivado</span>
+											@endif
+										</td>
+									</tr>
+									@empty
+									<tr>
+										<td colspan="6">No existe registros</td>
+									</tr>
+									@endforelse
+								</tbody>
+							</table>
+						</div>
+						<div class="row justify-content-center">
+							{{ $warehouses->links() }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+  
+@endsection
