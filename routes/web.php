@@ -90,6 +90,9 @@ Route::put('/justificaciones/{id}','Admin\JustificationController@update')->name
 Route::get('/justificaciones/{id}/del','Admin\JustificationController@delete')->name('justification.delete');
 Route::get('/justificaciones/{id}/restaurar','Admin\JustificationController@restore')->name('justification.restore');
 
+Route::get('/usuarios','Admin\UserController@index')->name('user.index');
+Route::get('/usuarios/crear','Admin\UserController@create')->name('user.create');
+Route::post('/usuarios','Admin\UserController@store')->name('user.store');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

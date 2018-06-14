@@ -74,11 +74,11 @@
                     <a href="{{ route('justification.index') }}">Justificaciones</a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="far fa-users"></i> Usuarios</a>
+                    <a href="#">Roles</a>
                 </li>
                 <li>
-                    <a href="#">Roles</a>
+                    <a href="{{ route('user.index') }}">
+                        <i class="far fa-users"></i> Usuarios</a>
                 </li>
             </ul>
         </li>

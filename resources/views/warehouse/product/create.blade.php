@@ -37,7 +37,6 @@
                                         <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
                                         @endforeach
                                     </select>
-
                                     <button class="btn btn-primary mt-3 mb-3" href="#" role="button" id="bt_add">Agregar Producto</button>
                             </div>
                         <form method="post" action="{{ route('product.store') }}">
