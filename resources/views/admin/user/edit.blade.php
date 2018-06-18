@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('user.index') }}">Usuarios</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Nuevo usuario</li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar usuario</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nuevo Usuario</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Modificar Usuario</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -29,25 +29,20 @@
                         </div>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('user.store') }}">
+                    <form method="post" action="{{ route('user.update', $user->id) }}">
+                        @method('PUT')
                         {{csrf_field()}}
                         <div class="card-body">
                             <div class="form-group row">
                                 <label for="" class="col-sm-4 col-form-label">Nombre</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ old('name') }}" required="required">
+                                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" readonly="readonly">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-sm-4 col-form-label">Correo electrónico</label>
                                 <div class="col-sm-8">
-                                    <input type="mail" name="email" class="form-control" placeholder="Ingrese el correo electronico" value="{{ old('email') }}" required="required">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Contraseña</label>
-                                <div class="col-sm-8">
-                                    <input type="text" name="password" class="form-control" placeholder="Ingrese la contraseña" value="{{ old('password') }}" required="required">
+                                    <input type="mail" name="email" class="form-control" value="{{ $user->email }}" readonly="readonly">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -56,7 +51,7 @@
                                     <select class="custom-select" name="rol_id" required>
                                             <option disabled selected hidden>Seleccione rol</option>
                                             @foreach($rols as $rol)
-                                            <option {{ (int) old('rol_id') === $rol->id || $user->rol_id === $rol->id ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->name }}</option>
+                                            <option {{ (int) old('rol_id') === $rol->id || $user->rol_id === $rol->id ? 'selected'  : '' }} value="{{ $rol->id }}">{{ $rol->name }}</option>
                                             @endforeach
                                     </select> 
                                 </div>

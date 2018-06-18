@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fa.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/me.css')}}">
+
     <title>BootAdmin</title>
 </head>
 <body class="bg-light">
@@ -19,23 +21,15 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
             <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
-            <li class="nav-item dropdown">
-                <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Doe</a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
-                    <a href="#" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Logout</a>
-                </div>
-            </li>
+            @include('partials.navigation.logged')
         </ul>
     </div>
 </nav>
 
 <div class="d-flex">
     @auth
-        {{-- @include('partials.'.auth()->user()->role.'.navigation') --}}
-        @include('partials.admin.sidebar')
+        @include('partials.navigation.' . \App\User::navigation())
     @else
-        {{-- @include('partials.guest.navigation') --}}
         @include('partials.guest.sidebar')
     @endauth
 	<div class="content d-flex flex-column">

@@ -15,7 +15,6 @@ class UnityStoreRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,7 +22,7 @@ class UnityStoreRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return [  
 			'name'         => 'required|min:3|max:25|unique:units,name',
 			'abbreviation' => 'required|min:1|max:10|unique:units,abbreviation'
         ];

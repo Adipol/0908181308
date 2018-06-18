@@ -21,6 +21,11 @@ class Warehouse extends Model
         return $this->hasmany('App\Income');
     }
 
+    public function associates()
+    {
+        return $this->hasmany('App\Associate');
+    }
+
     public function users()
     {
         return $this->belongsToMany('App\User','user_warehouses','warehouse_id','user_id');    

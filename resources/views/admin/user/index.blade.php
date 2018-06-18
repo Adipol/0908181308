@@ -42,11 +42,15 @@
 									@forelse ($users as $user)
 									<tr id="tr_{{$user->id}}">
 										<th scope="row">
-											<a href="{{-- {{ route('user.edit', $user->id) }} --}}" title="Modificar almacen" class="btn  btn-sm btn-warning">
-												<i class="fas fa-edit"></i>
+											<a href="{{ route('user.associate',$user->id) }}" title="Asociar almacen" class="btn  btn-sm btn-success"><i class="fas fa-warehouse"></i></a>
+											<a href="{{ route('user.disassociate',$user->id) }}" title="Ver usuario" class="btn  btn-sm btn-info">
+											<i class="far fa-address-card"></i>
+											</a>
+											<a href="{{ route('user.edit',$user->id) }}" title="Modificar usuario" class="btn  btn-sm btn-warning">
+											<i class="fas fa-edit"></i>
 											</a>
 											@if ($user->condition)
-												<a href="{{-- {{ route('user.delete', $user->id) }} --}}" class="btn btn-danger btn-sm"
+												<a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger btn-sm"
 													data-tr="tr_{{ $user->id }}"				
 													data-toggle="confirmation"
 													data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"
@@ -58,7 +62,7 @@
 													data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
 												</a>
 											@else
-												<a href="{{-- {{ route('user.restore', $user->id) }} --}}" class="btn btn-dark btn-sm"
+												<a href="{{ route('user.restore', $user->id) }}" class="btn btn-dark btn-sm"
 												data-tr="tr_{{ $user->id }}"				
 												data-toggle="confirmation"
 												data-btn-ok-label="Si, estoy seguro" data-btn-ok-icon="fa fa-remove"

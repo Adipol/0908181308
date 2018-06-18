@@ -34,7 +34,6 @@ class UserStoreRequest extends FormRequest
 
     public function messages(){
 		return [
-            'rol_id.required' => 'Es necesario ingresar el rol.',
             'name.required'   => 'Es necesario ingresar el nombre.',
             'name.min'        => 'El nombre es demasiado reducido.',
             'name.max'        => 'El nombre es demasiado extenso.',
@@ -42,7 +41,8 @@ class UserStoreRequest extends FormRequest
             'email.required'  => 'El correo es requerido.',
             'email.email'     => 'El correo no ingresado no tiene un formato correcto.',
             'email.max'       => 'El correo es demasiado extenso.',
-            'email.unique'    => 'El correo ingresado existe.'
+            'email.unique'    => 'El correo ingresado existe.',
+            'rol_id.required' => 'Es necesario ingresar el rol.'
 		];
 	}
 }

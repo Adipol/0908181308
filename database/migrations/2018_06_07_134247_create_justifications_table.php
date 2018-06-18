@@ -16,7 +16,8 @@ class CreateJustificationsTable extends Migration
         Schema::create('justifications', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->string('name',50)->unique();
+            $table->string('name',100)->unique();
+            $table->string('slug',100)->unique();
             $table->boolean('condition')->default(1);
             
             $table->timestamps();

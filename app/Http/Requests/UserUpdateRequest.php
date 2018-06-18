@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class DeliverUpdateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +25,13 @@ class DeliverUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'observation' => 'min:5',
-            'voucher'     => 'image|mimes:jpg,jpeg,png'
+            'rol_id'   => ['required', Rule::exists('rols','id')]
         ];
     }
 
     public function messages(){
 		return [
-            'observation.min'      => 'La observacion es muy reducida.',
-            'voucher.image'        => 'El archivo tiene que ser una imagen.',
-            'voucher.mimes'        => 'El archivo no tiene extension: jpg, jpeg, png',
-            'voucher.uploaded'     => 'El archivo fallo al subir.',
+            'rol_id.required' => 'Es necesario ingresar el rol.'
 		];
 	}
 }

@@ -41,7 +41,7 @@
                         <div class="form-group row">
                              <label for="warehouse" class="col-md-4 col-form-label text-md-right">{{ __('Almacen') }}</label>
                              <div class="col-md-6">
-                                <select class="custom-select" id="event" name="warehouse_id" required>
+                                <select class="custom-select" id="event" name="warehouse_id" required="required">
                                     <option disabled selected hidden>Seleccione almacen</option>
                                     @foreach($warehouses as $warehouse )
                                     <option {{ (int) old( 'warehouse_id')===$warehouse->id ? 'selected' : '' }} value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>

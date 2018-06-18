@@ -24,7 +24,11 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
-	];
+    ];
+    
+    public static function navigation(){
+		return auth()->check()? auth()->user()->rol->abbreviation : 'guest';
+	} 
 	
     public function warehouses()
     {
@@ -34,5 +38,10 @@ class User extends Authenticatable
     public function rol()
     {
         return $this->belongsTo('App\Rol','rol_id');
-    } 
+    }
+    
+    public function associates()
+    {
+        return $this->hasmany('App\Associate');
+    }
 }
