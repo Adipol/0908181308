@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('request.index') }}">Solicitud de productos</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Nueva Solicitud</li>
+            <li class="breadcrumb-item active" aria-current="page">Nueva</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nueva Solicitud </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Solicitud</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -33,7 +33,7 @@
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 offset-sm-6 col-form-label">Fecha</label>
                             <div class="col-sm-3">
-                                <input type="date" name="date" class="form-control" value="{{ old('date',date('Y-m-d'))}}" disabled="disabled">
+                                <input type="date" name="date" class="form-control" value="{{ date('Y-m-d') }}" disabled="disabled">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -41,7 +41,7 @@
                             <div class="col-sm-3">
                                 <input type="text" name="applicant" class="form-control" value="{{ $ucm }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $warehouse }}" disabled="disabled">
                             </div>
@@ -77,8 +77,8 @@
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover" id="detalles">
-                                        <thead class="thead-dark">
+                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>Opciones</th>
                                                 <th>Producto</th>
@@ -91,29 +91,23 @@
                                 </div>
                             </div>
                         </div>
-      
                     </div>
-
                     <div class="card-body">
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificación</label>
                             <div class="col-sm-9">
-                                <select class="custom-select" name="justification_id" id="justification_id" required="required">
-                                    <option disabled selected hidden>Seleccione Justificacion</option>
-                                 @foreach($justifications as $justification )
-                                    <option {{ (int) old( 'justification_id')===$justification->id ? 'selected' : '' }} value="{{ $justification->id }}">{{ $justification->name }}</option>
+                                @foreach($justifications as $justification)
+                                <input type="checkbox" class="form" name="justifications[]" value="{{ $justification->id }}"> {{ $justification->name }} 
                                 @endforeach
-                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Detalle</label>
                             <div class="col-sm-9" id="">
-                                <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" required="required">{{ old('description_j') }}</textarea>
+                                <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese el detalle de la justificación" required="required">{{ old('description') }}</textarea>
                             </div>
                         </div> 
                     </div>
-
                     <div class="card-footer">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Cancelar</a>

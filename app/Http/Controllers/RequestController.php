@@ -17,11 +17,11 @@ class RequestController extends Controller
     {
         $requests =DB::table('outputs')
         ->join('users','outputs.applicant_id','=','users.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
-        ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.condition')
+        ->select('outputs.id','users.name','outputs.created_at','outputs.condition')
         ->where('status','REQUESTED')
         ->orderBy('outputs.id','desc')
         ->paginate(10);
+     
      
         return view ('warehouse.output.request.index') -> with(compact ('requests'));
     }
@@ -46,7 +46,7 @@ class RequestController extends Controller
 		return view('warehouse.output.request.create')->with(compact('products','ucm','warehouse','justifications'));
     }
 
-    public function store(Request $request)
+    public function store(RequestStoreRequest $request)
     {
         try{
             DB::beginTransaction(); 
@@ -59,14 +59,14 @@ class RequestController extends Controller
             } else {
                 $value = session()->get('warehouse_id');
 
-                $req                   = new Output();
-                $req->warehouse_id     = $value;
-                $req->justification_id = $request->get('justification_id');
-                $req->description_j    = $request->get('description_j');
-                $ucm                   = auth()->user();
-                $req->ucm              = $ucm->id;
-                $req->applicant_id     = auth()->user()->id;
+                $req                = new Output();
+                $req->warehouse_id  = $value;
+                $req->description_j = $request->get('description');
+                $req->ucm           = auth()->user()->id;
+                $req->applicant_id  = auth()->user()->id;
                 $req->save();
+
+                $req->justifications()->attach($request->get('justifications'));
 
                 $total = count($idarticulo);
                 $cont  = 0;
@@ -78,8 +78,7 @@ class RequestController extends Controller
                     $w_p->decrement('stock',$cantidad[$cont]);
                     $detail->product_id = $idarticulo[$cont];
                     $detail->quantity   = $cantidad[$cont];
-                    $ucm                = auth()->user();
-                    $detail->ucm        = $ucm->id;
+                    $detail->ucm        = auth()->user()->id;
                     $detail->save();
                     $cont = $cont+1;
                 } 
@@ -95,23 +94,26 @@ class RequestController extends Controller
 
     public function show($id)
     {
-        $sol = DB::table('outputs')
+      $sol = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j')
+        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j')
         ->first();
+
+        $output         = Output::find($id);
+        $justifications = $output->justifications;
         
         $products = DB::table('products')
+        ->join('categories','products.category_id','=','categories.id')
         ->join('output_details','products.id','=','output_details.product_id')
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
-        ->select('products.name as p_name','output_details.quantity')
+        ->select('products.name as p_name','categories.name as c_name','output_details.quantity')
         ->orderBy('products.name','asc')
         ->get();
 
-        return view('warehouse.output.request.show')->with(compact('sol','products')); 
+        return view('warehouse.output.request.show')->with(compact('sol','products','justifications')); 
     }
 
     public function delete($id)

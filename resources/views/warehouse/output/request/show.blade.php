@@ -17,12 +17,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Visualizar Solicitud </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Solicitud</h3>
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 offset-sm-6 col-form-label">Fecha</label>
                             <div class="col-sm-3">
-                                <input type="text" name="text" class="form-control" value="{{ $sol->created_at }}" disabled="disabled">
+                                <input type="text" name="text" class="form-control" value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $sol->created_at )->format('d/m/Y') }}" disabled="disabled">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -30,15 +30,20 @@
                             <div class="col-sm-3">
                                 <input type="text" name="applicant" class="form-control" value="{{ $sol->u_name }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $sol->w_name }}" disabled="disabled">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificación</label>
                             <div class="col-sm-9">
-                                <input type="text" name="justification" class="form-control" value="{{ $sol->j_name }}" disabled="disabled">
+                                @foreach($justifications as $justification)
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" disabled checked>
+                                    <label class="custom-control-label" for="customCheck1">{{ $justification->name }}</label>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group row">
@@ -49,14 +54,15 @@
                         </div> 
                     </div>
                     <div class="card-body">
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered" id="detalles">
-                                        <thead class="thead-dark">
+                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
+                                                <th>Categoría</th>
                                                 <th>Cantidad</th>
                                             </tr>
                                         </thead>
@@ -65,6 +71,7 @@
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
+                                                    <td>{{ $product->c_name }}</td>
                                                     <td>{{ $product->quantity }}</td>
                                                 </tr>
                                             @endforeach
@@ -75,7 +82,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Atras</a>
+                        <a href="{{ route('request.index') }}" type="button" class="btn btn-secondary">Atrás</a>
                     </div>
                 </div>
             </div>

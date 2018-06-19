@@ -64,7 +64,7 @@
                                         @endif
                                         </th>
                                         <td>{{ $request->name }}</td>
-                                        <td>{{ $request->j_name }}</td>
+                                        <td>justificaciones</td>
                                         <td>{{ $request->created_at}}</td>
                                         <td>
                                             @if ($request->condition==1)

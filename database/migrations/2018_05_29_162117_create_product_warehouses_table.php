@@ -22,8 +22,8 @@ class CreateProductWarehousesTable extends Migration
             $table->unsignedInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
 
-            $table->integer('stock');
-            $table->string('condition');
+            $table->integer('stock')->unsigned();
+            $table->string('condition')->default(1);
             $table->timestamps();
             $table->integer('ucm');
         });

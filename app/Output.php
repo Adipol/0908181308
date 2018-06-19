@@ -9,7 +9,6 @@ class Output extends Model
     protected $fillable=[
         'warehouse_id',
         'applicant_id',
-        'justification_id',
         'description_j',
         'observation',
         'status',
@@ -32,8 +31,7 @@ class Output extends Model
 		return $this->hasMany('App\OutputDetail');
     }
     
-    public function justification()
-    {
-        return $this->belongsTo('App\Justification');
+    public function justifications(){
+		return $this->belongsToMany('App\Justification');
 	}
 }

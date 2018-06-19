@@ -22,10 +22,10 @@ class CreateProductsTable extends Migration
 			$table->unsignedInteger('unit_id');
 			$table->foreign('unit_id')->references('id')->on('units');
 
-			$table->string('name',50)->unique();
-            $table->string('description',150)->nullable();
+			$table->string('name',100)->unique();
+            $table->text('description');
             $table->string('picture')->nullable();
-            $table->string('slug');
+            $table->string('slug',100);
 			$table->boolean('condition')->default(1);
 			$table->timestamps();
 			$table->integer('ucm');

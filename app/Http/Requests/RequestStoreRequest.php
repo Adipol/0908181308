@@ -26,17 +26,23 @@ class RequestStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'justification_id' => ['required',Rule::exists('justifications','id')],
-            'description'      => 'required|min:3',
+            'product'        => 'required|array',
+            'stock'          => 'required|array',
+            'justifications' => 'required|array',
+            'description'    => 'required|min:3'
         ];
     }
 
     public function messages(){
 		return [
-            'justification_id.required' => 'Es necesario ingresar la justificacion.',
-            'justification_id.exists'   => 'La justificacion ingresada no existe.',
-            'description.required'      => 'Ingrese el detalle de la justificacion.',
-            'description.min'           => 'El detalle es demasiado reducido.'
+            'product.required'        => 'Es necesario agregar productos.',
+            'product.array'           => 'Datos incorrectos.',
+            'stock.required'          => 'Es necesario agregar la cantidad.',
+            'stock.array'             => 'Datos incorrectos.',
+            'justifications.required' => 'Es necesario ingresar la justificación.',
+            'justifications.array'    => 'Datos incorrectos.',
+            'description.required'    => 'Ingrese el detalle de la justificación.',
+            'description.min'         => 'El detalle es demasiado reducido.'
 		];
 	}
 }

@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/usuarios/desasociar/{id}','Admin\UserController@updateDisassociate')->name('user.updateDisassociate'); 
     });
     
-    Route::group(['middleware' => ['sol']], function () {
+/*     Route::group(['middleware' => ['sol']], function () {
         Route::get('/solicitudes','RequestController@index')->name('request.index');
         Route::get('/solicitudes/create','RequestController@create')->name('request.create');
         Route::post('/solicitudes','RequestController@store')->name('request.store');
@@ -148,8 +148,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/seguimiento-entregados/{id}','TracingDeliverController@show')->name('tdeliver.show');
         Route::get('/seguimiento-entregado/{id}/editar','TracingDeliverController@edit')->name('tdeliver.edit');
         Route::put('/seguimiento-entregado/{id}','TracingDeliverController@update')->name('tdeliver.update');
-
-    });
+    }); */
 
 });
 

@@ -18,8 +18,6 @@ class CreateOutputsTable extends Migration
 
             $table->unsignedInteger('warehouse_id');
             $table->foreign('warehouse_id')->references('id')->on('warehouses');
-            $table->unsignedInteger('justification_id');
-            $table->foreign('justification_id')->references('id')->on('justifications');
             
             $table->integer('applicant_id');
             $table->text('description_j');
