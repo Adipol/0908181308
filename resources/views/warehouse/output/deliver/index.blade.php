@@ -54,11 +54,14 @@
                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->format('d/m/Y')  }}</td>  
                                         <td>{{ $request->name }}</td>
                                         <td>{{ $request->w_name }}</td>
-                                        <td>             
-                                            @if ($request->status == 'APPROVED')
-                                                <span class="badge badge-success">Aprobado</span>
-                                                @else
-                                                <span class="badge badge-danger">Incorrecto</span> @endif
+                                        <td>
+                                            @if ($request->status=='APPROVED')
+                                            APROBADO
+                                            @else
+                                                @if ($request->status=='DELIVERED')
+                                                ENTREGADO                 
+                                                @endif   
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($request->condition==1)

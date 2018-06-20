@@ -31,11 +31,8 @@ class DeliverController extends Controller
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.condition')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name')
         ->first();
-
-        $output         = Output::find($id);
-        $justifications = $output->justifications;
         
         $products = DB::table('products')
         ->join('categories','products.category_id','=','categories.id')

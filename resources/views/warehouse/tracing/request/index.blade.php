@@ -25,9 +25,8 @@
                                         <th>Opciones</th>
                                         <th>Fecha de solicitud</th>
                                         <th>Solicitante</th>
-                                        <th>Justificacion</th>
-                                        <th>Solicitud</th>
                                         <th>Almacen</th>
+                                        <th>Solicitud</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -39,9 +38,9 @@
                                             <i class="fas fa-eye"></i>
                                             </a>
                                         </th>
-                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->formatLocalized('%A %d %B %Y') }}</td>  
+                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->format('d/m/Y') }}</td>  
                                         <td>{{ $request->name }}</td>
-                                        <td>{{ $request->j_name }}</td>
+                                        <td>{{ $request->w_name }}</td>
                                         <td>
                                             @if ($request->status=='APPROVED')
                                             APROBADO
@@ -51,10 +50,9 @@
                                                 @endif   
                                             @endif
                                         </td>
-                                        <td>{{ $request->w_name }}</td>
                                         <td>
                                             @if ($request->condition==1)
-                                            <span class="badge badge-success">Ingresado</span>
+                                            <span class="badge badge-success">Activo</span>
                                              @else
                                             <span class="badge badge-danger">Anulado</span> @endif
                                         </td>

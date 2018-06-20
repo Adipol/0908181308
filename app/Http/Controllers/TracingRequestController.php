@@ -9,13 +9,12 @@ class TracingRequestController extends Controller
 {
     public function index()
     {
-        $applicant_id = auth()->user()->id;
-        $requests =DB::table('outputs')
+        $user     = auth()->user()->id;
+        $requests = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
-        ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.status','warehouses.name as w_name','outputs.condition')
-        ->where('outputs.applicant_id','=', $applicant_id)
+        ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
+        ->where('outputs.applicant_id',$user)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
 

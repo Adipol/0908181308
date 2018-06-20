@@ -9,13 +9,13 @@ class TracingApproveController extends Controller
 {
     public function index()
     {
-        $approve_id = auth()->user()->id;
-        $requests =DB::table('outputs')
+        $user     = auth()->user()->id;
+        $requests = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
-        ->select('outputs.id','users.name','justifications.name as j_name','outputs.created_at','outputs.status','warehouses.name as w_name','outputs.condition')
-        ->where('outputs.approve','=', $approve_id)
+        ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
+        ->where('outputs.applicant_id',$user)
+        ->where('outputs.condition',1)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
 

@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered" id="detalles">
+                                    <table class="table table-hover table-bordered table-striped" id="detalles">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
@@ -86,7 +86,7 @@
                                                     <td><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
                                                     <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
-                                                    <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="0"></td>
+                                                    <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="{{ $product->quantity }}"></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

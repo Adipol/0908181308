@@ -71,7 +71,7 @@ class ApproveController extends Controller
             while ($cont < $total) {
                 $detail = OutputDetail::where('output_id','=',$id)->where('product_id','=',$idarticulo[$cont])->first();
                 $w_p    = ProductWarehouse::with('warehouses')->where('warehouse_id',$warehouse)->where('product_id',$idarticulo[$cont]);
-                if ($quantity[$cont]>$real[$cont]) {
+                if ($quantity[$cont]>=$real[$cont]) {
                     $actual = $quantity[$cont]-$real[$cont];
                     $w_p->increment('stock',$actual);
                     $detail->quantity = $real[$cont];

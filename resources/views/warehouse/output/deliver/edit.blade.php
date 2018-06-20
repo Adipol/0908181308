@@ -46,23 +46,6 @@
                                 <input type="text" name="warehouse" class="form-control" value="{{ $sol->w_name }}" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificación</label>
-                            <div class="col-sm-9">
-                                @foreach($justifications as $justification)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" disabled checked>
-                                    <label class="custom-control-label" for="customCheck1">{{ $justification->name }}</label>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Detalle</label>
-                            <div class="col-sm-9" id="">
-                                <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" disabled="disabled">{{ $sol->description_j }}</textarea>
-                            </div>
-                        </div> 
                     </div>
                     <form method="post" action="{{ route('deliver.update',$sol->id) }}" enctype="multipart/form-data">
                         @method('PUT')
@@ -96,7 +79,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                            <div class="row mt-3">
+                            <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group row">
                                         <label for="" class="col-md-4 col-form-label">Observación</label>
