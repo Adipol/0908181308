@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Output;
 
 class TracingRequestController extends Controller
 {
@@ -25,11 +26,13 @@ class TracingRequestController extends Controller
     {
         $sol = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j','outputs.status')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.condition','outputs.status')
         ->first();
+
+        $output         = Output::find($id);
+        $justifications = $output->justifications;
         
         $products = DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
@@ -40,6 +43,6 @@ class TracingRequestController extends Controller
         ->orderBy('products.name','asc')
         ->get();
 
-        return view('warehouse.tracing.request.show')->with(compact('sol','products')); 
+        return view('warehouse.tracing.request.show')->with(compact('sol','products','justifications')); 
     }
 }
