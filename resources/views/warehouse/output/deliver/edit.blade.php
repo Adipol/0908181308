@@ -28,7 +28,7 @@
                     @endif
                 </div>
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Visualizar Solicitud </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Solicitud</h3>
                     <div class="card-body">
                         <div class="form-group row">
                             <label for="inputEmail3" class="col-sm-3 offset-sm-6 col-form-label">Fecha</label>
@@ -41,15 +41,20 @@
                             <div class="col-sm-3">
                                 <input type="text" name="applicant" class="form-control" value="{{ $sol->u_name }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $sol->w_name }}" disabled="disabled">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificación</label>
                             <div class="col-sm-9">
-                                <input type="text" name="justification" class="form-control" value="{{ $sol->j_name }}" disabled="disabled">
+                                @foreach($justifications as $justification)
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" disabled checked>
+                                    <label class="custom-control-label" for="customCheck1">{{ $justification->name }}</label>
+                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="form-group row">
@@ -63,11 +68,11 @@
                         @method('PUT')
                         {{ csrf_field() }}
                     <div class="card-body">
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered" id="detalles">
-                                        <thead class="thead-dark">
+                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
@@ -80,7 +85,7 @@
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
-                                                    <td>{{ $product->cat_name }}</td>
+                                                    <td>{{ $product->c_name }}</td>
                                                     <td>{{ $product->quantity }}</td>
                                                 </tr>
                                             @endforeach
@@ -94,9 +99,9 @@
                             <div class="row mt-3">
                                 <div class="col-sm-12">
                                     <div class="form-group row">
-                                        <label for="" class="col-md-4 col-form-label">Observacion</label>
+                                        <label for="" class="col-md-4 col-form-label">Observación</label>
                                         <div class="col-md-8">
-                                            <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese observaciones de la entrega" required="required">{{ $sol->description_j }}</textarea>
+                                            <textarea name="observation" cols="5" class="form-control" rows="5" placeholder="Ingrese observaciones de la entrega" required="required">{{ old('observation') }}</textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">

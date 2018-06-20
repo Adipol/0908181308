@@ -164,7 +164,7 @@
         
             if( parseInt(scantidad) <= parseInt(sstock) )
             {
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="stock[]" value="'+scantidad+'">'+scantidad+'</td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');" title="Quitar de la lista"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="stock[]" value="'+scantidad+'">'+scantidad+'</td></tr>';
 
                 vecarticulo.push(idarticulo);
                 cont++;

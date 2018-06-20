@@ -37,7 +37,7 @@
                                         <th>Opciones</th>
                                         <th>Fecha de solicitud</th>
                                         <th>Solicitante</th>
-                                        <th>Justificacion</th>
+                                        <th>Almacén</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -48,11 +48,10 @@
                                             <a href="{{ route('approve.edit',$request->id) }}" title="Validar solicitud" class="btn  btn-sm btn-info">
                                             <i class="fas fa-edit"></i>
                                             </a>
-
                                         </th>
-                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->formatLocalized('%A %d %B %Y') }}</td>  
+                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->format('d/m/Y') }}</td>  
                                         <td>{{ $request->name }}</td>
-                                        <td>{{ $request->j_name }}</td>
+                                        <td>{{ $request->w_name }}</td>
                                         </td>
                                         <td>
                                             @if ($request->condition==1)

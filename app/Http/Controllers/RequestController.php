@@ -15,13 +15,16 @@ class RequestController extends Controller
 {
     public function index()
     {
-        $requests =DB::table('outputs')
+        $user     = auth()->user()->id;
+        $requests = DB::table('outputs')
+        ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
-        ->select('outputs.id','users.name','outputs.created_at','outputs.condition')
-        ->where('status','REQUESTED')
+        ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition')
+        ->where('outputs.applicant_id',$user)
+        ->where('outputs.status','REQUESTED')
+        ->where('outputs.condition',1)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
-     
      
         return view ('warehouse.output.request.index') -> with(compact ('requests'));
     }

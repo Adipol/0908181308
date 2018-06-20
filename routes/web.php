@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/solicitudes/{id}/del','RequestController@delete')->name('request.delete');
 
         Route::get('/aprobaciones','ApproveController@index')->name('approve.index');
-        Route::get('/aprobaciones/{id}','ApproveController@show')->name('approve.show');
+        /* Route::get('/aprobaciones/{id}','ApproveController@show')->name('approve.show'); */
         Route::get('/aprobaciones/{id}/editar','ApproveController@edit')->name('approve.edit');
         Route::put('/aprobaciones/{id}','ApproveController@update')->name('approve.update');
         Route::get('/aprobaciones/{id}/del','ApproveController@delete')->name('approve.delete');

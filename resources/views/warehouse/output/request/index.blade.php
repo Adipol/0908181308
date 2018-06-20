@@ -36,9 +36,9 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Opciones</th>
-                                        <th>Solicitante</th>
-                                        <th>Justificacion</th>
                                         <th>Fecha de solicitud</th>
+                                        <th>Solicitante</th>
+                                        <th>Almacén</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -63,12 +63,12 @@
                                             </a>
                                         @endif
                                         </th>
+                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->format('d/m/Y') }}</td>
                                         <td>{{ $request->name }}</td>
-                                        <td>justificaciones</td>
-                                        <td>{{ $request->created_at}}</td>
+                                        <td>{{ $request->w_name }}</td>
                                         <td>
                                             @if ($request->condition==1)
-                                            <span class="badge badge-success">Ingresado</span>
+                                            <span class="badge badge-success">Activo</span>
                                              @else
                                             <span class="badge badge-danger">Anulado</span> @endif
                                         </td>

@@ -24,13 +24,14 @@ class DeliverUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'observation' => 'min:5',
+            'observation' => 'required|min:5',
             'voucher'     => 'image|mimes:jpg,jpeg,png'
         ];
     }
 
     public function messages(){
 		return [
+            'observation.required' => 'La observacion es obligatoria.',
             'observation.min'      => 'La observacion es muy reducida.',
             'voucher.image'        => 'El archivo tiene que ser una imagen.',
             'voucher.mimes'        => 'El archivo no tiene extension: jpg, jpeg, png',
