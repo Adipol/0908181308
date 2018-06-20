@@ -40,7 +40,7 @@
                         </div> 
                 </div>
 
-                <div class="card mt-3">
+                <div class="card mt-5">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Almacenes Asociados</h3>
                     <form method="post" action="{{ route('user.updateDisassociate', $user->id) }}">
                         @method('PUT')
@@ -49,11 +49,11 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-bordered" id="detalles">
-                                            <thead class="thead-dark">
+                                        <table class="table table-hover table-bordered table-striped" id="detalles">
+                                            <thead class="thead-light">
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Almacen</th>
+                                                    <th>Almacén</th>
                                                     <th>Acceso</th>
                                                 </tr>
                                             </thead>

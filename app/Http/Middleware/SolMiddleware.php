@@ -20,16 +20,12 @@ class SolMiddleware
         $user               = auth()->user()->id;
         
         $warehouse          = Associate::where('warehouse_id',$value)->where('user_id',$user)->first();
-        
-        if ($warehouse) {
-            $condition = $warehouse->condition;
-        }else{
-            $condition=0;
-        }
+        $condition = $warehouse->condition;
 
-        if (auth()->check() && auth()->user()->rol_id == (int) 2 && $condition==1) {
+        if (auth()->check() && auth()->user()->rol_id == (int) 2 && $condition == (int) 1) {
             return $next($request);
-        }		
+        }	
+        	
 		return redirect()->guest('/');
     }
 }

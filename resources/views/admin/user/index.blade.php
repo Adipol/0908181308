@@ -78,7 +78,7 @@
 										<td>{{ $user->name }}</td>
 										<td>{{ $user->email }}</td>
 										<td>{{ $user->rol->name }}</td>
-										<td>{{ $user->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $user->created_at->format('d/m/Y') }}</td>
 										<td>
 											@if ($user->condition===1)
 											<span class="badge badge-success">Activo</span>

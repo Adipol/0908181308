@@ -40,30 +40,31 @@
                         </div> 
                 </div>
 
-                <div class="card">
+                <div class="card mt-5">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Asociar Almacen</h3>
                     <div class="card-body">
-                        <div class="form-group row">
-                            <label for="warehouse" class="col-sm-2 col-form-label">Almacen</label>
-                            <div class="col-sm-7"> 
-                                <select class="custom-select" name="warehouse_id" id="warehouse_id" required="required">
+                        <div class="row">
+                            <div class="form-group col-12 col-md-6 offset-md-2">
+                            <label for="warehouse">Almacén</label>
+                            <select class="custom-select" name="warehouse_id" id="warehouse_id" required="required">
                                 @foreach($warehouses as $warehouse )
                                 <option {{ (int) old( 'warehouse_id')===$warehouse->id ? 'selected' : '' }} value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
                                 @endforeach
-                                </select>
+                            </select>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="form-group col-12 col-md-2 d-flex  align-items-end justify-content-center">
                                 <button class="btn btn-primary" href="#" role="button" id="bt_add">Agregar</button>
                             </div>
                         </div>
+
                         <form method="post" action="{{ route('user.updateAssociate', $user->id) }}">
                             @method('PUT')
                             {{csrf_field()}}
                                 <div class="row mt-3">
                                     <div class="col-sm-12">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-bordered" id="detalles">
-                                                <thead class="thead-dark">
+                                            <table class="table table-hover table-bordered table-striped" id="detalles">
+                                                <thead class="thead-light">
                                                     <tr>
                                                         <th>Opciones</th>
                                                         <th>Almacen</th>

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Associate;
 
 class RespMiddleware
 {
@@ -15,10 +16,16 @@ class RespMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->rol_id == (int) 4) {
-			return $next($request);
-        }
-        		
+        $value              = session()->get('warehouse_id');
+        $user               = auth()->user()->id;
+        
+        $warehouse          = Associate::where('warehouse_id',$value)->where('user_id',$user)->first();
+        $condition = $warehouse->condition;
+
+        if (auth()->check() && auth()->user()->rol_id == (int) 4 && $condition == (int) 1) {
+            return $next($request);
+        }	
+        	
 		return redirect()->guest('/');
     }
 }

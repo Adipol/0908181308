@@ -25,13 +25,19 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'name'     => 'required|min:3|max:50|unique:users,name,'.$this->id,
             'rol_id'   => ['required', Rule::exists('rols','id')]
         ];
     }
 
     public function messages(){
-		return [
-            'rol_id.required' => 'Es necesario ingresar el rol.'
+        return [
+            'name.required'   => 'Es necesario ingresar el nombre.',
+            'name.min'        => 'El nombre es demasiado reducido.',
+            'name.max'        => 'El nombre es demasiado extenso.',
+            'name.unique'     => 'El nombre del usuario existe.',
+            'rol_id.required' => 'Es necesario ingresar el rol.',
+            'rol_id.exists'   => 'Es rol ingresado no existe.'
 		];
 	}
 }

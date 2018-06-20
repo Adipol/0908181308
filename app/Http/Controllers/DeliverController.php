@@ -21,7 +21,7 @@ class DeliverController extends Controller
         ->where('outputs.condition',1)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
-
+        
         return view('warehouse.output.deliver.index')->with(compact('requests'));
     }
 
@@ -33,7 +33,7 @@ class DeliverController extends Controller
         ->where('outputs.id','=',$id)
         ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name')
         ->first();
-        
+
         $products = DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
         ->join('output_details','products.id','=','output_details.product_id')
@@ -43,7 +43,7 @@ class DeliverController extends Controller
         ->orderBy('products.name','asc')
         ->get();
 
-        return view('warehouse.output.deliver.edit')->with(compact('sol','products','justifications')); 
+        return view('warehouse.output.deliver.edit')->with(compact('sol','products')); 
     }
 
     public function update(DeliverUpdateRequest $request,$id)

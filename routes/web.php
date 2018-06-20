@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/principal', function () {
         return view('layouts.template');
@@ -47,7 +37,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/solicitudes/{id}/del','RequestController@delete')->name('request.delete');
 
         Route::get('/aprobaciones','ApproveController@index')->name('approve.index');
-        /* Route::get('/aprobaciones/{id}','ApproveController@show')->name('approve.show'); */
         Route::get('/aprobaciones/{id}/editar','ApproveController@edit')->name('approve.edit');
         Route::put('/aprobaciones/{id}','ApproveController@update')->name('approve.update');
         Route::get('/aprobaciones/{id}/del','ApproveController@delete')->name('approve.delete');
@@ -104,7 +93,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/usuarios/desasociar/{id}','Admin\UserController@updateDisassociate')->name('user.updateDisassociate'); 
     });
     
-/*     Route::group(['middleware' => ['sol']], function () {
+    Route::group(['middleware' => ['sol']], function () {
         Route::get('/solicitudes','RequestController@index')->name('request.index');
         Route::get('/solicitudes/create','RequestController@create')->name('request.create');
         Route::post('/solicitudes','RequestController@store')->name('request.store');
@@ -148,8 +137,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/seguimiento-entregados/{id}','TracingDeliverController@show')->name('tdeliver.show');
         Route::get('/seguimiento-entregado/{id}/editar','TracingDeliverController@edit')->name('tdeliver.edit');
         Route::put('/seguimiento-entregado/{id}','TracingDeliverController@update')->name('tdeliver.update');
-    }); */
+    });
 
+    Route::group(['middleware' => ['super']], function () {
+        Route::get('/aprobaciones','ApproveController@index')->name('approve.index');
+        Route::get('/aprobaciones/{id}/editar','ApproveController@edit')->name('approve.edit');
+        Route::put('/aprobaciones/{id}','ApproveController@update')->name('approve.update');
+        Route::get('/aprobaciones/{id}/del','ApproveController@delete')->name('approve.delete');
+
+        Route::get('/seguimiento-aprobados','TracingApproveController@index')->name('tapprove.index');
+        Route::get('/seguimiento-aprobados/{id}','TracingApproveController@show')->name('tapprove.show');
+    });
 });
 
 

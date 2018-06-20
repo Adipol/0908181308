@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $rols = Rol::select('id','name')->orderby('name','asc')->get();
+        $rols = Rol::select('name','id')->orderby('name','asc')->get();
 
         return view('admin.user.create')->with(compact('rols'));
     }
@@ -59,6 +59,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         $user         = User::find($id);
+        $user->name   = $request->get('name');
         $user->rol_id = $request->get('rol_id');
         $user->ucm    = Auth()->user()->id;
         $user->save();
@@ -139,6 +140,7 @@ class UserController extends Controller
         ->join('users','associates.user_id','=','users.id')
         ->select('warehouses.id','warehouses.name','associates.condition')
         ->where('users.id',$id)
+        ->orderBy('warehouses.name','asc')
         ->get();
 
         return view('admin.user.disassociate')->with(compact('user','warehouses'));

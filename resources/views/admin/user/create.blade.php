@@ -56,7 +56,7 @@
                                     <select class="custom-select" name="rol_id" required>
                                             <option disabled selected hidden>Seleccione rol</option>
                                             @foreach($rols as $rol)
-                                            <option {{ (int) old('rol_id') === $rol->id || $user->rol_id === $rol->id ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->name }}</option>
+                                            <option {{ (int) old('rol_id') === $rol->id ? 'selected' : '' }} value="{{ $rol->id }}">{{ $rol->name }}</option>
                                             @endforeach
                                     </select> 
                                 </div>

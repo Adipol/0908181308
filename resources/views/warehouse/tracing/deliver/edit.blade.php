@@ -30,34 +30,22 @@
                             <div class="col-sm-3">
                                 <input type="text" name="applicant" class="form-control" value="{{ $sol->u_name }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $sol->w_name }}" disabled="disabled">
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Justificacion</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="justification" class="form-control" value="{{ $sol->j_name }}" disabled="disabled">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Detalle</label>
-                            <div class="col-sm-9" id="">
-                                <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" disabled="disabled">{{ $sol->description_j }}</textarea>
-                            </div>
-                        </div> 
                     </div>
                     <div class="card-body">
-                        <div class="row mt-3">
+                        <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered" id="detalles">
-                                        <thead class="thead-dark">
+                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
-                                                <th>Categoria</th>
+                                                <th>Categoría</th>
                                                 <th>Cantidad</th>
                                             </tr>
                                         </thead>
@@ -75,31 +63,26 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-4 mb-4">
-        <div class="row">
-            <div class="col-md-12">
-                <form method="post" action="{{ route('tdeliver.update',$sol->id) }}" enctype="multipart/form-data">
-                    @method('PUT')
-                    {{ csrf_field() }}
-                <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
-                        Seguimiento
-                    </h3>
-                    <div class="card-body">
-                        <div class="form-group row">
+                        <div class="form-group row mt-5">
+                            @if ($sol->status == 'APPROVED')
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Solicitud</label>
                             <div class="col-sm-3">
-                            <input type="text" name="justification" class="form-control" value="ENTREGADO" disabled="disabled">
-                            </div>  
+                                <input type="text" name="justification" class="form-control" value="APROBADO" disabled="disabled">
+                            </div>
+                            @else
+                                @if ($sol->status == 'DELIVERED')
+                                <label for="inputEmail3" class="col-sm-3 col-form-label">Solicitud</label>
+                                <div class="col-sm-3">
+                                <input type="text" name="justification" class="form-control" value="ENTREGADO" disabled="disabled">
+                                    </div>
+                                @endif
+                            @endif
                         </div>
+                    <form method="post" action="{{ route('tdeliver.update',$sol->id) }}" enctype="multipart/form-data">
+                        @method('PUT')
+                        {{ csrf_field() }}
                         <div class="form-group row">
-                            <label for="" class="col-sm-3 col-form-label">Observacion</label>
+                            <label for="" class="col-sm-3 col-form-label">Observación</label>
                             <div class="col-sm-9" id="">
                                 <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" required="required">{{ $sol->description_j }}</textarea>
                             </div>
@@ -113,13 +96,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
-                </div>  
-                <div class="card-footer">
-                    <a href="{{ route('tdeliver.index') }}" type="button" class="btn btn-secondary">Atras</a>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ route('tdeliver.index') }}" type="button" class="btn btn-secondary">Atrás</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                    </form>
                 </div>
-                </form>
             </div>
         </div>
     </div>

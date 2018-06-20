@@ -11,14 +11,14 @@ class TracingDeliverController extends Controller
 {
     public function index()
     {   
-        $deliver_id = auth()->user()->id;
-        $requests =DB::table('outputs')
+        $user     = auth()->user()->id;
+        $requests = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('users','outputs.applicant_id','=','users.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
-        ->select('outputs.id','users.name','justifications.name as j_name','outputs.description_j','outputs.created_at','outputs.status','warehouses.name as w_name','outputs.condition','outputs.voucher')
-        ->where('outputs.deliver','=', $deliver_id)
-        ->where('outputs.status','=','DELIVERED')
+        ->join('users','outputs.deliver','=','users.id')
+        ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status','outputs.voucher')
+        ->where('outputs.status','DELIVERED')
+        ->where('outputs.condition',1)
+        ->where('outputs.deliver',$user)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
 
@@ -29,10 +29,9 @@ class TracingDeliverController extends Controller
     {
         $sol = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j','outputs.status','outputs.voucher')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.voucher','outputs.status')
         ->first();
         
         $products = DB::table('products')
@@ -51,10 +50,9 @@ class TracingDeliverController extends Controller
 	{
         $sol = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j','outputs.status','outputs.voucher')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.status')
         ->first();
         
         $products = DB::table('products')
