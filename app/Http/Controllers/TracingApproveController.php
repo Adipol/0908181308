@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Output;
 
 class TracingApproveController extends Controller
 {
@@ -14,11 +15,12 @@ class TracingApproveController extends Controller
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
-        ->where('outputs.applicant_id',$user)
+        ->whereIn('outputs.status',['APPROVED','DELIVERED'])
         ->where('outputs.condition',1)
+        ->where('approve',$user)
         ->orderBy('outputs.id','desc')
         ->paginate(10);
-
+    
         return view ('warehouse.tracing.approve.index') -> with(compact ('requests'));
     }
 
@@ -27,11 +29,13 @@ class TracingApproveController extends Controller
     {
         $sol = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
-        ->join('justifications','outputs.justification_id','=','justifications.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','justifications.name as j_name','outputs.description_j','outputs.status')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.condition','outputs.status')
         ->first();
+
+        $output         = Output::find($id);
+        $justifications = $output->justifications;
         
         $products = DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
@@ -42,6 +46,6 @@ class TracingApproveController extends Controller
         ->orderBy('products.name','asc')
         ->get();
 
-        return view('warehouse.tracing.approve.show')->with(compact('sol','products')); 
+        return view('warehouse.tracing.approve.show')->with(compact('sol','products','justifications')); 
     }
 }

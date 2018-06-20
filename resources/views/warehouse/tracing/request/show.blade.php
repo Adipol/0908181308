@@ -103,7 +103,7 @@
                         </div>        
                     </div>    
                     <div class="card-footer">
-                        <a href="{{ route('trequest.index') }}" type="button" class="btn btn-secondary">Atras</a>
+                        <a href="{{ route('trequest.index') }}" type="button" class="btn btn-secondary">Atrás</a>
                     </div>
                 </div>
             </div>
