@@ -57,7 +57,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                    <table class="table table-bordered table-striped" id="detalles">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
@@ -67,14 +67,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($products as $key=>$product)
+                                            @forelse ($products as $key=>$product)
                                                 <tr>
                                                     <td>{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
                                                     <td>{{ $product->c_name }}</td>
                                                     <td>{{ $product->quantity }}</td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="4">Los productos fueron denegados</td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>

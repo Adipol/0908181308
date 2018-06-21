@@ -14,10 +14,12 @@ class ApproveController extends Controller
 {
     public function index()
     {
+        $value    = session()->get('warehouse_id');
         $requests = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition')
+        ->where('outputs.warehouse_id',$value)
         ->where('outputs.status','REQUESTED')
         ->where('outputs.condition',1)
         ->orderBy('outputs.id','desc')

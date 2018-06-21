@@ -11,7 +11,7 @@
             </a>
             <ul id="sm_expand_3" class="list-unstyled collapse">
                 <li>
-                    <a href="{{ route('deliver.index') }}" class="d-flex justify-content-between">Entregar Solicitudes<i class="fas fa-angle-right"></i></a>
+                    <a href="{{ route('approve.index') }}" class="d-flex justify-content-between">Aprobar Solicitudes<i class="fas fa-angle-right"></i></a>
                 </li>
             </ul>
         </li>
@@ -21,7 +21,7 @@
             </a>
             <ul id="sm_expand_4" class="list-unstyled collapse">
                 <li>
-                    <a href="{{ route('tapprove.index') }}" class="d-flex justify-content-between">Aprobar Solicitudes<i class="fas fa-angle-right"></i></a>
+                    <a href="{{ route('tapprove.index') }}" class="d-flex justify-content-between">Solicitudes<i class="fas fa-angle-right"></i></a>
                 </li>
             </ul>
         </li>

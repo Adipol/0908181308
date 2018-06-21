@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Visualizar Solicitud </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Solicitud</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -41,7 +41,7 @@
                             <div class="col-sm-3">
                                 <input type="text" name="applicant" class="form-control" value="{{ $sol->u_name }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $sol->w_name }}" disabled="disabled">
                             </div>
@@ -86,7 +86,7 @@
                                                     <td><input type="hidden" name="product[]" value="{{ $product->id }}">{{ $key+1 }}</td>
                                                     <td>{{ $product->p_name }}</td>
                                                     <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
-                                                    <td><input type="number" name="real[]" min="0" max="{{ $product->quantity }}" value="{{ $product->quantity }}"></td>
+                                                    <td><input type="number" id="real" name="real[]" min="0" max="{{ $product->quantity }}" value="{{ $product->quantity }}"></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('approve.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary" id="bt_add">Guardar</button>
                         @if($sol->condition)
                         <a href="{{ route('approve.delete',$sol->id) }}" class="btn btn-danger"
                             data-tr="tr_{{ $sol->id }}"		
@@ -123,12 +123,30 @@
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function () {
+        /* $('#bt_add').click(function(){
+            sum();
+        }); */
+
         $('[data-toggle=confirmation]').confirmation({
             rootSelector: '[data-toggle=confirmation]',
             onConfirm: function (event, element) {
                 element.trigger('confirm');
             }
         });
+/*         real=$('#real').val();
+        function sum (){
+            var acum = 0;
+            for (var i = 0; i<real.length; i++){
+            acum = acum + i;
+            }
+            if (acum===0) {
+                
+                return swal({
+                                type: 'error',
+                                title: 'se le sugiere anular la solicitud!',
+                                });
+            }
+        } */
 
         $(document).on('confirm', function (e) {
             var ele = e.target;

@@ -42,6 +42,7 @@ class TracingApproveController extends Controller
         ->join('output_details','products.id','=','output_details.product_id')
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
+        ->where('output_details.quantity','>',0)
         ->select('products.id','products.name as p_name','categories.name as c_name','output_details.quantity')
         ->orderBy('products.name','asc')
         ->get();
