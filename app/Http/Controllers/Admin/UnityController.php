@@ -53,9 +53,9 @@ class UnityController extends Controller
 
     public function delete($id)
     {
-        $unity= Unit::find($id);
-        $unity->condition=0;
-        $unity->ucm=Auth()->user()->id;
+        $unity            = Unit::find($id);
+        $unity->condition = 0;
+        $unity->ucm       = Auth()->user()->id;
         $unity->save();
 
         return redirect()->route('unity.index')->with('notification','La medida se dio de baja correctamente.');
@@ -63,9 +63,9 @@ class UnityController extends Controller
 
     public function restore($id)
     {
-        $unity=Unit::find($id);
-        $unity->condition=1;
-        $unity->ucm=Auth()->user()->id;
+        $unity            = Unit::find($id);
+        $unity->condition = 1;
+        $unity->ucm       = Auth()->user()->id;
         $unity->save();
 
         return redirect()->route('unity.index')->with('notification','La medida se dio de alta correctamente.');

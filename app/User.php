@@ -44,4 +44,22 @@ class User extends Authenticatable
     {
         return $this->hasmany('App\Associate');
     }
+
+    public function getIsAdminAttribute(){
+		return $this->rol_id==1;
+    }
+    
+	public function getIsSolAttribute(){
+		return $this->rol_id==2;
+    }
+    
+	public function getIsSupAttribute(){
+		return $this->rol_id==3;
+    }
+    
+    public function getIsEncAttribute(){
+		return $this->rol_id==4;
+    }
+    
+    
 }

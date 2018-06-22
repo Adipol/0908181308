@@ -39,20 +39,20 @@
                             </div>
                         </div> 
                 </div>
-
                 <div class="card mt-5">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Asociar Almacen</h3>
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-12 col-md-6 offset-md-2">
+                            <div class="form-group col-12 ">
                             <label for="warehouse">Almacén</label>
                             <select class="custom-select" name="warehouse_id" id="warehouse_id" required="required">
+                                <option disabled selected hidden value="0">Seleccione Almacén</option>
                                 @foreach($warehouses as $warehouse )
                                 <option {{ (int) old( 'warehouse_id')===$warehouse->id ? 'selected' : '' }} value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
                                 @endforeach
                             </select>
                             </div>
-                            <div class="form-group col-12 col-md-2 d-flex  align-items-end justify-content-center">
+                            <div class="form-group col-12 ">
                                 <button class="btn btn-primary" href="#" role="button" id="bt_add">Agregar</button>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 <div class="row mt-3">
                                     <div class="col-sm-12">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-bordered table-striped" id="detalles">
+                                            <table class="table table-hover table-bordered" id="detalles">
                                                 <thead class="thead-light">
                                                     <tr>
                                                         <th>Opciones</th>
@@ -86,7 +86,6 @@
                     </div> 
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -111,7 +110,7 @@ function agregar(){
             compare=1;
             return swal({
                     type: 'error',
-                    title: 'Producto se encuentra agregado!',
+                    title: 'Almacén se encuentra agregado!',
                     });
         } else {
             compare=0;
@@ -128,7 +127,7 @@ function agregar(){
         }else{
             swal({
                 type: 'error',
-                title: 'Revise los datos!',
+                title: 'Seleccione almacén!',
                 });
             } 
     }

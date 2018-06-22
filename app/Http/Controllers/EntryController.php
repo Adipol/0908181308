@@ -8,22 +8,22 @@ use App\Warehouse;
 use App\IncomeDetail;
 use App\Income;
 use App\ProductWarehouse;
+use App\Http\Requests\EntryStoreRequest;
 
 class EntryController extends Controller
 {
     public function index()
     {
-        $value = session()->get('warehouse_id');
-        $incomes=DB::table('incomes')
-                    ->join('users','incomes.responsable_id','=','users.id')
-                    ->join('warehouses','incomes.warehouse_id','=','warehouses.id')
-                    ->where('incomes.warehouse_id','=',$value)
-                    ->select('incomes.id','users.name as responsable','incomes.created_at as inc_created','incomes.condition as inc_condition')
-                    ->orderBy('incomes.id','DESC')
-                    ->paginate(10);
+        $value   = session()->get('warehouse_id');
+        $incomes = DB::table('incomes')
+        ->join('users','incomes.responsable_id','=','users.id')
+        ->join('warehouses','incomes.warehouse_id','=','warehouses.id')
+        ->where('incomes.warehouse_id','=',$value)
+        ->select('incomes.id','users.name as responsable','incomes.created_at as inc_created','incomes.condition as inc_condition')
+        ->orderBy('incomes.id','DESC')
+        ->paginate(10);
 
         return view('warehouse.entry.index')->with(compact('incomes'));
-    
     }
 
     public function create()
@@ -43,7 +43,7 @@ class EntryController extends Controller
         return view('warehouse.entry.create')->with(compact('products','ucm','warehouse'));
     }
 
-    public function store(Request $request)
+    public function store(EntryStoreRequest $request)
     {
          try{
             DB::beginTransaction(); 
@@ -103,9 +103,10 @@ class EntryController extends Controller
     
         $details=DB::table('income_details')
         ->join('products','income_details.product_id','=','products.id')
-        ->select('products.name','income_details.quantity')
+        ->join('categories','products.category_id','=','categories.id')
+        ->select('products.name','categories.name as c_name','income_details.quantity')
         ->where('income_details.income_id','=',$id)
-        ->orderBy('products.name','ASC')
+        ->orderBy('products.name','asc')
         ->get();
 
         return view('warehouse.entry.show')->with(compact('entry','details'));         

@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nuevo Ingreso </h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Ingreso</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -41,38 +41,39 @@
                             <div class="col-sm-3">
                                 <input type="text" name="responsable" class="form-control" value="{{ $ucm }}" disabled="disabled">
                             </div>      
-                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacen</label>
+                            <label for="inputEmail3" class="col-sm-3 col-form-label">Almacén</label>
                             <div class="col-sm-3">
                                 <input type="text" name="warehouse" class="form-control" value="{{ $warehouse }}" disabled="disabled">
                             </div>
                         </div>
                     </div>
                     <div class="card-body bg-light border border-dark">
-                        <div class="form-group row">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Producto</label>
-                            <div class="col-sm-3"> 
+                        <div class="row">
+                            <div class="form-group col-12 col-md-8">
+                                <label for="inputEmail3">Producto</label>
                                 <select class="custom-select" name="product_id" id="product_id" required="required">
-                                @foreach($products as $product )
-                                <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
-                                @endforeach
+                                    <option disabled selected hidden value="0">Seleccione producto</option>
+                                    @foreach($products as $product )
+                                    <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Cantidad</label>
-                            <div class="col-sm-3">
-                                <input type="number"  name="stock" id="pcantidad" class="form-control" value="" min="0" required="required">
+                            <div class="form-group col-12 col-md-2">
+                                <label for="inpucant3">Cantidad</label>
+                                <input type="number"  name="pcantidad" id="pcantidad" class="form-control"  min="0" required="required">
                             </div>
-                            <div class="col-sm-2">
+                            <div class="form-group col-12 col-md-2 d-flex  align-items-end justify-content-center">
                                 <button class="btn btn-primary" href="#" role="button" id="bt_add">Agregar</button>
                             </div>
-                        </div>  
+                        </div>
                         
                     <form method="post" action="{{ route('entry.store') }}">
                     {{csrf_field()}}
                         <div class="row mt-3">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover" id="detalles">
-                                        <thead class="thead-dark">
+                                    <table class="table table-hover table-bordered" id="detalles">
+                                        <thead class="thead-light">
                                             <tr>
                                                 <th>Opciones</th>
                                                 <th>Producto</th>
@@ -87,9 +88,9 @@
                         </div>   
                     </div>
                     <div class="card-footer">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <a href="{{ route('entry.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
-                            <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <a href="{{ route('entry.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
                     </div>
                 </form>
                 </div>
@@ -126,23 +127,22 @@
                 }
             }
 
-        if(compare === 0)
-        {
-            if(idarticulo!="" && cantidad!="" && cantidad>0){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" min="0" name="stock[]" value="'+cantidad+'" required="required"></td></tr>';
+        if(idarticulo!=null && idarticulo!="" && idarticulo!=0 && cantidad!="" && cantidad>0){
 
-                vecarticulo.push(idarticulo);
-                cont++;
-                limpiar();
-                $('#detalles').append(fila);
-            }
-            else{
-                swal({
-                        type: 'error',
-                        title: 'No se pudo ingresar el producto!',
-                        });
-                } 
-        } 
+            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');"><i class="far fa-trash-alt"></i></td><td><input type="hidden" name="product[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="number" min="0" name="stock[]" value="'+cantidad+'" required="required"></td></tr>';
+
+            vecarticulo.push(idarticulo);
+            cont++;
+            limpiar();
+            $('#detalles').append(fila);
+        }
+        else{
+            swal({
+                type: 'error',
+                title: 'No se puede ingresar el producto, revise los datos!',
+                });
+            } 
+        
     }
 
     function limpiar(){

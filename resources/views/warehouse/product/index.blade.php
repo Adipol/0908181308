@@ -1,6 +1,7 @@
-@extends('layouts.template') @section('content')
+@extends('layouts.template') 
+@section('content')
 
-<section class="categorias">
+<section class="productos">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -31,9 +32,8 @@
                                     <tr>
                                         <th>Opciones</th>
                                         <th>Nombre</th>
-                                        <th>Categoria</th>
-                                        <th>Cantidad</th>
-                                        <th>Descripcion</th>
+                                        <th>Categoría</th>
+                                        <th>Stock</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -44,7 +44,7 @@
                                             <a href="{{ route('product.edit',$product->prod_id) }}" title="Modificar el producto" class="btn  btn-sm btn-warning">
                                             <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="{{ route('product.show',$product->prod_id) }}" title="Ver el producto" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('product.show',$product->prod_id) }}" title="Ver el producto" class="btn  btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                             </a>
                                             @if($product->pw_condition)
@@ -68,7 +68,6 @@
                                         <td>{{ $product->prod_name }}</td>
                                         <td>{{ $product->cat_name}}</td>
                                         <td>{{ $product->stock }}</td>
-                                        <td>{{ $product->prod_description }}</td>
                                         <td>
                                             @if ($product->pw_condition==1)
                                             <span class="badge badge-success">Activo</span> @else

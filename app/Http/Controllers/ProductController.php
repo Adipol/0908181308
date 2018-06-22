@@ -26,8 +26,8 @@ class ProductController extends Controller
                 ->join('products','product_warehouses.product_id','=','products.id')
                 ->join('categories','products.category_id','=','categories.id')
                 ->where('product_warehouses.warehouse_id','=',$value)
-                ->orderBy('products.name','ASC')
-                ->select('products.id as prod_id','products.name as prod_name','categories.id as cat_id','categories.name as cat_name','product_warehouses.stock','products.description as prod_description','product_warehouses.condition as pw_condition')->paginate(10);
+                ->orderBy('products.name','asc')
+                ->select('products.id as prod_id','products.name as prod_name','categories.id as cat_id','categories.name as cat_name','product_warehouses.stock','product_warehouses.condition as pw_condition')->paginate(10);
 
         return view('warehouse.product.index')->with(compact('products'));
     }

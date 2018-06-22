@@ -8,16 +8,16 @@
                 <a href="#">Inicio</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                <a href="{{ route('category.index') }}">Categorias</a>
+                <a href="{{ route('category.index') }}">Categorías</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Modificar Categoria</li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
-                    <h3 class="card-header text-primary bg-secondary text-white-50">Modificar Categoria</h3>
+                    <h3 class="card-header text-primary bg-secondary text-white-50">Categoría</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -40,9 +40,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Descripcion</label>
+                                <label for="" class="col-sm-4 col-form-label">Descripción</label>
                                 <div class="col-sm-8">
-                                <textarea name="description" cols="30" class="form-control" rows="5" placeholder="Ingrese la descripcion">{{ $category->description }}</textarea>
+                                <textarea name="description" cols="30" class="form-control" rows="5" placeholder="Ingrese la descripción">{{ $category->description }}</textarea>
                                 </div>
                             </div>
                         </div>

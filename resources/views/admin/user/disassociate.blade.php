@@ -18,28 +18,28 @@
             <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Usuario</h3>
-                        <div class="card-body">
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Nombre</label>
-                                <div class="col-sm-8">
-                                    <input type="text" name="name" class="form-control" value="{{ $user->name }}" readonly="readonly">
-                                </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 col-form-label">Nombre</label>
+                            <div class="col-sm-8">
+                                <input type="text" name="name" class="form-control" value="{{ $user->name }}" readonly="readonly">
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Correo electrónico</label>
-                                <div class="col-sm-8">
-                                    <input type="mail" name="email" class="form-control" value="{{ $user->email }}" readonly="readonly">
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 col-form-label">Correo electrónico</label>
+                            <div class="col-sm-8">
+                                <input type="mail" name="email" class="form-control" value="{{ $user->email }}" readonly="readonly">
                             </div>
-                            <div class="form-group row">
-                                <label for="" class="col-sm-4 col-form-label">Rol</label>
-                                <div class="col-sm-8">
-                                    <input type="mail"name="rol"class="form-control"value="{{ $user->r_name }}"readonly="readonly">
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class="col-sm-4 col-form-label">Rol</label>
+                            <div class="col-sm-8">
+                                <input type="mail"name="rol"class="form-control"value="{{ $user->r_name }}"readonly="readonly">
                             </div>
-                        </div> 
+                        </div>
+                    </div> 
                 </div>
-
+                
                 <div class="card mt-5">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Almacenes Asociados</h3>
                     <form method="post" action="{{ route('user.updateDisassociate', $user->id) }}">
@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="table-responsive">
-                                        <table class="table table-hover table-bordered table-striped" id="detalles">
+                                        <table class="table table-hover table-bordered" id="detalles">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>#</th>
@@ -81,7 +81,6 @@
                                     </div>
                                 </div>
                             </div>                      
-                    
                     </div> 
                     <div class="card-footer">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -90,8 +89,8 @@
                     </div>
                     </form>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </section>

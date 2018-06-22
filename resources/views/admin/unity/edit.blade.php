@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('unity.index') }}">Medición</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Modificar Medición</li>
+            <li class="breadcrumb-item active" aria-current="page">Modificar</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-8 offset-sm-2">
+            <div class="col-12 col-md-8 offset-md-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Medificar Medición</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Medición</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -34,14 +34,14 @@
                         {{csrf_field()}}
                         <div class="card-body">
                             <div class="form-group row">
-                                <label for="" class="col-sm-3 col-form-label">Nombre</label>
-                                <div class="col-sm-9">
+                                <label for="" class="col-md-4 col-form-label">Nombre</label>
+                                <div class="col-md-8">
                                 <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ $unity->name }}" required="required">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <label for="" class="col-sm-3 col-form-label">Abreviación</label>
-                                    <div class="col-sm-9">
+                                    <label for="" class="col-md-4 col-form-label">Abreviación</label>
+                                    <div class="col-md-8">
                                         <input type="text" name="abbreviation" class="form-control" placeholder="Ingrese la abreviación" value="{{ $unity->abbreviation }}" required="required">
                                     </div>
                                 </div>

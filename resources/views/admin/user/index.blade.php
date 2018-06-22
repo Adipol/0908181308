@@ -42,10 +42,12 @@
 									@forelse ($users as $user)
 									<tr id="tr_{{$user->id}}">
 										<th scope="row">
-											<a href="{{ route('user.associate',$user->id) }}" title="Asociar almacen" class="btn  btn-sm btn-success"><i class="fas fa-warehouse"></i></a>
-											<a href="{{ route('user.disassociate',$user->id) }}" title="Ver usuario" class="btn  btn-sm btn-info">
-											<i class="far fa-address-card"></i>
-											</a>
+											@if ($user->rol_id!=1)
+												<a href="{{ route('user.associate',$user->id) }}" title="Asociar almacen" class="btn  btn-sm btn-success"><i class="fas fa-warehouse"></i>
+												</a>
+												<a href="{{ route('user.disassociate',$user->id) }}" title="Ver usuario" class="btn  btn-sm btn-info">								<i class="far fa-address-card"></i>
+												</a>
+											@endif
 											<a href="{{ route('user.edit',$user->id) }}" title="Modificar usuario" class="btn  btn-sm btn-warning">
 											<i class="fas fa-edit"></i>
 											</a>

@@ -30,7 +30,7 @@ class LoginController extends Controller
      * @var string
      */
     
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $warehouses=Warehouse::where('condition','1')->orderBy('name','ASC')->get();
+        $warehouses=Warehouse::where('condition','1')->orderBy('name','asc')->get();
         return view('auth.login')->with(compact('warehouses'));
     }
 
@@ -59,6 +59,9 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             \Session::put('warehouse_id',Input::get('warehouse_id'));
+            $warehouseName=Warehouse::find($request->get('warehouse_id'));
+            $name=$warehouseName->name;
+            \Session::put('warehouse_name',$name);
             return $this->sendLoginResponse($request);
         }
 
@@ -75,4 +78,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function logout(Request $request){
+		auth()->Logout();    //cerrar sesion dela aplicaciomn
+		session()->flush();  //forzar el borrado de session, limpiar todas las sesiones
+		return redirect('/login');
+	}
 }

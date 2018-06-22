@@ -70,7 +70,7 @@
 											@endif
 										</th>
 										<td>{{ $justification->name }}</td>
-										<td>{{ $justification->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $justification->created_at->format('d/m/Y') }}</td>
 										<td>
 											@if ($justification->condition===1)
 											<span class="badge badge-success">Activo</span>

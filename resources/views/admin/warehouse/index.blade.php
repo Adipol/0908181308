@@ -18,7 +18,7 @@
 						Almacenes
 					</h3>
 					<div class="card-body">
-						<a href="{{ route('warehouse.create') }}" class="btn btn-primary card-title">Nuevo Almacen</a>
+						<a href="{{ route('warehouse.create') }}" class="btn btn-primary card-title">Nuevo Almacén</a>
 						<div class="alert-custom">
 							@if (session('notification'))
 							<div class="alert alert-success">
@@ -32,7 +32,7 @@
 									<tr>
 										<th>Opciones</th>
 										<th>Nombre</th>
-										<th>ubicación</th>
+										<th>Ubicación</th>
 										<th>Fecha de creación</th>
 										<th>Estado</th>
 									</tr>
@@ -41,7 +41,7 @@
 									@forelse ($warehouses as $warehouse)
 									<tr id="tr_{{$warehouse->id}}">
 										<th scope="row">
-											<a href="{{ route('warehouse.edit', $warehouse->id) }}" title="Modificar almacen" class="btn  btn-sm btn-warning">
+											<a href="{{ route('warehouse.edit', $warehouse->id) }}" title="Modificar almacén" class="btn  btn-sm btn-warning">
 												<i class="fas fa-edit"></i>
 											</a>
 											@if ($warehouse->condition)
@@ -72,7 +72,7 @@
 										</th>
 										<td>{{ $warehouse->name }}</td>
 										<td>{{ $warehouse->ubication }}</td>
-										<td>{{ $warehouse->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $warehouse->created_at->format('d/m/Y') }}</td>
 										<td>
 											@if ($warehouse->condition===1)
 											<span class="badge badge-success">Activo</span>

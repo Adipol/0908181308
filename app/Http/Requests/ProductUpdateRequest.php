@@ -41,7 +41,7 @@ class ProductUpdateRequest extends FormRequest
 
     public function messages(){
 		return [
-            'category_id.required' => 'Es necesario ingresar la categoria.',
+            'category_id.required' => 'Es necesario ingresar la categoría.',
             'category_id.exists'   => 'La categoria seleccionada no existe.',
             'name.required'        => 'Es necesario ingresar el nombre.',
             'name.min'             => 'El nombre es demasiado reducido.',
@@ -49,9 +49,9 @@ class ProductUpdateRequest extends FormRequest
             'name.unique'          => 'El nombre se encuentra en uso.',
             'unit_id.required'     => 'Es necesario ingresar la medida.',
             'unit_id.exists'       => 'La medida seleccionada no esxiste.',
-            'description.max'      => 'La descripcion es demasiado extenso.',
+            'description.max'      => 'La descripción es demasiado extenso.',
             'image.image'          => 'El archivo tiene que ser una imagen.',
-            'image.mimes'          => 'El archivo no tiene extension: jpg, jpeg, png'
+            'image.mimes'          => 'El archivo no tiene extensión: jpg, jpeg, png'
 		];
 	}
 }

@@ -7,7 +7,7 @@
 			<li class="breadcrumb-item">
 				<a href="#">Inicio</a>
 			</li>
-			<li class="breadcrumb-item active" aria-current="page">Categorias</li>
+			<li class="breadcrumb-item active" aria-current="page">Categorías</li>
 		</ol>
 	</nav>
 	<div class="container">
@@ -15,16 +15,17 @@
 			<div class="col-md-12">
 				<div class="card">
 					<h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
-						Categorias
+						Categorías
 					</h3>
 					<div class="card-body">
-						<a href="{{ route('category.create') }}" class="btn btn-primary card-title">Nueva Categoria</a>
+						<a href="{{ route('category.create') }}" class="btn btn-primary card-title">Nueva Categoría</a>
 						<div class="alert-custom">
 							@if (session('notification'))
 							<div class="alert alert-success">
 								{{ session('notification')}}
 							</div>
-							@endif @if (count($errors)>0)
+							@endif 
+							@if (count($errors)>0)
 							<div class="alert alert-danger">
 								<ul>
 									@foreach($errors->all() as $error)
@@ -40,9 +41,9 @@
 									<tr>
 										<th>Opciones</th>
 										<th>Nombre</th>
-										<th>Descripcion</th>
-										<th>Fecha de creacion</th>
-										<th>Fecha de modificacion</th>
+										<th>Descripción</th>
+										<th>Fecha de creación</th>
+										<th>Fecha de modificación</th>
 										<th>Estado</th>
 									</tr>
 								</thead>
@@ -56,8 +57,8 @@
 										</th>
 										<td>{{ $category->name }}</td>
 										<td>{{ $category->description }}</td>
-										<td>{{ $category->created_at->formatLocalized('%A %d %B %Y') }}</td>
-										<td>{{ $category->updated_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $category->created_at->format('d/m/Y') }}</td>
+										<td>{{ $category->updated_at->format('d/m/Y') }}</td>
 										<td>
 											@if ($category->condition===1)
 											<span class="badge badge-success">Activo</span>

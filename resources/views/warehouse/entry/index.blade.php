@@ -17,7 +17,7 @@
                         Ingreso de productos
                     </h3>
                     <div class="card-body">
-                        <a href="{{ route('entry.create') }}" class="btn btn-primary card-title">Nuevo</a>
+                        <a href="{{ route('entry.create') }}" class="btn btn-primary card-title">Nuevo Ingreso</a>
                         <div class="alert-custom">
                             @if (session('notification'))
                             <div class="alert alert-success">
@@ -35,8 +35,8 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th>Opciones</th>
-                                        <th>Encargado</th>
                                         <th>Fecha</th>
+                                        <th>Encargado</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -61,11 +61,11 @@
                                             </a>
                                         @endif
                                         </th>
-                                        <td>{{ $entry->responsable }}</td>
-                                        <td>{{ $entry->inc_created }}</td>
+                                        <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $entry->inc_created )->format('d/m/Y') }}</td>
+                                        <td>{{ $entry->responsable }}</td>                                        
                                         <td>
                                             @if ($entry->inc_condition==1)
-                                            <span class="badge badge-success">Ingresado</span>
+                                            <span class="badge badge-success">Activo</span>
                                              @else
                                             <span class="badge badge-danger">Anulado</span> @endif
                                         </td>

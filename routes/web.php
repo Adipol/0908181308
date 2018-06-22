@@ -1,9 +1,7 @@
 <?php
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/principal', function () {
-        return view('layouts.template');
-    })->name('principal');
+    Route::get('/', 'HomeController@index')->name('home'); 
 
     Route::group(['middleware' => ['admin']], function () {
 
@@ -99,10 +97,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/seguimiento-aprobados','TracingApproveController@index')->name('tapprove.index');
         Route::get('/seguimiento-aprobados/{id}','TracingApproveController@show')->name('tapprove.show');
     });
+
+    Route::get('/accesos','AccessController@index')->name('access.index');
+    Route::get('/lista-productos','ProductListController@index')->name('productList.index');
+    Route::get('/lista-productos/{id}','ProductListController@show')->name('productList.show');
 });
 
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home'); 
+//Route::get('/', 'HomeController@index')->name('home'); 
 
 

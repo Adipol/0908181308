@@ -72,7 +72,7 @@
 										</th>
 										<td>{{ $unity->name }}</td>
 										<td>{{ $unity->abbreviation }}</td>
-										<td>{{ $unity->created_at->formatLocalized('%A %d %B %Y') }}</td>
+										<td>{{ $unity->created_at->format('d/m/Y') }}</td>
 										<td>
 											@if ($unity->condition===1)
 											<span class="badge badge-success">Activo</span>

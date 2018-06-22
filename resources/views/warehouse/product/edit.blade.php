@@ -17,7 +17,7 @@
         <div class="row">
             <div class="col-12 col-md-12">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Modificar Producto</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Producto</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">
@@ -36,6 +36,12 @@
                         <div class="col-12 col-md-7">
                             <div class="card-body">
                                 <div class="form-group row">
+                                    <label for="" class="col-md-4 col-form-label">Nombre</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" name="name" value="{{ $product->prod_name }}" required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Categoria</label>
                                     <div class="col-md-8">
                                         <select class="custom-select" name="category_id" required>
@@ -44,12 +50,6 @@
                                                 <option {{ (int) old('category_id') === $category->id || $product->cat_id === $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                         </select> 
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-md-4 col-form-label">Nombre</label>
-                                    <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" value="{{ $product->prod_name }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">

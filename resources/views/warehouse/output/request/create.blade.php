@@ -123,8 +123,7 @@
 <script>
     $(document).ready(function(){
         $('#bt_add').click(function(){
-            agregar();
-            
+            agregar(); 
         });
     }); 
 

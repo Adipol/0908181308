@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('unity.index') }}">Medición</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Nueva Medición</li>
+            <li class="breadcrumb-item active" aria-current="page">Nueva</li>
         </ol>
     </nav>
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2">
                 <div class="card">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Nueva Medición</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50"> Medición</h3>
                     <div>
                         @if (count($errors)>0)
                         <div class="alert alert-danger">

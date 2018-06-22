@@ -14,6 +14,7 @@ class WarehouseController extends Controller
     public function index()
     {
         $warehouses = Warehouse::orderBy('name','asc')->paginate(10);
+        
         return view('admin.warehouse.index')->with(compact('warehouses'));
     }
 
