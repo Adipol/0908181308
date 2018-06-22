@@ -19,7 +19,6 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
             <li class="nav-item"><a href="{{ route('access.index') }}" class="nav-link"><i class="fas fa-warehouse"></i> {{ 
             session('warehouse_name') }}</a></li>
             @include('partials.navigation.logged')

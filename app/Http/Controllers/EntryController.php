@@ -28,7 +28,9 @@ class EntryController extends Controller
 
     public function create()
     {
-        $products = DB::table('products')->select('products.id','products.name')
+        $products = DB::table('products')
+        ->join('units','products.unit_id','=','units.id')
+        ->select('products.id','products.name',DB::raw("CONCAT(products.name,'  (',units.name,')') as fullProduct"))
         ->whereIn('products.id',function($query){
             $value = session()->get('warehouse_id');
             $query->select('product_warehouses.product_id')
@@ -103,8 +105,9 @@ class EntryController extends Controller
     
         $details=DB::table('income_details')
         ->join('products','income_details.product_id','=','products.id')
+        ->join('units','products.unit_id','=','units.id')
         ->join('categories','products.category_id','=','categories.id')
-        ->select('products.name','categories.name as c_name','income_details.quantity')
+        ->select('products.name','categories.name as c_name','income_details.quantity','units.name as unit_name')
         ->where('income_details.income_id','=',$id)
         ->orderBy('products.name','asc')
         ->get();

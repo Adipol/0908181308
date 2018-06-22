@@ -21,11 +21,10 @@ class CreateUsersTable extends Migration
             
             $table->string('name')->unique();
             $table->string('email')->unique();
-            $table->boolean('condition')->default(1);
             $table->string('password');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
-            $table->integer('ucm');
         });
     }
 

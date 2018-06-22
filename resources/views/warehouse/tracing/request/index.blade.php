@@ -25,7 +25,7 @@
                                         <th>Opciones</th>
                                         <th>Fecha de solicitud</th>
                                         <th>Solicitante</th>
-                                        <th>Almacen</th>
+                                        <th>Almacén</th>
                                         <th>Solicitud</th>
                                         <th>Estado</th>
                                     </tr>
@@ -34,7 +34,7 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('trequest.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('trequest.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                             </a>
                                         </th>

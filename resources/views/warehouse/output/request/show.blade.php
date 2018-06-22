@@ -57,13 +57,14 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                    <table class="table table-bordered table-striped" id="detalles">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
                                                 <th>Categoría</th>
                                                 <th>Cantidad</th>
+                                                <th>Medida</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,6 +74,7 @@
                                                     <td>{{ $product->p_name }}</td>
                                                     <td>{{ $product->c_name }}</td>
                                                     <td>{{ $product->quantity }}</td>
+                                                    <td>{{ $product->u_name }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

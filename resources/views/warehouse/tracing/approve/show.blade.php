@@ -64,6 +64,7 @@
                                                 <th>Producto</th>
                                                 <th>Categoría</th>
                                                 <th>Cantidad</th>
+                                                <th>Medida</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,6 +74,7 @@
                                                     <td>{{ $product->p_name }}</td>
                                                     <td>{{ $product->c_name }}</td>
                                                     <td>{{ $product->quantity }}</td>
+                                                    <td>{{ $product->unit_name }}</td>
                                                 </tr>
                                             @empty
                                                 <tr>

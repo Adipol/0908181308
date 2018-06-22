@@ -37,9 +37,10 @@ class RequestController extends Controller
 
         $products=DB::table('products')
         ->join('product_warehouses','products.id','=','product_warehouses.product_id')
+        ->join('units','products.unit_id','=','units.id')
         ->where('product_warehouses.condition','=',1)
         ->where('product_warehouses.warehouse_id','=',$value)
-        ->select('products.id','products.name','product_warehouses.stock')
+        ->select('products.id',DB::raw("CONCAT(products.name,'  (',units.name,')') as fullProduct"),'product_warehouses.stock')
         ->get();
         
         $justifications = Justification::where('condition',1)->select('name','id')->orderBy('name','asc')->get();
@@ -110,11 +111,12 @@ class RequestController extends Controller
         $justifications = $output->justifications;
         
         $products = DB::table('products')
+        ->join('units','products.unit_id','=','units.id')
         ->join('categories','products.category_id','=','categories.id')
         ->join('output_details','products.id','=','output_details.product_id')
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
-        ->select('products.name as p_name','categories.name as c_name','output_details.quantity')
+        ->select('products.name as p_name','categories.name as c_name','output_details.quantity','units.name as u_name')
         ->orderBy('products.name','asc')
         ->get();
 

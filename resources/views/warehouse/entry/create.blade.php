@@ -54,7 +54,7 @@
                                 <select class="custom-select" name="product_id" id="product_id" required="required">
                                     <option disabled selected hidden value="0">Seleccione producto</option>
                                     @foreach($products as $product )
-                                    <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->name }}</option>
+                                    <option {{ (int) old( 'product_id')===$product->id ? 'selected' : '' }} value="{{ $product->id }}">{{ $product->fullProduct }}</option>
                                     @endforeach
                                 </select>
                             </div>

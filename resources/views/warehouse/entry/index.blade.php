@@ -44,7 +44,7 @@
                                     @forelse ($incomes as $entry)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('entry.show',$entry->id) }}" title="Ver la entrada" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('entry.show',$entry->id) }}" title="Ver la entrada" class="btn  btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                             </a>
                                         @if($entry->inc_condition)

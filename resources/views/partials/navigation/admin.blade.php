@@ -2,7 +2,7 @@
     <ul class="list-unstyled">
         <li>
             <a href="#">
-                Menu Item
+                Menú
             </a>
         </li>
         <li>

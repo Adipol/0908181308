@@ -42,16 +42,16 @@
 									@forelse ($users as $user)
 									<tr id="tr_{{$user->id}}">
 										<th scope="row">
-											@if ($user->rol_id!=1)
-												<a href="{{ route('user.associate',$user->id) }}" title="Asociar almacen" class="btn  btn-sm btn-success"><i class="fas fa-warehouse"></i>
+											@if (!$user->trashed())
+													@if ($user->rol_id!=1)
+													<a href="{{ route('user.associate',$user->id) }}" title="Asociar almacen" class="btn  btn-sm btn-success"><i class="fas fa-warehouse"></i>
+													</a>
+													<a href="{{ route('user.disassociate',$user->id) }}" title="Ver usuario" class="btn  btn-sm btn-info">								<i class="far fa-address-card"></i>
+													</a>
+												@endif
+												<a href="{{ route('user.edit',$user->id) }}" title="Modificar usuario" class="btn  btn-sm btn-warning">
+												<i class="fas fa-edit"></i>
 												</a>
-												<a href="{{ route('user.disassociate',$user->id) }}" title="Ver usuario" class="btn  btn-sm btn-info">								<i class="far fa-address-card"></i>
-												</a>
-											@endif
-											<a href="{{ route('user.edit',$user->id) }}" title="Modificar usuario" class="btn  btn-sm btn-warning">
-											<i class="fas fa-edit"></i>
-											</a>
-											@if ($user->condition)
 												<a href="{{ route('user.delete', $user->id) }}" class="btn btn-danger btn-sm"
 													data-tr="tr_{{ $user->id }}"				
 													data-toggle="confirmation"
@@ -82,7 +82,7 @@
 										<td>{{ $user->rol->name }}</td>
 										<td>{{ $user->created_at->format('d/m/Y') }}</td>
 										<td>
-											@if ($user->condition===1)
+											@if (!$user->trashed())
 											<span class="badge badge-success">Activo</span>
 											@else
 											<span class="badge badge-danger">Desactivado</span>

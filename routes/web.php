@@ -103,8 +103,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/lista-productos/{id}','ProductListController@show')->name('productList.show');
 });
 
-
 Auth::routes();
-//Route::get('/', 'HomeController@index')->name('home'); 
 
 

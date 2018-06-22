@@ -34,7 +34,7 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('tapprove.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
+                                            <a href="{{ route('tapprove.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                             </a>
                                         </th>

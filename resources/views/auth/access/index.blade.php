@@ -30,7 +30,7 @@
                                 <tbody>
                                     @forelse ($associates as $key=>$associated)
                                         <tr>
-                                            <th>{{ $key+1 }}</th>
+                                            <td>{{ $key+1 }}</td>
                                             <td>{{ $associated->name }}</td>
                                             <td>{{ $associated->ubication }}</td>
                                             <td>

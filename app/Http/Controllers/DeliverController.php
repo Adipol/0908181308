@@ -13,10 +13,12 @@ class DeliverController extends Controller
 {
     public function index()
     { 
+        $value    = session()->get('warehouse_id');
         $requests = DB::table('outputs')
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
+        ->where('outputs.warehouse_id',$value)
         ->where('outputs.status','APPROVED')
         ->where('outputs.condition',1)
         ->orderBy('outputs.id','desc')
@@ -35,11 +37,12 @@ class DeliverController extends Controller
         ->first();
 
         $products = DB::table('products')
+        ->join('units','products.unit_id','=','units.id')
         ->join('categories','products.category_id','=','categories.id')
         ->join('output_details','products.id','=','output_details.product_id')
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
-        ->select('products.id','products.name as p_name','categories.name as c_name','output_details.quantity')
+        ->select('products.id','products.name as p_name','categories.name as c_name','output_details.quantity','units.name as unit_name')
         ->orderBy('products.name','asc')
         ->get();
 

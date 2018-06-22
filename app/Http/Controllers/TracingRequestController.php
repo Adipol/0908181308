@@ -35,11 +35,12 @@ class TracingRequestController extends Controller
         $justifications = $output->justifications;
         
         $products = DB::table('products')
+        ->join('units','products.unit_id','=','units.id')
         ->join('categories','products.category_id','=','categories.id')
         ->join('output_details','products.id','=','output_details.product_id')
         ->join('outputs','output_details.output_id','=','outputs.id')
         ->where('outputs.id','=',$id)
-        ->select('products.id','products.name as p_name','categories.name as c_name','output_details.quantity')
+        ->select('products.id','products.name as p_name','categories.name as c_name','output_details.quantity','units.name as u_name')
         ->orderBy('products.name','asc')
         ->get();
 

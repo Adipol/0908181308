@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users=User::with('rol')->orderBy('name','asc')->paginate(10);
+        $users = User::withTrashed()->orderBy('name','asc')->with('rol')->paginate(10);
         
         return view('admin.user.index')->with(compact('users'));
     }
@@ -42,7 +42,6 @@ class UserController extends Controller
         }
 
         $user->rol_id = $request->get('rol_id');
-        $user->ucm    = auth()->user()->id;
 		$user->save();
 
 		return redirect()->route('user.index')->with('notification','Usuario ingresado exitosamente.');
@@ -61,7 +60,6 @@ class UserController extends Controller
         $user         = User::find($id);
         $user->name   = $request->get('name');
         $user->rol_id = $request->get('rol_id');
-        $user->ucm    = Auth()->user()->id;
         $user->save();
 
         return redirect()->route('user.index')->with('notification','Usuario modificado exitosamente.');
@@ -69,20 +67,14 @@ class UserController extends Controller
     
     public function delete($id)
     {
-        $user            = User::find($id);
-        $user->condition = 0;
-        $user->ucm       = Auth()->user()->id;
-        $user->save();
+        User::find($id)->delete();
 
         return redirect()->route('user.index')->with('notification','El usuario se dio de baja correctamente.');
     }
 
     public function restore($id)
     {
-        $user            = User::find($id);
-        $user->condition = 1;
-        $user->ucm       = Auth()->user()->id;
-        $user->save();
+        User::withTrashed()->find($id)->restore();
 
         return redirect()->route('user.index')->with('notification','El usuario se dio de alta correctamente.');
     }
@@ -92,7 +84,7 @@ class UserController extends Controller
         $user = DB::table('users')
         ->join('rols','users.rol_id','=','rols.id')
         ->where('users.id',$id)
-        ->select('users.id','users.name','users.email','users.condition','rols.name as r_name')
+        ->select('users.id','users.name','users.email','rols.name as r_name')
         ->first();
 
         $warehouses=DB::table('warehouses')->select('warehouses.id','warehouses.name')
@@ -132,7 +124,7 @@ class UserController extends Controller
         $user = DB::table('users')
         ->join('rols','users.rol_id','=','rols.id')
         ->where('users.id',$id)
-        ->select('users.id','users.name','users.email','users.condition','rols.name as r_name')
+        ->select('users.id','users.name','users.email','rols.name as r_name')
         ->first();
 
         $warehouses=DB::table('warehouses')

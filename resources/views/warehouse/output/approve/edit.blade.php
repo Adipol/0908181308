@@ -71,13 +71,14 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered table-striped" id="detalles">
+                                    <table class="table table-hover table-bordered" id="detalles">
                                         <thead class="thead-light">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Producto</th>
                                                 <th>Cantidad solicitada</th>
                                                 <th>Cantidad aprobada</th>
+                                                <th>Medida</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -87,6 +88,7 @@
                                                     <td>{{ $product->p_name }}</td>
                                                     <td><input type="hidden" name="quantity[]" value="{{ $product->quantity }}">{{ $product->quantity }}</td>
                                                     <td><input type="number" id="real" name="real[]" min="0" max="{{ $product->quantity }}" value="{{ $product->quantity }}"></td>
+                                                    <td>{{ $product->unit_name }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

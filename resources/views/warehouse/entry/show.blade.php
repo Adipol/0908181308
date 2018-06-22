@@ -47,6 +47,7 @@
                                                 <th>Producto</th>
                                                 <th>Categoría</th>
                                                 <th>Cantidad</th>
+                                                <th>Medida</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,6 +57,7 @@
                                                     <td>{{ $detail->name }}</td>
                                                     <td>{{ $detail->c_name }}</td>
                                                     <td>{{ $detail->quantity }}</td>
+                                                    <td>{{ $detail->unit_name }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
