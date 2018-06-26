@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/fa.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootadmin.min.css')}}">
-    <link rel="stylesheet" href="{{asset('css/me.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/me.css') }}">
 
     <title>BootAdmin</title>
 </head>

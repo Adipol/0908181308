@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/seguimiento-solicitudes','TracingRequestController@index')->name('trequest.index');
         Route::get('/seguimiento-solicitudes/{id}','TracingRequestController@show')->name('trequest.show');
+        Route::get('/seguimiento-solicitudes/pdf/{id}','TracingRequestController@requestPdf')->name('request_pdf');
     });
 
     Route::group(['middleware' => ['resp']], function () {

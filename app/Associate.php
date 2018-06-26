@@ -19,5 +19,4 @@ class Associate extends Model
     {
         return $this->belongsTo('App\Warehouse');
     }
-
 }
