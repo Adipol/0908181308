@@ -35,11 +35,13 @@
                                     <tr>
                                         <th scope="row">
                                             <a href="{{ route('trequest.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
-                                            <i class="fas fa-eye"></i>
+                                                <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('request_pdf',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-success">
-                                            <i class="fas fa-eye"></i>
+                                        @if ($request->status=='APPROVED' || $request->status=='DELIVERED')
+                                            <a href="{{ route('request_pdf',$request->id) }}" title="Descargar solicitud" class="btn  btn-sm btn-success">
+                                                <i class="fas fa-print"></i>
                                             </a>
+                                        @endif
                                         </th>
                                         <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $request->created_at )->format('d/m/Y') }}</td>  
                                         <td>{{ $request->name }}</td>

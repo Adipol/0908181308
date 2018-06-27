@@ -145,8 +145,10 @@
                 <th>Justificación:</th>
                 <td>
                     @foreach($justifications as $justification)
-                    <input type="checkbox" checked>
-                    <label for="">{{ $justification->name }}</label> @endforeach
+                        <input type="checkbox" checked>
+                        <label for="">{{ $justification->name }}</label>
+                        <br>
+                    @endforeach
                 </td>
             </tr>
             <tr>
