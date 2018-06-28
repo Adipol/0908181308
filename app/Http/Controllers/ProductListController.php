@@ -4,22 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Category;
 class ProductListController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $value    = session()->get('warehouse_id');
+
+        $value       = session()->get('warehouse_id');
+        $name        = $request->get('name');
+
         $products=DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
         ->join('product_warehouses','products.id','=','product_warehouses.product_id')
+        ->where('products.name','LIKE',"%$name%")
         ->where('product_warehouses.condition','=',1)
         ->where('product_warehouses.warehouse_id','=',$value)
         ->select('products.id','products.name','categories.name as c_name','product_warehouses.stock','product_warehouses.condition')
         ->orderBy('products.name','asc')
-        ->get();
+        ->paginate(10);
 
-        return view ('auth.product.index') -> with(compact ('products'));
+        $categories=Category::where('condition',1)->get();
+
+        return view ('auth.product.index') -> with(compact ('products','categories'));
     }
 
     public function show($id)

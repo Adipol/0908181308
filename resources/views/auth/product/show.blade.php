@@ -64,7 +64,7 @@
                         </div>
                     </div>    
                     <div class="card-footer">
-                        <a href="{{ route('productList.index') }}" type="button" class="btn btn-secondary">Atras</a>             
+                        <a href="{{ route('productList.index') }}" type="button" class="btn btn-secondary">Atrás</a>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,16 @@
                         Productos
                     </h3>
                     <div class="card-body">
+                     
+                        <form class="form-inline d-flex justify-content-end align-items-center" method="GET" action="{{ route('productList.index') }}">
+                            <div class="form-group">
+                                <input type="text" class="form-control mb-2 mr-sm-2" name ="name" placeholder="Ingrese el producto" value="{{ old('name')}}">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+                        
                         <div class="table-responsive">
                             <table class="table table-hover">
                                 <thead class="thead-light">
@@ -48,10 +58,15 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        
+                                        <tr>
+                                            <td colspan="5">No existe registros</td>
+                                        </tr>
                                     @endforelse
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="row justify-content-center">
+                            {{ $products->links() }}
                         </div>    
                     </div>
                 </div>
