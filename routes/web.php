@@ -102,6 +102,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/accesos','AccessController@index')->name('access.index');
     Route::get('/lista-productos','ProductListController@index')->name('productList.index');
     Route::get('/lista-productos/{id}','ProductListController@show')->name('productList.show');
+
+    Route::get('/graficos','ChartController@index')->name('chart.index');
 });
 
 Auth::routes();

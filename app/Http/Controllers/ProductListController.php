@@ -42,5 +42,5 @@ class ProductListController extends Controller
         ->first();
    
         return view('auth.product.show')->with(compact('product'));
-    }
+    } 
 }

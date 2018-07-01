@@ -32,15 +32,15 @@
             </ul>
         </li>
         <li>
-            <a href="#sm_expand_5" data-toggle="collapse">
-                <i class="far fa-file-alt"></i> Reportes
-            </a>
-            <ul id="sm_expand_5" class="list-unstyled collapse">
-                <li>
-                    <a href="#" class="d-flex justify-content-between">Reporte de Salidas<i class="fas fa-angle-right"></i></a>
-                </li>
-            </ul>
-        </li>
+                <a href="#sm_expand_6" data-toggle="collapse">
+                    <i class="far fa-file-alt"></i> Reportes
+                </a>
+                <ul id="sm_expand_6" class="list-unstyled collapse">
+                    <li>
+                        <a href="{{ route('chart.index') }}" class="d-flex justify-content-between">Gráficos<i class="fas fa-angle-right"></i></a>
+                    </li>
+                </ul>
+            </li>
         <li>
             <a href="#">
                 <i class="fas fa-info-circle"></i> Acerca de...</a>
