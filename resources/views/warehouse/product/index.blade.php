@@ -18,7 +18,22 @@
                         Productos
                     </h3>
                     <div class="card-body">
-                        <a href="{{ route('product.create') }}" class="btn btn-primary card-title">Adicionar Producto</a>
+                        <div class="container d-flex justify-content-between">
+                            <a href="{{ route('product.create') }}" class="btn btn-primary card-title">Adicionar Producto</a>
+
+                            <form class="form-inline align-self-center" method="POST" action="{{ route('product.search') }}">
+                                    {{ csrf_field() }}
+                                    <div class="form-group">
+                                        <input type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="Ingrese el producto" value="{{ session('search') }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-sm btn-primary" title="Buscar"><i class="fas fa-search"></i></button>
+                                        <a href="{{ route('product.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
+                                    </div>
+                                    
+                                </form>
+                        </div>
+                        
                         <div class="alert-custom">
                             @if (session('notification'))
                             <div class="alert alert-success">

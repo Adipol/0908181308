@@ -25,6 +25,7 @@ class ChartController extends Controller
         ->join('products','product_warehouses.product_id','=','products.id')
         ->where('product_warehouses.warehouse_id',$value)
         ->select('products.name','product_warehouses.stock')
+        ->orderBy('product_warehouses.stock','asc')
         ->get();
 
         return view('warehouse.chart.index')->with(compact('products','stocks'));        

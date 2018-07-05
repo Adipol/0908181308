@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/categorias/{id}','CategoryController@update')->name('category.update');
         Route::get('/categorias/{id}','CategoryController@delete')->name('category.delete');
 
+        Route::get('/productos/clear_search','ProductController@clearSearch')->name('product.clear_search');
         Route::get('/productos','ProductController@index')->name('product.index');
         Route::get('/productos/create','ProductController@create')->name('product.create');
         Route::post('/productos','ProductController@store')->name('product.store');
@@ -72,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('/productos/{id}','ProductController@update')->name('product.update');
         Route::get('/productos/{id}/del','ProductController@delete')->name('product.delete');
         Route::get('/productos/{id}/restaurar','ProductController@restore')->name('product.restore');
+
+        Route::post('/productos/buscar','ProductController@search')->name('product.search');
 
         Route::get('/entradas','EntryController@index')->name('entry.index');
         Route::get('/entradas/create','EntryController@create')->name('entry.create');
@@ -100,8 +103,11 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/accesos','AccessController@index')->name('access.index');
+
+    Route::get('/lista-productos/clear_search','ProductListController@clearSearch')->name('productList.clear_search');
     Route::get('/lista-productos','ProductListController@index')->name('productList.index');
     Route::get('/lista-productos/{id}','ProductListController@show')->name('productList.show');
+    Route::post('/lista-productos/buscar','ProductListController@search')->name('productList.search');
 
     Route::get('/graficos','ChartController@index')->name('chart.index');
 });

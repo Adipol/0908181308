@@ -7,16 +7,16 @@ use Illuminate\Support\Facades\DB;
 use App\Category;
 class ProductListController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
 
-        $value       = session()->get('warehouse_id');
-        $name        = $request->get('name');
+        $value  = session('warehouse_id');
+        $search = session('searchAuth');
 
         $products=DB::table('products')
         ->join('categories','products.category_id','=','categories.id')
         ->join('product_warehouses','products.id','=','product_warehouses.product_id')
-        ->where('products.name','LIKE',"%$name%")
+        ->where('products.name','LIKE',"%$search%")
         ->where('product_warehouses.condition','=',1)
         ->where('product_warehouses.warehouse_id','=',$value)
         ->select('products.id','products.name','categories.name as c_name','product_warehouses.stock','product_warehouses.condition')
@@ -43,4 +43,26 @@ class ProductListController extends Controller
    
         return view('auth.product.show')->with(compact('product'));
     } 
+
+    public function search()
+    {
+        if(request()->isMethod('POST')){
+            $value= request('searchAuth');
+            if($value){
+                request()->session()->put('searchAuth',$value);
+                request()->session()->save();
+            } else{
+                request()->session()->forget('searchAuth');
+            }
+        }
+
+        return redirect('/lista-productos');
+    }
+
+    public function clearSearch()
+    {
+        request()->session()->forget('searchAuth');
+
+        return back();
+    }
 }

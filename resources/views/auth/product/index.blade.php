@@ -18,14 +18,16 @@
                     </h3>
                     <div class="card-body">
                      
-                        <form class="form-inline d-flex justify-content-end align-items-center" method="GET" action="{{ route('productList.index') }}">
+                        <form class="form-inline d-flex justify-content-end" method="POST" action="{{ route('productList.search') }}">
+                            {{ csrf_field() }}
                             <div class="form-group">
-                                <input type="text" class="form-control mb-2 mr-sm-2" name ="name" placeholder="Ingrese el producto" value="{{ old('name')}}">
+                                <input type="text" class="form-control mb-2 mr-sm-2" name="searchAuth" placeholder="Ingrese el producto" value="{{ session('searchAuth') }}">
                             </div>
                             <div class="form-group">
-                                <button class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                                <button type="submit" class="btn btn-sm btn-primary" title="Buscar"><i class="fas fa-search"></i></button>
+                                <a href="{{ route('productList.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
                             </div>
-                        </form>
+                        </form>                   
                         
                         <div class="table-responsive">
                             <table class="table table-hover">

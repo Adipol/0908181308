@@ -31,7 +31,7 @@
                     </div>
                     <form method="post" action="{{ route('product.update',$product->id) }}" enctype="multipart/form-data">
                         @method('PUT')
-                        {{csrf_field()}}
+                        {{ csrf_field() }}
                     <div class="row">
                         <div class="col-12 col-md-7">
                             <div class="card-body">

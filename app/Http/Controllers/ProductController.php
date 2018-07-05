@@ -20,16 +20,18 @@ class ProductController extends Controller
 {
     public function index()
     { 
-        $value = session()->get('warehouse_id');
+        $value  = session('warehouse_id');
+        $search = session('search');
 
         $products=DB::table('product_warehouses')
                 ->join('products','product_warehouses.product_id','=','products.id')
                 ->join('categories','products.category_id','=','categories.id')
                 ->where('product_warehouses.warehouse_id','=',$value)
+                ->where('products.name','LIKE',"%$search%")
                 ->orderBy('products.name','asc')
                 ->select('products.id as prod_id','products.name as prod_name','categories.id as cat_id','categories.name as cat_name','product_warehouses.stock','product_warehouses.condition as pw_condition')->paginate(10);
 
-        return view('warehouse.product.index')->with(compact('products'));
+                return view('warehouse.product.index')->with(compact('products'));
     }
 
 	public function create()
@@ -195,5 +197,27 @@ class ProductController extends Controller
         $pw->save();
 
 		return redirect()->route('product.index')->with('notification','El bus se habilitó correctamente.');
-	}
+    }
+    
+    public function search()
+    {
+        if(request()->isMethod('POST')){
+            $search= request('search');
+            if($search){
+                request()->session()->put('search',$search);
+                request()->session()->save();
+            } else{
+                request()->session()->forget('search');
+            }
+        }
+
+        return redirect('/productos');
+    }
+
+    public function clearSearch()
+    {
+        request()->session()->forget('search');
+
+        return back();
+    }
 }

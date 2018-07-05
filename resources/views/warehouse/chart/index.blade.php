@@ -6,7 +6,7 @@
     <style>
         #chart_wrap {
             position: relative;
-            padding-bottom: 350px;
+            padding-bottom: 400px;
             overflow:hidden;
             width: 100%;
    
@@ -17,14 +17,14 @@
             top: 0;
             left: 0;
             width:100%;
-            height:350px;
+            height:400px;
         }
         #piechart1 {
             position: absolute;
             top: 0;
             left: 0;
             width:100%;
-            height:350px;
+            height:400px;
         }
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -45,7 +45,7 @@
 
         var options = {
            width: '100%',
-            height: '350px'
+            height: '400px'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -65,7 +65,7 @@
 
         var options = {
             width: '100%',
-            height: '350px',
+            height: '400px',
             sliceVisibilityThreshold :0,
         };
         
