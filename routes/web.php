@@ -100,6 +100,12 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/seguimiento-aprobados','TracingApproveController@index')->name('tapprove.index');
         Route::get('/seguimiento-aprobados/{id}','TracingApproveController@show')->name('tapprove.show');
+
+        Route::get('/reporte/justificaciones/clear_search','JustificationController@clearSearch')->name('justification.clear_search');
+        Route::get('/reporte/justificaciones','JustificationController@index')->name('justification.index');
+        Route::get('/reporte/justificaciones/{id}','JustificationController@show')->name('justification.show');
+        Route::post('/reporte/justificaciones/buscar','JustificationController@search')->name('justification.search');
+
     });
 
     Route::get('/accesos','AccessController@index')->name('access.index');

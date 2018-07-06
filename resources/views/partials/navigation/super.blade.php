@@ -46,6 +46,9 @@
                 <li>
                     <a href="{{ route('chart.index') }}" class="d-flex justify-content-between">Gráficos<i class="fas fa-angle-right"></i></a>
                 </li>
+                <li>
+                    <a href="{{ route('justification.index') }}" class="d-flex justify-content-between">justificaciones<i class="fas fa-angle-right"></i></a>
+                </li>
             </ul>
         </li>
         <li>

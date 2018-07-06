@@ -24,7 +24,7 @@
                             <form class="form-inline align-self-center" method="POST" action="{{ route('product.search') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
-                                        <input type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="Ingrese el producto" value="{{ session('search') }}">
+                                        <input type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="Ingrese el producto"  value="{{ session('search') }}">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-sm btn-primary" title="Buscar"><i class="fas fa-search"></i></button>
