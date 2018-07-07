@@ -105,6 +105,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/reporte/justificaciones','JustificationController@index')->name('justification.index');
         Route::get('/reporte/justificaciones/{id}','JustificationController@show')->name('justification.show');
         Route::post('/reporte/justificaciones/buscar','JustificationController@search')->name('justification.search');
+        Route::get('/reporte/export-file', 'JustificationController@exportFile')->name('justification.file');
 
     });
 

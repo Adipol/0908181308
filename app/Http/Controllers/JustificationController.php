@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Excel;
 use Illuminate\Support\Facades\DB;
 use App\Output;
 use App\Justification;
+use App\Product;
+
+use App\Exports\DataExport;
 
 class JustificationController extends Controller
 {
@@ -108,4 +112,9 @@ class JustificationController extends Controller
 
         return back();
     }
+
+    public function exportFile()
+    {
+        return Excel::download(new DataExport, 'data.xlsx');
+    }     
 }

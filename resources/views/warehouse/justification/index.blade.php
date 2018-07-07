@@ -29,6 +29,7 @@
                                         @endforeach
                                     </select> 
                                 </div>
+
                                 <div class="form-group">
                                     <input type="date" class="form-control mb-2 mr-sm-2" name="from" placeholder="Fecha de inicio" max="{{ session('to') }}" value="{{ session('from') }}" required="required">
                                     <input type="date" class="form-control mb-2 mr-sm-2" name="to" placeholder="Fecha final" min="{{ session('from') }}" value="{{ session('to') }}" required="required">
@@ -38,6 +39,7 @@
                                     <a href="{{ route('justification.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
                                 </div>
                             </form>
+                            <a href="{{ route('justification.file') }}">Download Excel xlsx</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover">
