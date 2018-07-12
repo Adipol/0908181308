@@ -117,6 +117,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/lista-productos/buscar','ProductListController@search')->name('productList.search');
 
     Route::get('/graficos','ChartController@index')->name('chart.index');
+
+    Route::get('/acerca-de','AboutController@index')->name('about.index');
 });
 
 Auth::routes();

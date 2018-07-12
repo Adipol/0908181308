@@ -16,28 +16,30 @@ class JustificationController extends Controller
     public function index()
     {   
         $user     = auth()->user()->id;
+        
         if (session('justification_id')) {
             $requests = DB::table('outputs')
             ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
             ->join('users','outputs.applicant_id','=','users.id')
-            ->join('justification_output','outputs.id','=','justification_output.output_id')
             ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
             ->whereBetween('outputs.created_at',[session('from'),session('to')])
-            ->where('justification_output.justification_id',session('justification_id'))
             ->whereIn('outputs.status',['APPROVED','DELIVERED'])
-            ->where('outputs.condition',1)
             ->where('approve',$user)
+            ->whereIn('outputs.id',function($query){
+                $value = session()->get('justification_id');
+                $query->select('justification_output.output_id')
+                    ->from('justification_output')->where('justification_output.justification_id',$value);
+            })
             ->orderBy('outputs.id','asc')
             ->paginate(10);
+
         } else {
             $requests = DB::table('outputs')
             ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
             ->join('users','outputs.applicant_id','=','users.id')
-            ->join('justification_output','outputs.id','=','justification_output.output_id')
             ->select('outputs.id','outputs.created_at','users.name','warehouses.name as w_name','outputs.condition','outputs.status')
             ->whereBetween('outputs.created_at',[session('from'),session('to')])
             ->whereIn('outputs.status',['APPROVED','DELIVERED'])
-            ->where('outputs.condition',1)
             ->where('approve',$user)
             ->orderBy('outputs.id','asc')
             ->paginate(10);
@@ -115,6 +117,6 @@ class JustificationController extends Controller
 
     public function exportFile()
     {
-        return Excel::download(new DataExport, 'data.xlsx');
+        return (new DataExport)->download('data.xlsx');
     }     
 }

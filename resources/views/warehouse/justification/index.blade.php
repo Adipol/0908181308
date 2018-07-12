@@ -24,6 +24,7 @@
                                 <div class="form-group">
                                     <select class="custom-select form-control mb-2 mr-sm-2" name="justification_id" value="">
                                         <option disabled selected hidden>Seleccione justificación</option>
+                                        <option value="">Todos</option>
                                         @foreach($justifications as $justification )
                                         <option {{ (int) old( 'justification_id') === $justification->id || (int) session('justification_id') === $justification->id ? 'selected' : '' }} value="{{ $justification->id }}">{{ $justification->name }}</option>
                                         @endforeach
@@ -39,7 +40,6 @@
                                     <a href="{{ route('justification.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
                                 </div>
                             </form>
-                            <a href="{{ route('justification.file') }}">Download Excel xlsx</a>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-hover">
