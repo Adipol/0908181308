@@ -1,7 +1,7 @@
 <div class="sidebar sidebar-dark bg-dark">
     <ul class="list-unstyled">
         <li>
-            <a href="#">
+            <a href="{{ route('access.index') }}">
                 Menú
             </a>
         </li>
@@ -59,8 +59,9 @@
             </ul>
         </li>
         <li>
-            <a href="#">
-                <i class="fas fa-info-circle"></i> Acerca de...</a>
+            <a href="{{ route('about.index') }}">
+                <i class="fas fa-info-circle"></i> Acerca de...
+            </a>
         </li>
     </ul>
 </div>
