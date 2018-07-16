@@ -9,22 +9,20 @@
             padding-bottom: 400px;
             overflow:hidden;
             width: 100%;
-   
         }
-
         #piechart {
             position: absolute;
             top: 0;
             left: 0;
             width:100%;
-            height:400px;
+            height:100%;
         }
         #piechart1 {
             position: absolute;
             top: 0;
             left: 0;
             width:100%;
-            height:400px;
+            height:100%;
         }
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -44,12 +42,23 @@
         ]);
 
         var options = {
-           width: '100%',
-            height: '400px'
+            backgroundColor: { fill:'transparent'},
+            height: 500,
+            width: 500,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
+
+        function resizeHandler () {
+            chart.draw(data, options);
+        }
+        if (window.addEventListener) {
+            window.addEventListener('resize', resizeHandler, false);
+        }
+        else if (window.attachEvent) {
+            window.attachEvent('onresize', resizeHandler);
+        }
       }
 
         google.charts.setOnLoadCallback(drawChart1);
@@ -64,13 +73,23 @@
         ]);
 
         var options = {
-            width: '100%',
-            height: '400px',
-            sliceVisibilityThreshold :0,
+            backgroundColor: { fill:'transparent'},
+            height: 500,
+            width: 500,
         };
         
         var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
         chart.draw(data, options);
+
+            function resizeHandler () {
+                               chart.draw(data, options);
+        }
+        if (window.addEventListener) {
+            window.addEventListener('resize', resizeHandler, false);
+        }
+        else if (window.attachEvent) {
+            window.attachEvent('onresize', resizeHandler);
+        }
         }
 
     </script>
@@ -94,7 +113,7 @@
                         <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
                             Productos solicitados
                         </h3>
-                        <div class="card-body">
+                        <div class="card-body pt-0 pl-0 pr-0">
                             <div id="chart_wrap">
                                 <div id="piechart"></div>
                             </div>
@@ -106,7 +125,7 @@
                         <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">
                             Stock de Productos
                         </h3>
-                        <div class="card-body">
+                        <div class="card-body pt-0 pl-0 pr-0">
                             <div id="chart_wrap">
                                 <div id="piechart1"></div>
                             </div>
