@@ -119,6 +119,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/graficos','ChartController@index')->name('chart.index');
 
     Route::get('/acerca-de','AboutController@index')->name('about.index');
+
+    Route::get('/profile','ProfileController@edit')->name('profile.edit');
+	Route::put('/profile', 'ProfileController@update')->name('profile.update');
 });
 
 Auth::routes();

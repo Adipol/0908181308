@@ -10,7 +10,7 @@
 	</a>
 
 	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		<a class="dropdown-item" href="{{-- {{ route('profile.index') }} --}}"><i class="fas fa-user-md"></i> {{ __("Mi Perfil") }}</a>
+		<a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-md"></i> {{ __("Mi Perfil") }}</a>
 		<a class="dropdown-item" href="{{ route('logout') }}"
 			onclick="event.preventDefault();
 			document.getElementById('logout-form').submit();"
