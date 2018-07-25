@@ -82,5 +82,9 @@ class LoginController extends Controller
 		auth()->Logout();    //cerrar sesion dela aplicaciomn
 		session()->flush();  //forzar el borrado de session, limpiar todas las sesiones
 		return redirect('/login');
+    }
+    
+    public function username(){
+		return 'name';
 	}
 }
