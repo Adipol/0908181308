@@ -17,8 +17,26 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','rol_id'
+        'name',
+        'email',
+        'password',
+        'rol_id'
     ];
+
+    public function setNameAttribute($valor)
+    {
+        $this->attributes['name']= strtolower($valor);
+    }
+
+    public function setEmailAttribute($valor)
+    {
+        $this->attributes['email']= strtolower($valor);
+    }
+
+    public function getNameAttribute($valor)
+    {
+        return ucfirst($valor);
+    }
 
     /**
      * The attributes that should be hidden for arrays.
