@@ -29,7 +29,7 @@
                         </div>
                         @endif
                     </div>
-                    <form method="post" action="{{ route('product.storep') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('product.storep') }}">
                         {{csrf_field()}}
                         <div class="card-body">
                                 <div class="form-group row">
@@ -67,15 +67,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="" class="col-md-4 col-form-label">Imagen</label>
-                                    <div class="col-md-8">
-                                        <div class="custom-file" style="es: Elegir;">
-                                                <input type="file" class="custom-file-input" id="customFileLang" name="picture" lang="es">
-                                            <label class="custom-file-label" for="customFileLang">Seleccione imagen</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Descripción</label>
                                     <div class="col-md-8">
                                         <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese la descripción">{{ old('description') }}</textarea>
@@ -83,8 +74,8 @@
                                 </div>
                         </div>
                         <div class="card-footer">
-                                <a href="{{ route('product.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            <a href="{{ route('product.index') }}" type="button" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
                 </div>

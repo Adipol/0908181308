@@ -34,7 +34,6 @@ class ProductStoreRequest extends FormRequest
                 Rule:: exists('units','id'),
             ],
             'description' => 'max:150',
-            'image'       => 'image|mimes:jpg,jpeg,png'
         ];
     }
 
@@ -47,8 +46,6 @@ class ProductStoreRequest extends FormRequest
 			'name.unique'          => 'El nombre se encuentra en uso.',
 			'unit_id.required'     => 'Es necesario ingresar la unidad.',
 			'description.max'      => 'La descripción es demasiado extenso.',
-			'image.image'          => 'El archivo tiene que ser una imagen.',
-			'image.mimes'          => 'El archivo no tiene extensión: jpg, jpeg, png'
 		];
 	}
 }

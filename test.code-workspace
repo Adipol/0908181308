@@ -1,0 +1,11 @@
+{
+  "folders": [
+    {
+      "uri": "ftp://$sipro:AR5uiafsMPkoLrTillldZuv8Z0EHAqrg0er0zRcx6aSuw0oumdsqKuzozFab@waws-prod-cq1-015.ftp.azurewebsites.windows.net/site/wwwroot/",
+      "name": "My FTP folder"
+    },
+    {
+      "path": "."
+    }
+  ]
+}

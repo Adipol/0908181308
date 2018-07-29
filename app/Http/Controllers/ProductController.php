@@ -11,7 +11,6 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductWarehouseStoreRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-
 use Intervention\Image\Facades\Image;
 use App\Http\Requests\ProductStorepRequest;
 use App\Http\Requests\ProductUpdateRequest;
@@ -78,16 +77,6 @@ class ProductController extends Controller
         $product->category_id = $request->get('category_id');
         $product->name        = $request->get('name');
         $product->unit_id     = $request->get('unit_id');
-        
-        if ($request->hasFile('picture')) {
-            $extension=$request->file('picture')->getClientOriginalExtension();
-            $file_name=time() . '.' . $extension;
-            Image::make($request->file('picture'))
-            ->resize(350,350)
-            ->save('img/products/' . $file_name);
-            $product->picture=$file_name;
-        }
-
         $product->description = $request->get('description');
         $product->condition   = 1;
         $ucm                  = auth()->user();
@@ -153,10 +142,12 @@ class ProductController extends Controller
             $product->name        = $request->get('name');
             $product->unit_id     = $request->get('unit_id');
             $product->description = $request->get('description');
+            $image=$product->picture;
             
             if ($request->hasFile('picture')) {
+                Storage::disk('products')->delete($image);
                 $extension = $request->file('picture')->getClientOriginalExtension();
-                $file_name = time() . '.' . $extension;
+                $file_name = $id . '.' . $extension;
                 Image:: make($request->file('picture'))
                 ->resize(350,350)
                 ->save('img/products/' . $file_name);
