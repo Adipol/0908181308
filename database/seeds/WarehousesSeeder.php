@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Warehouse;
 
-class WarehouseSeeder extends Seeder
+class WarehousesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +13,9 @@ class WarehouseSeeder extends Seeder
     public function run()
     {
         Warehouse::create([
-            'name'=>'Almacén',
-            'ubication'=>'',
-            'ucm'=>1
+            'name'      => 'Almacen',
+            'ubication' => '',
+            'ucm'       => 1
         ]);
     }
 }
