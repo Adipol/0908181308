@@ -13,13 +13,13 @@ class Unit extends Model
 	];
 	
 	public function products()
-    {
+  	{
         return $this->hasMany('App\Product');
 	}
 	
 	public function setNameAttribute($value)
 	{	
-        $this->attributes['name'] = ucfirst((strtolower($value)));
+        $this->attributes['name'] = strtolower($value);
 	}
 
 	public function setAbbreviationAttribute($value)

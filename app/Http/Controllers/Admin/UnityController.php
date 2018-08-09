@@ -35,7 +35,7 @@ class UnityController extends Controller
 
     public function edit($id)
     {
-        $unity= Unit::find($id);
+        $unity= Unit::findOrFail($id);
 
         return view('admin.unity.edit')->with(compact('unity'));
     }
@@ -53,7 +53,7 @@ class UnityController extends Controller
 
     public function delete($id)
     {
-        $unity            = Unit::find($id);
+        $unity            = Unit::findOrFail($id);
         $unity->condition = 0;
         $unity->ucm       = Auth()->user()->id;
         $unity->save();
@@ -63,7 +63,7 @@ class UnityController extends Controller
 
     public function restore($id)
     {
-        $unity            = Unit::find($id);
+        $unity            = Unit::findOrFail($id);
         $unity->condition = 1;
         $unity->ucm       = Auth()->user()->id;
         $unity->save();
