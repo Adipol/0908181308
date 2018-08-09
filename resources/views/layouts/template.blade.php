@@ -19,9 +19,10 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
+            @include('partials.navigation.logged')            
             <li class="nav-item"><a href="{{ route('access.index') }}" class="nav-link"><i class="fas fa-warehouse"></i> {{ 
-            session('warehouse_name') }}</a></li>
-            @include('partials.navigation.logged')
+            session('warehouse_name') }}</a>
+            </li>
         </ul>
     </div>
 </nav>
