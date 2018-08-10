@@ -33,11 +33,19 @@ class Warehouse extends Model
 
     public function setNameAttribute($value){
 		
-        $this->attributes['name'] = ucfirst((strtolower($value)));
+        $this->attributes['name'] = strtolower($value);
     }
 
     public function setUbicationAttribute($value){
 		
         $this->attributes['ubication'] = strtolower($value);
-    } 
+    }
+    
+    public function getNameAttribute($value){
+        return ucfirst($value);
+    }
+
+    public function getUbicationAttribute($value){
+        return ucfirst($value);
+    }
 }

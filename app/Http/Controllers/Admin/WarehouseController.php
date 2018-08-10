@@ -31,44 +31,44 @@ class WarehouseController extends Controller
 		$warehouse->ucm       = auth()->user()->id;
 		$warehouse->save();
 
-		return redirect()->route('warehouse.index')->with('notification','Almacen ingresado exitosamente.');
+		return redirect()->route('warehouse.index')->with('notification','Almacén ingresado exitosamente.');
     }
     
     public function edit($id)
     {
-        $warehouse = Warehouse::find($id);
+        $warehouse = Warehouse::findOrFail($id);
 
         return view('admin.warehouse.edit')->with(compact('warehouse'));
     }
 
     public function update(WarehouseUpdateRequest $request, $id)
     {
-        $warehouse            = Warehouse::find($id);
+        $warehouse            = Warehouse::findOrFail($id);
         $warehouse->name      = $request->get('name');
         $warehouse->ubication = $request->get('ubication');
         $warehouse->ucm       = Auth()->user()->id;
         $warehouse->save();
 
-        return redirect()->route('warehouse.index')->with('notification','Almacen modificado exitosamente.');
+        return redirect()->route('warehouse.index')->with('notification','Almacén modificado exitosamente.');
     }
 
     public function delete($id)
     {
-        $warehouse= Warehouse::find($id);
+        $warehouse= Warehouse::findOrFail($id);
         $warehouse->condition=0;
         $warehouse->ucm=Auth()->user()->id;
         $warehouse->save();
 
-        return redirect()->route('warehouse.index')->with('notification','El almacen se dio de baja correctamente.');
+        return redirect()->route('warehouse.index')->with('notification','El almacén se dio de baja correctamente.');
     }
 
     public function restore($id)
     {
-        $warehouse=Warehouse::find($id);
+        $warehouse=Warehouse::findOrFail($id);
         $warehouse->condition=1;
         $warehouse->ucm=Auth()->user()->id;
         $warehouse->save();
 
-        return redirect()->route('warehouse.index')->with('notification','El almacen se dio de alta correctamente.');
+        return redirect()->route('warehouse.index')->with('notification','El almacén se dio de alta correctamente.');
     }
 }

@@ -24,8 +24,8 @@ class WarehouseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-			'name'=>'required|min:3|max:50|unique:warehouses,name',
-			'ubication'=>'max:150'
+			'name'      => 'required|min:3|max:50|unique:warehouses,name',
+			'ubication' => 'max:150'
         ];
     }
 
@@ -34,8 +34,8 @@ class WarehouseStoreRequest extends FormRequest
 			'name.required' => 'Es necesario ingresar el nombre.',
 			'name.min'      => 'El nombre es demasiado reducido.',
 			'name.max'      => 'El nombre es demasiado extenso.',
-            'name.unique'   => 'El nombre del almacen existe.',
-            'ubication.max'=>'La ubicación del almacen es demasiado extenso.'
+			'name.unique'   => 'El nombre del almacén existe.',
+			'ubication.max' => 'La ubicación del almacén es demasiado extenso.'
 		];
 	}
 }

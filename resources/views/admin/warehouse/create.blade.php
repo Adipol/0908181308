@@ -41,7 +41,7 @@
                             <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Ubicación</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="ubication" class="form-control" placeholder="Ingrese la ubicación" value="{{ old('ubication') }}" required="required">
+                                        <input type="text" name="ubication" class="form-control" placeholder="Ingrese la ubicación" value="{{ old('ubication') }}">
                                     </div>
                                 </div>
                         </div>
