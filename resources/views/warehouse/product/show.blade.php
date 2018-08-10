@@ -15,11 +15,11 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-12">
+            <div class="col">
                 <div class="card">
                     <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Producto</h3>
                     <div class="row">
-                        <div class="col-12 col-md-7">
+                        <div class="col-xl-7">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Nombre</label>
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 mb-3 mt-3 col-md-5 d-flex justify-content-center align-items-center">
+                        <div class="mb-3 mt-xl-3 col-xl-5 d-flex justify-content-center align-items-center">
                             <div class="card ">
                                 @if($product->picture!="")
                                 <img class="card-img-bottom img-thumbnail" src="{{ asset('img/products/'.$product->picture) }}" alt="Card image cap">

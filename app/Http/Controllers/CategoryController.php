@@ -34,14 +34,14 @@ class CategoryController extends Controller
 
 	public function edit($id)
 	{
-		$category=Category::find($id);
+		$category=Category::findOrFail($id);
 		
 		return view('warehouse.category.edit')->with(compact('category'));
 	}
 
 	public function update(CategoryUpdateRequest $request,$id)
 	{
-		$category              = Category::find($id);
+		$category              = Category::findOrFail($id);
 		$category->name        = $request->get('name');
 		$category->description = $request->get('description');
 		$ucm                   = auth()->user();
@@ -53,7 +53,7 @@ class CategoryController extends Controller
 
 	public function delete($id){
 
-		$category = Category::find($id);
+		$category = Category::findOrFail($id);
 		
 		$category->condition = 0;
 		$ucm                 = auth()->user();

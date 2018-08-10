@@ -21,8 +21,23 @@ class Product extends Model
 		'name',
 		'description',
 		'condition',
-		'picture'
+		'picture',
 	];
+
+	public function setNameAttribute($value){
+		
+        $this->attributes['name'] = strtolower($value);
+	}
+
+	public function setDescriptionAttribute($value){
+		
+        $this->attributes['description'] = strtolower($value);
+	}
+
+	public function getDescriptionAttribute($value)
+	{
+		return ucfirst($value);
+	}
 
 	public function pathAttachment()
 	{
@@ -42,11 +57,6 @@ class Product extends Model
 	public function unit()
 	{
 		return $this->belongsTo('App\Unit');
-	}
-
-	public function setNameAttribute($value){
-		
-        $this->attributes['name'] = ucfirst((strtolower($value)));
 	}
 
 	public function scopeName($query, $name)

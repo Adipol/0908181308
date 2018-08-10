@@ -28,6 +28,19 @@ class Category extends Model
 
 	public function setNameAttribute($value){
 		
-        $this->attributes['name'] = ucfirst((strtolower($value)));
+        $this->attributes['name'] = strtolower($value);
+	}
+
+	public function getNameAttribute($value){
+		return ucfirst($value);
+	}
+
+	public function setDescriptionAttribute($value){
+		
+        $this->attributes['description'] = strtolower($value);
+	}
+
+	public function getDescriptionAttribute($value){
+		return ucfirst($value);
 	}
 }

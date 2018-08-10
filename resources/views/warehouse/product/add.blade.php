@@ -35,7 +35,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Nombre</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre" value="{{ old('name')}}" required>
+                                        <input type="text" class="form-control" name="name" placeholder="Ingrese el nombre" value="{{ old('name')}}" required="required" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -69,7 +69,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 col-form-label">Descripción</label>
                                     <div class="col-md-8">
-                                        <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese la descripción">{{ old('description') }}</textarea>
+                                        <textarea name="description" cols="5" class="form-control" rows="5" placeholder="Ingrese la descripción" required="required">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
                         </div>

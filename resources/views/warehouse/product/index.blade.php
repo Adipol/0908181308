@@ -75,7 +75,7 @@
                                                 data-placement="left" data-singleton="true"><i class="fas fa-trash"></i>
                                             </a>
                                             @else
-                                            <a href="{{ route('product.restore',$product->prod_id) }}" title="Activar producto" class="btn  btn-sm btn-info">
+                                            <a href="{{ route('product.restore',$product->prod_id) }}" title="Activar producto" class="btn  btn-sm btn-dark">
                                             <i class="fas fa-undo"></i>
                                             </a>
                                             @endif

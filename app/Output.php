@@ -21,6 +21,11 @@ class Output extends Model
         'created_at'
     ];
 
+    public function setObservationAttribute($value)
+    {
+        $this->attributes['observation']= strtolower($value);
+    }
+
     public function warehouse()
 	{
 		return $this->belongsTo('App\Warehouse');

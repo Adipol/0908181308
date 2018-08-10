@@ -31,7 +31,7 @@ class TracingDeliverController extends Controller
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.voucher','outputs.status')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.observation','outputs.voucher','outputs.status')
         ->first();
         
         $products = DB::table('products')
@@ -53,7 +53,7 @@ class TracingDeliverController extends Controller
         ->join('warehouses','outputs.warehouse_id','=','warehouses.id')
         ->join('users','outputs.applicant_id','=','users.id')
         ->where('outputs.id','=',$id)
-        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j','outputs.status')
+        ->select('outputs.id','outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.observation','outputs.status')
         ->first();
         
         $products = DB::table('products')
@@ -71,8 +71,8 @@ class TracingDeliverController extends Controller
 
 	public function update(Request $request,$id)
 	{
-        $deliver              = Output::find($id);
-        $deliver->description_j = $request->get('description_j');
+        $deliver              = Output::findOrFail($id);
+        $deliver->observation = $request->get('observation');
 
         if ($request->hasFile('voucher')) {
             $extension = $request->file('voucher')->getClientOriginalExtension();

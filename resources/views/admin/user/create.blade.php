@@ -10,7 +10,7 @@
             <li class="breadcrumb-item active" aria-current="page">
                 <a href="{{ route('user.index') }}">Usuarios</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Nuevo usuario</li>
+            <li class="breadcrumb-item active" aria-current="page">Nuevo</li>
         </ol>
     </nav>
     <div class="container">
@@ -35,7 +35,7 @@
                             <div class="form-group row">
                                 <label for="" class="col-sm-4 col-form-label">Nombre</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ old('name') }}" required="required">
+                                    <input type="text" name="name" class="form-control" placeholder="Ingrese el nombre" value="{{ old('name') }}" required="required" autofocus>
                                 </div>
                             </div>
                             <div class="form-group row">

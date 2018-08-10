@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::withTrashed()->orderBy('name','asc')->with('rol')->paginate(10);
+        $users = User::withTrashed()->where('id','<>',1)->orderBy('name','asc')->with('rol')->paginate(10);
         
         return view('admin.user.index')->with(compact('users'));
     }
@@ -49,7 +49,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $rols = Rol::select('id','name')->orderby('name','asc')->get();
 
         return view('admin.user.edit')->with(compact('user','rols'));
@@ -57,7 +57,7 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, $id)
     {
-        $user         = User::find($id);
+        $user         = User::findOrFail($id);
         $user->name   = $request->get('name');
         $user->rol_id = $request->get('rol_id');
         $user->save();
@@ -67,14 +67,14 @@ class UserController extends Controller
     
     public function delete($id)
     {
-        User::find($id)->delete();
+        User::findOrFail($id)->delete();
 
         return redirect()->route('user.index')->with('notification','El usuario se dio de baja correctamente.');
     }
 
     public function restore($id)
     {
-        User::withTrashed()->find($id)->restore();
+        User::withTrashed()->findOrFail($id)->restore();
 
         return redirect()->route('user.index')->with('notification','El usuario se dio de alta correctamente.');
     }
@@ -116,7 +116,7 @@ class UserController extends Controller
             }
         }
 
-        return redirect()->route('user.index')->with('notification','Se completo la asociacion correctamente.');
+        return redirect()->route('user.index')->with('notification','Se completo la asociación correctamente.');
     }
     
     public function disassociate($id)

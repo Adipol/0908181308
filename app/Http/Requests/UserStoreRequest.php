@@ -39,7 +39,7 @@ class UserStoreRequest extends FormRequest
             'name.max'        => 'El nombre es demasiado extenso.',
             'name.unique'     => 'El nombre del usuario existe.',
             'email.required'  => 'El correo es requerido.',
-            'email.email'     => 'El correo no ingresado no tiene un formato correcto.',
+            'email.email'     => 'El correo ingresado no tiene un formato correcto.',
             'email.max'       => 'El correo es demasiado extenso.',
             'email.unique'    => 'El correo ingresado existe.',
             'rol_id.required' => 'Es necesario ingresar el rol.'

@@ -86,7 +86,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-3 col-form-label">Observación</label>
                             <div class="col-sm-9" id="">
-                                <textarea name="description_j" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" required="required">{{ $sol->description_j }}</textarea>
+                                <textarea name="observation" cols="5" class="form-control" rows="5" placeholder="Ingrese el motivo" required="required">{{ $sol->observation }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">

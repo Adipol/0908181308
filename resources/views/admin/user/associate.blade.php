@@ -40,7 +40,7 @@
                         </div> 
                 </div>
                 <div class="card mt-5">
-                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Asociar Almacen</h3>
+                    <h3 class="card-header font-weight-bold text-primary bg-secondary text-white-50">Asociar Almacén</h3>
                     <div class="card-body">
                         <div class="row">
                             <div class="form-group col-12 ">
