@@ -27,8 +27,13 @@ class Justification extends Model
     }
 
     public function setNameAttribute($value){
-		
-        $this->attributes['name'] = ucfirst((strtolower($value)));
+
+        $this->attributes['name'] = strtolower($value);
+    }
+
+    public function getNameAttribute($value){
+
+        return ucfirst($value);
     }
     
 }

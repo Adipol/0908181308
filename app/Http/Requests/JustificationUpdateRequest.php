@@ -24,16 +24,16 @@ class JustificationUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-			'name'=>'required|min:3|max:50|unique:justifications,name,'.$this->id,
+			'name'=>'required|min:3|max:100|unique:justifications,name,'.$this->id,
         ];
     }
 
     public function messages(){
 		return [
 			'name.required' => 'Es necesario ingresar la justificación.',
-			'name.min'      => 'El nombre es demasiado reducido.',
-			'name.max'      => 'El nombre es demasiado extenso.',
-			'name.unique'   => 'El nombre de la justificación existe.',
+			'name.min'      => 'La justificación es demasiado reducido.',
+			'name.max'      => 'La justificación es demasiado extenso.',
+			'name.unique'   => 'La justificación existe.',
 		];
 	}	
 }

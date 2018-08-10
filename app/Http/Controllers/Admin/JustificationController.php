@@ -34,14 +34,14 @@ class JustificationController extends Controller
 
     public function edit($id)
     {
-        $justification= Justification::find($id);
+        $justification= Justification::findOrFail($id);
 
         return view('admin.justification.edit')->with(compact('justification'));
     }
 
     public function update(JustificationUpdateRequest $request, $id)
     {
-        $justification       = Justification::find($id);
+        $justification       = Justification::findOrFail($id);
         $justification->name = $request->get('name');
         $justification->ucm  = auth()->user()->id;
         $justification->save();
@@ -51,7 +51,7 @@ class JustificationController extends Controller
 
     public function delete($id)
     {
-        $justification            = Justification::find($id);
+        $justification            = Justification::findOrFail($id);
         $justification->condition = 0;
         $justification->ucm       = Auth()->user()->id;
         $justification->save();
@@ -61,7 +61,7 @@ class JustificationController extends Controller
 
     public function restore($id)
     {
-        $justification            = Justification::find($id);
+        $justification            = Justification::findOrFail($id);
         $justification->condition = 1;
         $justification->ucm       = Auth()->user()->id;
         $justification->save();
