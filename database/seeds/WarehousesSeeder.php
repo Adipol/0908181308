@@ -13,7 +13,7 @@ class WarehousesSeeder extends Seeder
     public function run()
     {
         Warehouse::create([
-            'name'      => 'Almacen',
+            'name'      => 'almacen',
             'ubication' => '',
             'ucm'       => 1
         ]);

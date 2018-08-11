@@ -13,11 +13,19 @@ class UsersTableSeeder extends Seeder
     public function run()
     {   
         User::create([
-			'name'=>'Admin',
+			'name'=>'admin',
 			'email'=>'adipol13@gmail.com',
 			'password'=>bcrypt('siri'),
 			'rol_id'=>1
 		]);
+
+		User::create([
+			'name'=>'administrador',
+			'email'=>'administrador@email.com',
+			'password'=>bcrypt('secret'),
+			'rol_id'=>1
+		]);
+
 		User::create([
 			'name'=>'Solicitante',
 			'email'=>'solicitante@email.com',
