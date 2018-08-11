@@ -78,7 +78,7 @@
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="4">Los productos fueron denegados</td>
+                                                    <td colspan="5">Los productos fueron denegados</td>
                                                 </tr>
                                             @endforelse
                                         </tbody>

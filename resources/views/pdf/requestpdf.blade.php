@@ -127,7 +127,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Encargado del almacén:</th>
+                <th>Supervisor:</th>
                 <td>
                     <p>{{ $sol->u2_name }}</p>
                 </td>
