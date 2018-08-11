@@ -26,6 +26,11 @@ class Output extends Model
         $this->attributes['observation']= strtolower($value);
     }
 
+    public function setDescriptionJAttribute($value)
+    {
+        $this->attributes['description_j']= strtolower($value);
+    }
+
     public function warehouse()
 	{
 		return $this->belongsTo('App\Warehouse');
