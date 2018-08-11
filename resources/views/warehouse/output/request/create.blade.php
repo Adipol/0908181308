@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group col-12 col-md-2">
                                 <label for="inpucant3">Cantidad</label>
-                                    <input type="number"  name="pcantidad" id="pcantidad" class="form-control"  min="0" required="required">
+                                    <input type="number"  name="pcantidad" id="pcantidad" class="form-control"  min="0" max="{{ $product->stock }}" required="required">
                             </div>
                             <div class="form-group col-12 col-md-2">
                                 <label for="inputs">Stock</label>
@@ -97,7 +97,7 @@
                             <label for="inputEmail3" class="col-sm-3 col-form-label">Justificación</label>
                             <div class="col-sm-9">
                                 @foreach($justifications as $justification)
-                                <input type="checkbox" class="form" name="justifications[]" value="{{ $justification->id }}"> {{ $justification->name }} 
+                                <input type="checkbox" class="form" name="justifications[]" value="{{ $justification->id }}"> {{ $justification->name }} <br>
                                 @endforeach
                             </div>
                         </div>

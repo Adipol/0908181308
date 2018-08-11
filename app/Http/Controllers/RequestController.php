@@ -107,8 +107,8 @@ class RequestController extends Controller
         ->select('outputs.created_at','warehouses.name as w_name','users.name as u_name','outputs.description_j')
         ->first();
 
-        $output         = Output::find($id);
-        $justifications = $output->justifications;
+        $output         = Output::findOrFail($id);
+        $justifications = $output->justifications()->orderBy('name','asc')->get();
         
         $products = DB::table('products')
         ->join('units','products.unit_id','=','units.id')
@@ -128,7 +128,7 @@ class RequestController extends Controller
         try{
             DB::beginTransaction(); 
 
-                $entry            = Output::find($id);
+                $entry            = Output::findOrFail($id);
                 $entry->condition = 0;
                 $ucm              = auth()->user();
                 $entry->ucm       = $ucm->id;
