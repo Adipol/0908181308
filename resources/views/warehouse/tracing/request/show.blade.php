@@ -90,13 +90,13 @@
                                         @if ($sol->status == 'APPROVED')
                                         <label for="inputEmail3" class="col-sm-3 col-form-label">Solicitud</label>
                                         <div class="col-sm-3">
-                                            <input type="text" name="justification" class="form-control" value="APROBADO" disabled="disabled">
+                                            <input type="text" name="justification" class="form-control" value="Aprobado" disabled="disabled">
                                         </div>
                                         @else
                                             @if ($sol->status == 'DELIVERED')
                                             <label for="inputEmail3" class="col-sm-3 col-form-label">Solicitud</label>
                                             <div class="col-sm-3">
-                                            <input type="text" name="justification" class="form-control" value="ENTREGADO" disabled="disabled">
+                                            <input type="text" name="justification" class="form-control" value="Entregado" disabled="disabled">
                                              </div>
                                             @endif
                                         @endif

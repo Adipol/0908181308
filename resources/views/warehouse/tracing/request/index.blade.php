@@ -48,10 +48,10 @@
                                         <td>{{ $request->w_name }}</td>
                                         <td>
                                             @if ($request->status=='APPROVED')
-                                            APROBADO
+                                            Aprobado
                                             @else
                                                 @if ($request->status=='DELIVERED')
-                                                ENTREGADO                 
+                                                Entregado                 
                                                 @endif   
                                             @endif
                                         </td>
