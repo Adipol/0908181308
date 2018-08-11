@@ -18,10 +18,9 @@
                         Productos
                     </h3>
                     <div class="card-body">
-                        <div class="container d-flex justify-content-between">
+                        <div class="container">
                             <a href="{{ route('product.create') }}" class="btn btn-primary card-title">Adicionar Producto</a>
-
-                            <form class="form-inline align-self-center" method="POST" action="{{ route('product.search') }}">
+                            <form class="form-inline" method="POST" action="{{ route('product.search') }}">
                                     {{ csrf_field() }}
                                     <div class="form-group">
                                         <input type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="Ingrese el producto"  value="{{ session('search') }}">

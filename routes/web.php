@@ -55,12 +55,14 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::group(['middleware' => ['resp']], function () {
+        Route::get('/categorias/clear_search','CategoryController@clearSearch')->name('category.clear_search');
         Route::get('/categorias','CategoryController@index')->name('category.index');
         Route::get('/categorias/create','CategoryController@create')->name('category.create');
         Route::post('/categorias','CategoryController@store')->name('category.store');
         Route::get('/categorias/{id}/edit','CategoryController@edit')->name('category.edit');
         Route::put('/categorias/{id}','CategoryController@update')->name('category.update');
         Route::get('/categorias/{id}','CategoryController@delete')->name('category.delete');
+        Route::post('/categorias/buscar','CategoryController@search')->name('category.search');
 
         Route::get('/productos/clear_search','ProductController@clearSearch')->name('product.clear_search');
         Route::get('/productos','ProductController@index')->name('product.index');

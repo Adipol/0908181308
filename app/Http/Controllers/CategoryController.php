@@ -11,7 +11,9 @@ class CategoryController extends Controller
 {
 	public function index()
 	{
-		$categories=Category::orderBy('name','asc')->paginate(10);
+		$search = session('search_category');
+
+		$categories=Category::where('name','LIKE',"%$search%")->orderBy('name','asc')->paginate(10);
 		
 		return view('warehouse.category.index')->with(compact('categories'));
 	}
@@ -62,4 +64,26 @@ class CategoryController extends Controller
 
 		return redirect()->route('category.index')->with('notification','La categoria se dio de baja correctamente.');
 	}
+
+	public function search()
+    {
+        if(request()->isMethod('POST')){
+            $search= request('search');
+            if($search){
+                request()->session()->put('search_category',$search);
+                request()->session()->save();
+            } else{
+                request()->session()->forget('search_category');
+            }
+        }
+
+        return redirect('/categorias');
+    }
+
+    public function clearSearch()
+    {
+        request()->session()->forget('search_category');
+
+        return back();
+    }
 }
