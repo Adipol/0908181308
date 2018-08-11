@@ -19,7 +19,7 @@
                     </h3>
                     <div class="card-body">
                         <div class="container">
-                            <form class="form-inline d-flex justify-content-end" method="POST" action="{{ route('justification.search') }}">
+                            <form class="form-inline d-flex justify-content-end" method="POST" action="{{ route('justificationRep.search') }}">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <select class="custom-select form-control mb-2 mr-sm-2" name="justification_id" value="">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-sm btn-primary" title="Buscar"><i class="fas fa-search"></i></button>
-                                    <a href="{{ route('justification.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
+                                    <a href="{{ route('justificationRep.clear_search') }}" class="btn btn-sm btn-outline-dark" title="Limpiar"><i class="fas fa-eraser"></i></a>
                                 </div>
                             </form>
                         </div>
@@ -57,7 +57,7 @@
                                     @forelse ($requests as $request)
                                     <tr>
                                         <th scope="row">
-                                            <a href="{{ route('justification.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
+                                            <a href="{{ route('justificationRep.show',$request->id) }}" title="Ver solicitud" class="btn  btn-sm btn-info">
                                             <i class="fas fa-eye"></i>
                                             </a>
                                         </th>
