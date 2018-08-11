@@ -33,7 +33,7 @@ class TracingRequestController extends Controller
         ->first();
 
         $output         = Output::find($id);
-        $justifications = $output->justifications;
+        $justifications = $output->justifications()->orderBy('name','asc')->get();
         
         $products = DB::table('products')
         ->join('units','products.unit_id','=','units.id')
@@ -59,7 +59,7 @@ class TracingRequestController extends Controller
         ->first();
 
         $output         = Output::find($id);
-        $justifications = $output->justifications;
+        $justifications = $output->justifications()->orderBy('name','asc')->get();
         
         $products = DB::table('products')
         ->join('units','products.unit_id','=','units.id')
@@ -73,10 +73,6 @@ class TracingRequestController extends Controller
 
         $pdf = PDF::loadView('pdf.requestpdf',['sol'=>$sol,'justifications'=>$justifications,'products'=>$products]);
 
-        //return $pdf->download('request.pdf'); */
-
-        //$pdf = \App::make('dompdf.wrapper');
-        //$pdf->loadHTML('pdf.requestpdf');
-        return $pdf->stream('download.pdf');
+        return $pdf->stream(time() . '.' . 'sipro.pdf');
     }
 }
