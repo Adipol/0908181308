@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        &nbsp;
+                            <p class="text-center text-black-50">© 2018 SIPRO. All rights reserved.</p>                        
                     </div>
                 </div>
             </div>
