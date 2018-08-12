@@ -9,6 +9,10 @@ use Carbon\Carbon;
 use App\OutputDetail;
 use App\ProductWarehouse;
 use App\Http\Requests\ApproveUpdateRequest;
+use App\Mail\NewApprove;
+use App\User;
+
+use Illuminate\Support\Facades\Mail;
 
 class ApproveController extends Controller
 {
@@ -86,7 +90,16 @@ class ApproveController extends Controller
                     return redirect()->route('approve.index')->with('error','No se realizo la operación.');
                 }
             }
+                $applicant = User::findOrFail($approve->applicant_id);
+                
+            try{
+                    Mail::to($applicant->email)->send(new NewApprove(auth()->user()->name));
+                }
+                catch (\Exception $exception) {
+                $exception->getMessage();
+                }
             DB::commit();
+
         }catch(\Exception $e){
             DB::rollBack();
         }
