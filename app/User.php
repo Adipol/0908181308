@@ -25,12 +25,12 @@ class User extends Authenticatable
 
     public function setNameAttribute($valor)
     {
-        $this->attributes['name']= strtolower($valor);
+        $this->attributes['name']= mb_strtolower($valor);
     }
 
     public function setEmailAttribute($valor)
     {
-        $this->attributes['email']= strtolower($valor);
+        $this->attributes['email']= mb_strtolower($valor);
     }
 
     public function getNameAttribute($valor)

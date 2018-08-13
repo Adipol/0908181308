@@ -19,11 +19,11 @@ class Unit extends Model
 	
 	public function setNameAttribute($value)
 	{	
-        $this->attributes['name'] = strtolower($value);
+        $this->attributes['name'] = mb_strtolower($value);
 	}
 
 	public function setAbbreviationAttribute($value)
 	{	
-        $this->attributes['abbreviation'] = strtolower($value);
+        $this->attributes['abbreviation'] = mb_strtolower($value);
 	}
 }

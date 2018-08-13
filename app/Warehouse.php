@@ -33,12 +33,12 @@ class Warehouse extends Model
 
     public function setNameAttribute($value){
 		
-        $this->attributes['name'] = strtolower($value);
+        $this->attributes['name'] = mb_strtolower($value);
     }
 
     public function setUbicationAttribute($value){
 		
-        $this->attributes['ubication'] = strtolower($value);
+        $this->attributes['ubication'] = mb_strtolower($value);
     }
     
     public function getNameAttribute($value){

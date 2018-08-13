@@ -26,12 +26,12 @@ class Product extends Model
 
 	public function setNameAttribute($value){
 		
-        $this->attributes['name'] = strtolower($value);
+        $this->attributes['name'] = mb_strtolower($value);
 	}
 
 	public function setDescriptionAttribute($value){
 		
-        $this->attributes['description'] = strtolower($value);
+        $this->attributes['description'] = mb_strtolower($value);
 	}
 
 	public function getDescriptionAttribute($value)
