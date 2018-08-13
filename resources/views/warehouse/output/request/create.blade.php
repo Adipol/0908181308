@@ -61,7 +61,7 @@
                             </div>
                             <div class="form-group col-12 col-md-2">
                                 <label for="inpucant3">Cantidad</label>
-                                    <input type="number"  name="pcantidad" id="pcantidad" class="form-control"  min="0" max="{{ $product->stock }}" required="required">
+                                    <input type="number"  name="pcantidad" id="pcantidad" class="form-control"  min="0" required="required">
                             </div>
                             <div class="form-group col-12 col-md-2">
                                 <label for="inputs">Stock</label>
