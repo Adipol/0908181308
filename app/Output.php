@@ -21,7 +21,7 @@ class Output extends Model
         'created_at'
     ];
 
-    public function setObservationAttribute($value)
+    /* public function setObservationAttribute($value)
     {
         $this->attributes['observation']= strtolower($value);
     }
@@ -29,7 +29,7 @@ class Output extends Model
     public function setDescriptionJAttribute($value)
     {
         $this->attributes['description_j']= strtolower($value);
-    }
+    } */
 
     public function warehouse()
 	{
