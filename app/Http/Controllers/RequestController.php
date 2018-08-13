@@ -54,8 +54,8 @@ class RequestController extends Controller
 
     public function store(RequestStoreRequest $request)
     {
-        try{
-            DB::beginTransaction(); 
+/*         try{
+            DB::beginTransaction();  */
             
             $idarticulo = $request->get('product');
             $cantidad   = $request->get('stock');
@@ -90,10 +90,10 @@ class RequestController extends Controller
                 } 
             }
 
-            DB::commit();
+ /*            DB::commit();
         }catch(\Exception $e){
             DB::rollBack();
-        }
+        } */
 
         return redirect()->route('request.index')->with('notification','Solicitud se realizo exitosamente.');
     }
